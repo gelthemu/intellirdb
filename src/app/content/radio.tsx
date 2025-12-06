@@ -22,7 +22,7 @@ interface StationInfoProps {
 
 function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
   const { playStation, playState, currentStation } = useRadio();
-  const [playCount, setPlayCount] = useState<number>(0);
+  const [plays, setPlayCount] = useState<number>(0);
   const isCurrentStation = currentStation?.id === station.id;
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
     loadPlayCount(station.id).then(setPlayCount);
 
     const unsubscribe = subscribeToPlayCount(station.id, (data) => {
-      setPlayCount(data.playCount);
+      setPlayCount(data.plays);
     });
 
     return () => {
@@ -110,7 +110,7 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
           </div>
           <div className="h-fit px-2 py-px bg-dark/60">
             <div className="text-sm opacity-90">
-              Pings: {playCount > 0 ? playCount : "_"}
+              Pings: {plays > 0 ? plays : "_"}
             </div>
           </div>
         </div>
