@@ -80,15 +80,15 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
         <Image
           src="/img-radio-pixelart.gif"
           alt="Radio"
-          width={3200}
-          height={3200}
+          width={4200}
+          height={4200}
           unoptimized
           loading="eager"
           className="w-full h-full object-cover object-bottom intelli-none"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-dark/50 via-transparent to-dark/50" />
-      <div className="absolute inset-0 bg-gradient-to-r from-dark/50 via-transparent to-dark/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-transparent to-dark/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-dark/60 via-transparent to-dark/60" />
       <div
         className={cn(
           "absolute top-0 left-0 w-full h-full flex flex-col items-start justify-between space-y-4 p-4 md:p-6",
