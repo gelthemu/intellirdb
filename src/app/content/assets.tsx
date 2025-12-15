@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { useStack } from "@/app/hooks/use-dialog-stack";
-import { assetFullScreen } from "@/lib/full-screen";
 import data from "@/data/assets.json";
 import { Asset } from "@/types";
 
@@ -23,7 +22,6 @@ export function AssetView({ asset }: { asset: Asset }) {
       onDoubleClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
-        assetFullScreen();
       }}
     >
       <Image
