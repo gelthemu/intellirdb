@@ -61,16 +61,20 @@ export function Assets({ isOpen = true }: AssetsProps) {
                   e.preventDefault();
                   handleAssetClick(asset);
                 }}
-                className="flex flex-col items-center gap-1 cursor-pointer"
+                className="relative flex flex-col items-center gap-1 overflow-hidden cursor-pointer break-inside-avoid"
               >
-                <div className="w-full aspect-square relative border border-dark overflow-hidden">
-                  <Image
-                    src={asset.url}
-                    alt={asset.title}
-                    fill
-                    className="w-full h-full object-cover intelli-none"
-                    unoptimized
-                  />
+                <div className="w-full relative border border-dark overflow-hidden">
+                  {asset.url && (
+                    <Image
+                      src={asset.url}
+                      alt={asset.title}
+                      width={1500}
+                      height={1500}
+                      className="w-full h-auto object-contain intelli-none grayscale"
+                      unoptimized
+                      loading="lazy"
+                    />
+                  )}
                 </div>
                 <span className="text-sm text-center">{asset.title}</span>
               </div>
@@ -82,6 +86,7 @@ export function Assets({ isOpen = true }: AssetsProps) {
           <span className="text-sm text-center">No assets found</span>
         </div>
       )}
+      <div className="w-full h-32 bg-transparent"></div>
     </div>
   );
 }

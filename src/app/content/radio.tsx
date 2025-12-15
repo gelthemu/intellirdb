@@ -78,7 +78,7 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
     >
       <div className="w-full h-full">
         <Image
-          src="/img-radio-pixelart.webp"
+          src="https://i.pinimg.com/originals/e7/c0/f3/e7c0f3e93952b5afd8668cc83087ac09.gif"
           alt="Radio"
           width={3200}
           height={3200}
@@ -87,10 +87,12 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
           className="w-full h-full object-cover object-bottom intelli-none"
         />
       </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/50 via-transparent to-dark/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-dark/50 via-transparent to-dark/50" />
       <div
         className={cn(
           "absolute top-0 left-0 w-full h-full flex flex-col items-start justify-between space-y-4 p-4 md:p-6",
-          "text-light bg-dark/70 bg-blend-multiply bg-repeat overflow-hidden"
+          "text-light bg-dark/50 bg-blend-multiply bg-repeat overflow-hidden"
         )}
       >
         <div className="w-full flex flex-row justify-between gap-2">
