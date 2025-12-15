@@ -51,7 +51,7 @@ export function Assets({ isOpen = true }: AssetsProps) {
   return (
     <div className="w-full h-full p-px overflow-hidden overflow-y-auto">
       {assets.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
           {assets.map((asset, index) => (
             <Suspense key={index} fallback={null}>
               <div
