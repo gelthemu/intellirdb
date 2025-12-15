@@ -7,6 +7,7 @@ import { subscribeToPlayCount, loadPlayCount } from "@/lib/analytics";
 import radioData from "@/data/radio.json";
 import { useStack } from "@/app/hooks/use-dialog-stack";
 import { useRadio } from "@/app/contexts/radio-context";
+import { playerFullScreen } from "@/lib/full-screen";
 import { Station } from "@/types";
 import { cn } from "@/lib/cn";
 
@@ -73,6 +74,7 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
     <div
       id="radio-player"
       className="w-full h-full p-px overflow-hidden relative"
+      onDoubleClick={playerFullScreen}
     >
       <div className="w-full h-full">
         <Image
@@ -136,16 +138,7 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
           </div>
           <div
             className="bg-dark/80 p-2 cursor-pointer opacity-80 z-50"
-            onClick={() => {
-              const player = document.getElementById("radio-player");
-              if (!player) return;
-
-              if (document.fullscreenElement) {
-                document.exitFullscreen().catch(() => {});
-              } else if (player.requestFullscreen) {
-                player.requestFullscreen().catch(() => {});
-              }
-            }}
+            onClick={playerFullScreen}
           >
             <Fullscreen size={18} />
           </div>

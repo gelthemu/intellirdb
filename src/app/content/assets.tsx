@@ -3,17 +3,29 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { useStack } from "@/app/hooks/use-dialog-stack";
+import { assetFullScreen } from "@/lib/full-screen";
+import data from "@/data/assets.json";
 import { Asset } from "@/types";
 
 interface AssetsProps {
   isOpen?: boolean;
 }
 
-export const assets: Asset[] = [];
+const assetsData = data as Asset[];
+
+export const assets: Asset[] = assetsData;
 
 export function AssetView({ asset }: { asset: Asset }) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center bg-beige/10 p-px">
+    <div
+      id="asset-view"
+      className="relative w-full h-full flex items-center justify-center bg-beige/10 p-px"
+      onDoubleClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        assetFullScreen();
+      }}
+    >
       <Image
         src={asset.url}
         alt={asset.title}
@@ -46,7 +58,11 @@ export function Assets({ isOpen = true }: AssetsProps) {
             <Suspense key={index} fallback={null}>
               <div
                 key={index}
-                onClick={() => handleAssetClick(asset)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  handleAssetClick(asset);
+                }}
                 className="flex flex-col items-center gap-1 cursor-pointer"
               >
                 <div className="w-full aspect-square relative border border-dark overflow-hidden">
