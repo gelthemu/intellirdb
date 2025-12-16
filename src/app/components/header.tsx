@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, Suspense } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useStack } from "@/app/hooks/use-dialog-stack";
 import About from "@/app/content/about";
@@ -15,69 +14,45 @@ type MenuItem = {
   disabled?: boolean;
 };
 
-type Menu = {
-  label: string;
-  items: MenuItem[];
-};
-
 export default function Header() {
   const { openDialog } = useStack();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const menuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const menuItems: Menu[] = [
+  const fileMenuItems: MenuItem[] = [
     {
-      label: "File",
-      items: [
-        {
-          label: "About",
-          onClick: () =>
-            openDialog({
-              id: "about",
-              title: "About",
-              component: <About isOpen={true} />,
-            }),
-        },
-        {
-          label: "Fullscreen",
-          onClick: () => {
-            if (document.fullscreenElement) {
-              document.exitFullscreen();
-            } else {
-              document.documentElement.requestFullscreen();
-            }
-          },
-        },
-        {
-          label: "Exit",
-          disabled: true,
-        },
-      ],
+      label: "About",
+      onClick: () =>
+        openDialog({
+          id: "about",
+          title: "About",
+          component: <About isOpen={true} />,
+        }),
     },
     {
-      label: "Explore",
-      items: [
-        {
-          label: "intelliURL",
-          onClick: () =>
-            window.open("https://intelliurl.vercel.app/", "_blank"),
-        },
-        {
-          label: "TransAudio",
-          onClick: () =>
-            window.open("https://transaudio.vercel.app/", "_blank"),
-        },
-      ],
+      label: "Fullscreen",
+      onClick: () => {
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+        } else {
+          document.documentElement.requestFullscreen();
+        }
+      },
+    },
+    {
+      label: "Exit",
+      disabled: true,
     },
   ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (openMenu) {
-        const menuElement = menuRefs.current[openMenu];
-        if (menuElement && !menuElement.contains(event.target as Node)) {
-          setOpenMenu(null);
-        }
+      if (
+        openMenu &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setOpenMenu(null);
       }
     };
 
@@ -89,8 +64,8 @@ export default function Header() {
     }
   }, [openMenu]);
 
-  const handleMenuClick = (menuLabel: string) => {
-    setOpenMenu(openMenu === menuLabel ? null : menuLabel);
+  const handleFileClick = () => {
+    setOpenMenu(openMenu === "File" ? null : "File");
   };
 
   const handleMenuItemClick = (item: MenuItem) => {
@@ -117,54 +92,57 @@ export default function Header() {
           </div>
           <div className="flex items-center justify-center space-x-0.5">
             <Suspense fallback={null}>
-              {menuItems.map((menu) => (
+              <div ref={menuRef} className="relative">
                 <div
-                  key={menu.label}
-                  ref={(el) => {
-                    menuRefs.current[menu.label] = el;
-                  }}
-                  className="relative"
-                >
-                  <div
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => handleMenuClick(menu.label)}
-                    className={cn(
-                      "px-2 py-px font-bold",
-                      "border-none cursor-pointer transition-colors",
-                      openMenu === menu.label
-                        ? "bg-dark text-light"
-                        : "text-dark hover:bg-dark/60 hover:text-light"
-                    )}
-                  >
-                    {menu.label}
-                  </div>
-                  {openMenu === menu.label && menu.items.length > 0 && (
-                    <ul className="menu absolute top-full left-0 w-44 bg-beige border-2 border-dark list-none p-px">
-                      {menu.items.map((item, index) => (
-                        <li key={`${item.label}-${index}`}>
-                          <div
-                            onClick={() => handleMenuItemClick(item)}
-                            className={cn(
-                              "w-full menu-item text-left px-2 py-px font-bold",
-                              "border-none bg-transparent cursor-pointer",
-                              "flex items-center justify-between gap-2",
-                              item.disabled
-                                ? "text-dark/50 cursor-default"
-                                : "text-dark hover:bg-dark/60 hover:text-light"
-                            )}
-                          >
-                            <span>{item.label}</span>
-                            {menu.label === "Explore" && !item.disabled && (
-                              <ArrowUpRight size={16} className="opacity-80" />
-                            )}
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                  role="button"
+                  tabIndex={0}
+                  onClick={handleFileClick}
+                  className={cn(
+                    "px-2 py-px font-bold",
+                    "border-none cursor-pointer transition-colors focus:outline-none",
+                    openMenu === "File"
+                      ? "bg-dark text-light"
+                      : "text-dark hover:bg-dark/60 hover:text-light"
                   )}
+                >
+                  File
                 </div>
-              ))}
+                {openMenu === "File" && (
+                  <ul className="menu absolute top-full left-0 w-44 bg-beige border-2 border-dark list-none p-px">
+                    {fileMenuItems.map((item, index) => (
+                      <li key={`${item.label}-${index}`}>
+                        <div
+                          onClick={() => handleMenuItemClick(item)}
+                          className={cn(
+                            "w-full menu-item text-left px-2 py-px font-bold",
+                            "border-none bg-transparent cursor-pointer",
+                            "flex items-center justify-between gap-2 focus:outline-none",
+                            item.disabled
+                              ? "text-dark/50 cursor-default"
+                              : "text-dark hover:bg-dark/60 hover:text-light"
+                          )}
+                        >
+                          <span>{item.label}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() =>
+                  window.open("https://geltaverse.vercel.app/", "_blank")
+                }
+                className={cn(
+                  "px-2 py-px font-bold",
+                  "border-none cursor-pointer transition-colors focus:outline-none",
+                  "text-dark hover:bg-dark/60 hover:text-light"
+                )}
+              >
+                Explore
+              </div>
             </Suspense>
           </div>
         </div>
