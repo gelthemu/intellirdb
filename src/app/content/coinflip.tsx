@@ -33,7 +33,7 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
           onClick={!isFlipping ? handleCoinflip : undefined}
           className={cn(
             "relative w-28 aspect-square flex items-center justify-center font-bold text-white",
-            "border-4 border-double border-dark rounded-full overflow-hidden shadow-lg",
+            "border-none rounded-full overflow-hidden shadow-lg shadow-dark/60",
             isFlipping
               ? "cursor-default"
               : "cursor-pointer hover:scale-105 transition-transform"
@@ -48,7 +48,7 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
                   rotateX: [0, 1800, 3600, 5400, 7200],
                   rotateY: [0, 1440, 2880, 4320, 5760],
                   rotateZ: [0, 360, 720, 1080, 1440],
-                  scale: [1, 1.15, 0.75, 1.15, 1],
+                  scale: [1, 1.075, 0.5375, 1.075, 1],
                   y: [0, -50, 0, -50, 0],
                 }
               : {
@@ -72,13 +72,6 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
                 }
           }
         >
-          {/* <div
-            className="absolute w-full h-full flex items-center justify-center bg-gradient-to-br from-light/40 to-light/60 rounded-full"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateX(0deg)",
-            }}
-          ></div> */}
           <div className="w-full aspect-square flex items-center justify-center">
             <Image
               src="/img-coinflip.png"
@@ -93,13 +86,6 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
               }}
             />
           </div>
-          {/* <div
-            className="absolute w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-400 to-gray-600 rounded-full"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateX(180deg)",
-            }}
-          ></div> */}
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
