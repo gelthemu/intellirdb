@@ -42,8 +42,7 @@
 
 @font-face {
   font-family: "Typewriter";
-  src: url("https://intellirdb.vercel.app/fonts/veteran-typewriter.ttf")
-    format("truetype");
+  src: url("/fonts/veteran-typewriter.ttf") format("truetype");
   font-style: normal;
   font-display: swap;
 }
