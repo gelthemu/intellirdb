@@ -5,7 +5,6 @@ import { Assets, AssetView, assets } from "@/app/content/assets";
 import { Radio, StationInfo } from "@/app/content/radio";
 import Coinflip from "@/app/content/coinflip";
 import About from "@/app/content/about";
-import { IntelliURL, TransAudio } from "@/app/content/explore";
 import radioData from "@/data/radio.json";
 import { Station, Asset } from "@/types";
 import { Content } from "./use-dialog-stack";
@@ -74,20 +73,6 @@ export function createFromId(id: string): Content | null {
         id: "about",
         title: "About",
         component: React.createElement(About, { isOpen: true }),
-      };
-
-    case "intelliurl":
-      return {
-        id: "intelliurl",
-        title: "intelliURL",
-        component: React.createElement(IntelliURL, { isOpen: true }),
-      };
-
-    case "transaudio":
-      return {
-        id: "transaudio",
-        title: "TransAudio",
-        component: React.createElement(TransAudio, { isOpen: true }),
       };
 
     default:

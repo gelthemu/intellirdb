@@ -2,11 +2,10 @@
 
 import { useState, useEffect, useRef, Suspense } from "react";
 import Image from "next/image";
-import { ChevronsLeftRightEllipsis } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useStack } from "@/app/hooks/use-dialog-stack";
 import About from "@/app/content/about";
-import { IntelliURL, TransAudio } from "@/app/content/explore";
 import AudioControls from "@/app/components/audio-controls";
 import { BASE_URL } from "@/lib/constants";
 
@@ -61,20 +60,12 @@ export default function Header() {
         {
           label: "intelliURL",
           onClick: () =>
-            openDialog({
-              id: "intelliurl",
-              title: "intelliURL",
-              component: <IntelliURL isOpen={true} />,
-            }),
+            window.open("https://intelliurl.vercel.app/", "_blank"),
         },
         {
           label: "TransAudio",
           onClick: () =>
-            openDialog({
-              id: "transaudio",
-              title: "TransAudio",
-              component: <TransAudio isOpen={true} />,
-            }),
+            window.open("https://transaudio.vercel.app/", "_blank"),
         },
       ],
     },
@@ -165,10 +156,7 @@ export default function Header() {
                           >
                             <span>{item.label}</span>
                             {menu.label === "Explore" && !item.disabled && (
-                              <ChevronsLeftRightEllipsis
-                                size={14}
-                                className="opacity-50"
-                              />
+                              <ArrowUpRight size={16} className="opacity-80" />
                             )}
                           </div>
                         </li>
