@@ -63,7 +63,7 @@
   {
     "id": "express-fm",
     "name": "Express FM",
-    "url": "https://s2.xrad.io:9414/stream",
+    "url": "https://s2.xrad.io:9414/stream?_=734367",
     "tagline": "Your Music, Your City",
     "location": "Portsmouth, UK"
   },

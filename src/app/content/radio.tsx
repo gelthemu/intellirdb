@@ -76,12 +76,11 @@ function StationInfo({ station, isOpen = true, onPlay }: StationInfoProps) {
       className="w-full h-full p-px overflow-hidden relative"
       onDoubleClick={playerFullScreen}
     >
-      <div className="w-full h-full">
+      <div className="w-full h-full relative">
         <Image
-          src="/img-radio-pixelart.gif"
+          src="https://intellirdb.vercel.app/img-radio-pixelart.gif"
           alt="Radio"
-          width={4200}
-          height={4200}
+          fill
           unoptimized
           loading="eager"
           className="w-full h-full object-cover object-bottom intelli-none"

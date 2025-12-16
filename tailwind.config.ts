@@ -15,7 +15,7 @@ const config: Config = {
         beige: "#f5f5f5",
       },
       fontFamily: {
-        pixel: ["Pixel Operator", "monospace"],
+        pixel: ["Typewriter", "Pixel Operator", "monospace"],
       },
     },
   },

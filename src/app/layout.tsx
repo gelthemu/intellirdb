@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
+import Image from "next/image";
 import Header from "@/app/components/header";
 import Dialog from "@/app/components/dialog";
 import { RadioProvider } from "@/app/contexts/radio-context";
@@ -103,6 +104,19 @@ export default function RootLayout({
         <link rel="preconnect" href="https://transaudio.vercel.app" />
         <link rel="dns-prefetch" href="https://transaudio.vercel.app" />
 
+        <link
+          rel="preload"
+          href="https://intellirdb.vercel.app/fonts/veteran-typewriter.ttf"
+          as="font"
+          type="font/truetype"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="https://intellirdb.vercel.app/img-radio-pixelart.gif"
+          as="image"
+        ></link>
+
         <meta property="og:locale" content="en_US" />
       </head>
       <body
@@ -121,6 +135,12 @@ export default function RootLayout({
             <Suspense>
               <Dialog />
             </Suspense>
+            <Image
+              src="https://intellirdb.vercel.app/img-radio-pixelart.gif"
+              alt=""
+              fill
+              className="hidden intelli-none"
+            />
           </main>
           <Analytics />
           <SpeedInsights />
