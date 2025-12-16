@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 interface CoinflipProps {
@@ -47,19 +48,11 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
                   rotateX: [0, 1800, 3600, 5400, 7200],
                   rotateY: [0, 1440, 2880, 4320, 5760],
                   rotateZ: [0, 360, 720, 1080, 1440],
-                  scale: [1, 1.2, 1, 1.2, 1],
+                  scale: [1, 1.15, 0.75, 1.15, 1],
                   y: [0, -50, 0, -50, 0],
                 }
-              : coinflipResult
-              ? {
-                  rotateX: coinflipResult === "Heads" ? 0 : 180,
-                  rotateY: 0,
-                  rotateZ: 0,
-                  scale: 1,
-                  y: 0,
-                }
               : {
-                  rotateX: 0,
+                  rotateX: 180,
                   rotateY: 0,
                   rotateZ: 0,
                   scale: 1,
@@ -79,20 +72,34 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
                 }
           }
         >
-          <div
+          {/* <div
             className="absolute w-full h-full flex items-center justify-center bg-gradient-to-br from-light/40 to-light/60 rounded-full"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateX(0deg)",
             }}
-          ></div>
-          <div
+          ></div> */}
+          <div className="w-full aspect-square flex items-center justify-center">
+            <Image
+              src="/img-coinflip.png"
+              alt="Coinflip"
+              width={1500}
+              height={1500}
+              unoptimized
+              className="w-full h-full object-contain intelli-none"
+              style={{
+                imageRendering: "pixelated",
+                transform: "rotateX(180deg)",
+              }}
+            />
+          </div>
+          {/* <div
             className="absolute w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-400 to-gray-600 rounded-full"
             style={{
               backfaceVisibility: "hidden",
               transform: "rotateX(180deg)",
             }}
-          ></div>
+          ></div> */}
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -104,7 +111,7 @@ export default function Coinflip({ isOpen = true }: CoinflipProps) {
               initial={{ scale: 0, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-3xl font-bold text-dark"
+              className="text-2xl font-bold text-dark"
             >
               {coinflipResult}!
             </motion.div>
