@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Header from "@/app/components/header";
@@ -129,7 +128,6 @@ export default function RootLayout({
             />
           </main>
           <Analytics />
-          <SpeedInsights />
         </RadioProvider>
       </body>
     </html>

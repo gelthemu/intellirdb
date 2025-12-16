@@ -5,16 +5,63 @@ import { cn } from "@/lib/cn";
 
 export default function About({ isOpen = true }: { isOpen: boolean }) {
   const [email, setEmail] = useState("");
+  const [buttonState, setButtonState] = useState<
+    "idle" | "submitting" | "success"
+  >("idle");
 
   const validateEmail = (email: string) => {
     if (!email) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (!email || !validateEmail(email)) return;
-    console.log(email, "signed up");
-    setEmail("");
+
+    setButtonState("submitting");
+
+    const timestamp = new Date().toLocaleString("en-US", {
+      timeZone: "Africa/Kampala",
+    });
+    const userAgent = navigator.userAgent;
+    const deviceInfo = {
+      userAgent,
+      language: navigator.language || "",
+    };
+
+    try {
+      await fetch("https://formbold.com/s/3nK8d", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subscriber: email,
+          timestamp,
+          ...deviceInfo,
+        }),
+      });
+
+      await new Promise((resolve) => setTimeout(resolve, 2500));
+
+      setButtonState("success");
+      setEmail("");
+
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setButtonState("idle");
+    } catch {
+      setButtonState("idle");
+    }
+  };
+
+  const getButtonText = () => {
+    switch (buttonState) {
+      case "submitting":
+        return "Signing Up...";
+      case "success":
+        return "Signed Up!";
+      default:
+        return "Sign Up";
+    }
   };
 
   if (!isOpen) return null;
@@ -43,19 +90,21 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
             autoComplete="off"
             data-lpignore="true"
             placeholder="Your email"
-            className="px-2 py-px border-2 border-dark text-dark bg-beige/80 focus:outline-none"
+            disabled={buttonState !== "idle"}
+            className="px-2 py-px border-2 border-dark text-dark bg-beige/80 focus:outline-none disabled:opacity-60"
           />
           <button
             onClick={() => handleSignUp()}
-            disabled={!email || !validateEmail(email)}
+            disabled={!email || !validateEmail(email) || buttonState !== "idle"}
             className={cn(
               "w-fit px-2 py-px border-2 border-dark",
               "bg-dark hover:bg-dark/80 text-light",
               "font-bold transition-opacity duration-200 ease-in-out",
-              !validateEmail(email) && "opacity-60 cursor-default"
+              (!validateEmail(email) || buttonState !== "idle") &&
+                "opacity-60 cursor-default"
             )}
           >
-            Sign Up
+            {getButtonText()}
           </button>
         </div>
       </div>
