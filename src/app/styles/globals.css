@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,8 +15,8 @@
   }
 
   .intelli-canvas {
-    background: #0003 url("https://intellirdb.vercel.app/intellirdb-canvas.jpg")
-      0 0 repeat;
+    background: rgba(0, 0, 0, 0.938)
+      url("https://cfmpulse.com/intellirdb-canvas.jpg") 0 0 repeat;
   }
 }
 
@@ -52,8 +54,8 @@ html {
   scroll-behavior: smooth;
   transition-duration: 0s;
   box-sizing: border-box;
-  font-size: 20px;
-  font-family: "Typewriter", "Pixel Operator", "monospace";
+  font-size: 18px;
+  font-family: "Typewriter", "Pixel Operator", "VT323", monospace;
 }
 
 html {
@@ -80,13 +82,31 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.25rem;
+  width: 0.45rem;
   height: 0.25rem;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #000000a3;
   border-radius: 0px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 input {
@@ -96,4 +116,8 @@ input {
   -ms-user-select: auto !important;
   -o-user-select: auto !important;
   user-select: auto !important;
+}
+
+.text-bi {
+  font-size: 12px !important;
 }

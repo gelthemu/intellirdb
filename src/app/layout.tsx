@@ -1,10 +1,16 @@
 import React, { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
-import Header from "@/app/components/header";
-import Dialog from "@/app/components/dialog";
-import { RadioProvider } from "@/app/contexts/radio-context";
+import Taskbar from "@/app/intellirdb/components/taskbar";
+import Dialog from "@/app/intellirdb/components/dialog";
+import { getInitialMessages } from "@/lib/firebase/get-initial-messages";
+import { RadioProvider } from "@/app/contexts/radio";
+import { WindowProvider } from "@/app/contexts/window";
+import { PreviewProvider } from "@/app/contexts/preview";
+import { ChatProvider } from "@/app/contexts/chat";
 import { cn } from "@/lib/cn";
 import { BASE_URL } from "@/lib/constants";
 import "@/app/styles/globals.css";
@@ -25,6 +31,8 @@ const KEYWORDS = [
 const OG_IMAGE_URL = `${BASE_URL}/intellirdb-opengraph.webp`;
 const APPLICATION_NAME = "intelliRDB";
 const CREATOR = "Gelthem M.";
+
+const ga_id = "G-RLHVV5YR9Y";
 
 export const viewport: Viewport = {
   themeColor: "#000",
@@ -90,19 +98,35 @@ export const metadata: Metadata = {
   authors: [{ name: CREATOR, url: "https://x.com/geltaverse" }],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}): Promise<JSX.Element> {
+  const { messages, users } = await getInitialMessages();
+
   return (
-    <html lang="en">
+    <html lang="en" className="intelli-canvas" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://intelliurl.vercel.app" />
-        <link rel="dns-prefetch" href="https://intelliurl.vercel.app" />
-        <link rel="preconnect" href="https://transaudio.vercel.app" />
-        <link rel="dns-prefetch" href="https://transaudio.vercel.app" />
+        <link rel="preconnect" href="https://www.cfmpulse.com" />
+        <link rel="dns-prefetch" href="https://www.cfmpulse.com" />
+        <link rel="preconnect" href="https://cfmpulse.com" />
+        <link rel="dns-prefetch" href="https://cfmpulse.com" />
+        <link rel="preconnect" href="https://assets.cfmpulse.com" />
+        <link rel="dns-prefetch" href="https://assets.cfmpulse.com" />
         <meta property="og:locale" content="en_US" />
+        <GoogleAnalytics gaId={ga_id} />
+        <meta name="app-version" content={process.env.SITE_VERSION} />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta property="og:site_name" content={APPLICATION_NAME} />
+        <meta property="og:locale" content="en_US" />
+        <meta
+          name="google-site-verification"
+          content="OfHaVPKM9Wu-vYzI9izprYBxt9AaQM7LmbovFBXMTDk"
+        />
+        <meta name="msvalidate.01" content="781D56DEEBBD64612B4741E403DBABE7" />
       </head>
       <body
         className={cn(
@@ -112,22 +136,37 @@ export default function RootLayout({
         )}
       >
         <RadioProvider>
-          <Suspense>
-            <Header />
-          </Suspense>
-          <main className="relative h-full flex-1 flex flex-col">
-            <div className="w-full h-full overflow-hidden">{children}</div>
-            <Suspense>
-              <Dialog />
-            </Suspense>
-            <Image
-              src="https://intellirdb.vercel.app/img-radio-pixelart.gif"
-              alt=""
-              fill
-              className="hidden intelli-none"
-            />
-          </main>
-          <Analytics />
+          <PreviewProvider>
+            <WindowProvider>
+              <ChatProvider initialMessages={messages} initialUsers={users}>
+                <main className="relative h-full flex-1 flex flex-col">
+                  <div className="w-full h-full overflow-hidden">
+                    {children}
+                  </div>
+                  <Suspense>
+                    <Dialog />
+                  </Suspense>
+                  <Image
+                    src="https://cfmpulse.com/img-radio-pixelart.gif"
+                    alt=""
+                    fill
+                    className="hidden intelli-none"
+                  />
+                  <Image
+                    src="https://cfmpulse.com/intellirdb-canvas.jpg"
+                    alt=""
+                    fill
+                    className="hidden intelli-none"
+                  />
+                </main>
+                <Suspense>
+                  <Taskbar />
+                </Suspense>
+                <Analytics />
+                <SpeedInsights />
+              </ChatProvider>
+            </WindowProvider>
+          </PreviewProvider>
         </RadioProvider>
       </body>
     </html>

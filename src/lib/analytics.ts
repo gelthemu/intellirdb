@@ -1,7 +1,7 @@
 "use client";
 
 import { ref, get, set, onValue, Unsubscribe } from "firebase/database";
-import { getDatabaseInstance } from "@/lib/firebase";
+import { intellirdbDatabase as database } from "@/lib/firebase/firebase";
 
 export type PlayCountData = {
   id: string;
@@ -12,7 +12,6 @@ export type PlayCountCallback = (data: PlayCountData) => void;
 
 export async function loadPlayCount(stationId: string): Promise<number> {
   try {
-    const database = getDatabaseInstance();
     if (!database) {
       return 0;
     }
@@ -31,7 +30,6 @@ export async function loadPlayCount(stationId: string): Promise<number> {
 
 export async function incrementPlayCount(stationId: string): Promise<number> {
   try {
-    const database = getDatabaseInstance();
     if (!database) {
       return 0;
     }
@@ -55,7 +53,6 @@ export function subscribeToPlayCount(
   callback: PlayCountCallback
 ): Unsubscribe | null {
   try {
-    const database = getDatabaseInstance();
     if (!database) {
       return null;
     }

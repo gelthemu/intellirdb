@@ -61,13 +61,6 @@
     "location": "Mbarara, Uganda"
   },
   {
-    "id": "express-fm",
-    "name": "Express FM",
-    "url": "https://s2.xrad.io:9414/stream?_=734367",
-    "tagline": "Your Music, Your City",
-    "location": "Portsmouth, UK"
-  },
-  {
     "id": "fox-news-radio",
     "name": "FOX News Radio",
     "url": "https://live.amperwave.net/direct/foxnewsradio-foxnewsradioaac-imc?source=fnr.web",
@@ -103,46 +96,11 @@
     "location": "London, UK"
   },
   {
-    "id": "hills-fm",
-    "name": "Hills FM",
-    "url": "http://s40.myradiostream.com:21392/",
-    "tagline": "Taking You To The Top",
-    "location": "Kabale, Uganda"
-  },
-  {
-    "id": "k-fm-uganda",
-    "name": "K Fm",
-    "url": "http://81.199.17.51:8000/stream",
-    "tagline": "Better Information, Best Music",
-    "location": "Kampala, Uganda"
-  },
-  {
-    "id": "k105",
-    "name": "K105",
-    "url": "https://crystalout.surfernetwork.com:8001/WKHG_MP3",
-    "tagline": "The Best Mix",
-    "location": "Leitchfield, KY"
-  },
-  {
-    "id": "kiss-100-9",
-    "name": "KIIS 100.9",
-    "url": "https://14867.cloudrad.io:9224/live",
-    "tagline": "Hot Hits For Kampala",
-    "location": "Kampala, Uganda"
-  },
-  {
-    "id": "kiss-fm-102-7",
+    "id": "kiis-fm-102-7",
     "name": "KIIS FM 102.7",
     "url": "https://stream.revma.ihrhls.com/zc185",
     "tagline": "LA's #1 Hit Music Radio Station",
     "location": "Los Angeles, CA"
-  },
-  {
-    "id": "k-town-fm",
-    "name": "K-Town FM",
-    "url": "https://stream.rcs.revma.com/w33p2cfap98uv",
-    "tagline": "Keep Calm",
-    "location": "Kabale, Uganda"
   },
   {
     "id": "kzrc-mix-96-1",

@@ -36,6 +36,5 @@ next-env.d.ts
 
 to-delete-later
 .vercel
-public/bw
-src/app/scripts/generate-assets-json.js
-src/app/scripts/img-rename-script.js
+src/data/raw
+.vercel

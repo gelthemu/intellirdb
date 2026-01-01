@@ -2,6 +2,11 @@
   "name": "intelliRDB - Just Radio!",
   "short_name": "intelliRDB",
   "description": "Discover and stream some of the best radio stations from around the world.",
+  "categories": [
+    "radio",
+    "entertainment",
+    "music"
+  ],
   "icons": [
     {
       "src": "/io/favicon-16x16.png",
