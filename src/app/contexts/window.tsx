@@ -74,9 +74,17 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
         }
       }
       const queryString = params.toString();
-      router.push(queryString ? `/intellirdb?${queryString}` : "/intellirdb", {
-        scroll: false,
-      });
+      const newUrl = queryString ? `/intellirdb?${queryString}` : "/intellirdb";
+
+      if (
+        typeof window !== "undefined" &&
+        window.history &&
+        window.history.pushState
+      ) {
+        window.history.pushState(null, "", newUrl);
+      } else {
+        router.push(newUrl, { scroll: false });
+      }
     },
     [router]
   );
