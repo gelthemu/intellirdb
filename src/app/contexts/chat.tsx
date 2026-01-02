@@ -181,6 +181,9 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_CFMPULSE_USER_CREATION_KEY}`,
           "Content-Type": "application/json",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
         },
         body: JSON.stringify({
           username: trimmedUsername,
@@ -195,6 +198,9 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_CFMPULSE_USER_DATA_KEY}`,
           "Content-Type": "application/json",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
         },
         body: JSON.stringify({
           code: "982gx",
@@ -240,6 +246,9 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_CFMPULSE_USER_DATA_KEY}`,
           "Content-Type": "application/json",
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          Pragma: "no-cache",
+          Expires: "0",
         },
         body: JSON.stringify({
           code: "982gx",
