@@ -190,15 +190,21 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         }),
       });
 
-      await fetch("https://formbold.com/s/3GvG0", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/notice`, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CFMPULSE_USER_DATA_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          notification: "New User Joined CFM Pulse Chat",
-          username: trimmedUsername,
-          userId: userCode,
+          code: "982gx",
+          text: "User",
+          userAgent: deviceInfo.userAgent,
+          language: deviceInfo.language,
+          payload: {
+            username: trimmedUsername,
+            userId: userCode,
+          },
         }),
       });
     } catch (error) {
@@ -220,25 +226,32 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         timestamp: serverTimestamp(),
       };
 
+      const userAgent = navigator.userAgent;
+      const deviceInfo = {
+        userAgent,
+        language: navigator.language || "",
+      };
+
       const newMessageRef = push(messagesRef);
       await set(newMessageRef, newMessage);
 
-      const formData = {
-        notification: "New Message in CFM Pulse Chat",
-        username: username,
-        text: content.text.trim(),
-        userId: userId,
-        timestamp: new Date().toLocaleString("en-US", {
-          timeZone: "Africa/Kampala",
-        }),
-      };
-
-      await fetch("https://formbold.com/s/3GvG0", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/notice`, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CFMPULSE_USER_DATA_KEY}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          code: "982gx",
+          text: "Message",
+          userAgent: deviceInfo.userAgent,
+          language: deviceInfo.language,
+          payload: {
+            username: username,
+            text: content.text.trim(),
+            userId: userId,
+          },
+        }),
       });
     } catch {
       console.error("Error");
