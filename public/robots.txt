@@ -7,7 +7,7 @@ User-agent: *
 Disallow: /api/*
 
 # Host
-Host: https://www.cfmpulse.com
+Host: https://cfmpulse.com
 
 # Sitemaps
-Sitemap: https://www.cfmpulse.com/sitemap.xml
+Sitemap: https://cfmpulse.com/sitemap.xml
