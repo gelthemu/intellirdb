@@ -132,12 +132,14 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
           )
         );
 
-        setState((prevState) => ({
-          ...prevState,
-          messages,
-          users,
-          isConnected: true,
-        }));
+        setTimeout(() => {
+          setState((prevState) => ({
+            ...prevState,
+            messages,
+            users,
+            isConnected: true,
+          }));
+        }, 2500);
       },
       (error) => {
         console.error("Firebase error:", error);
@@ -281,7 +283,7 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
             ...prev,
             isMessagesLoading: false,
           }));
-        }, 2500);
+        }, 2000);
 
         return {
           ...prevState,
@@ -293,7 +295,6 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
       return {
         ...prevState,
         isChatVisible: newVisibility,
-        isMessagesLoading: true,
       };
     });
   };

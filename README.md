@@ -4,9 +4,14 @@
 
 > Visit [intelliRDB](https://www.cfmpulse.com/intellirdb "Just Radio!") today, click **PLAY** to start listening.
 
+![intelliRDB](https://cfmpulse.com/intellirdb-opengraph.webp)
+
+### License
+
+> This project is licensed under the MIT License—see the LICENSE file for details. Ideas welcome—whether it’s code, design, or just a wild suggestion.
+
 ## Got questions or feedback?
 
-Please send an email to:
-[intellirdb@cfmpulse.com](mailto:intellirdb@cfmpulse.com)
+> [intellirdb@cfmpulse.com](mailto:intellirdb@cfmpulse.com)
 
-Thank you.
+Thank you!

@@ -132,7 +132,7 @@ const Taskbar: React.FC = () => {
           >
             <motion.div
               ref={menuRef}
-              className="absolute bottom-0 left-1 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
+              className="absolute bottom-1 left-2 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -197,7 +197,7 @@ const Taskbar: React.FC = () => {
       </AnimatePresence>
 
       <div className="w-full sticky bottom-0 z-50">
-        <div className="flex flex-row items-center justify-between space-x-2 p-0 text-dark bg-beige border-t border-dark">
+        <div className="flex flex-row items-center justify-between space-x-2 p-0 text-dark bg-beige border-none">
           <div
             ref={startRef}
             role="button"
