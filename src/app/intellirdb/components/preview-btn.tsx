@@ -29,7 +29,9 @@ export function PreviewBtn({
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://cfmpulse.com/api/tracklist/track-preview-info?artist=${encodeURIComponent(
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/api/cfmpulse/track-preview?artist=${encodeURIComponent(
           track.track_artist
         )}&title=${encodeURIComponent(track.track_title)}`,
         {
@@ -67,25 +69,18 @@ export function PreviewBtn({
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Register the audio element with context
     registerAudio(audio);
 
-    // Set audio properties
     audio.volume = 0.75;
     audio.setAttribute("data-preview", "true");
 
-    const handleEnded = () => {
-      // Context will handle state updates via existing logic
-    };
+    const handleEnded = () => {};
 
-    const handleError = () => {
-      // Context will handle state updates via existing logic
-    };
+    const handleError = () => {};
 
     audio.addEventListener("ended", handleEnded);
     audio.addEventListener("error", handleError);
 
-    // Cleanup: unregister when component unmounts
     return () => {
       audio.pause();
       audio.removeEventListener("ended", handleEnded);

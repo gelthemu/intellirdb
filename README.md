@@ -10,7 +10,7 @@
 
 > This project is licensed under the MIT License—see the LICENSE file for details. Ideas welcome—whether it’s code, design, or just a wild suggestion.
 
-## Got questions or feedback?
+### Got questions or feedback?
 
 > [intellirdb@cfmpulse.com](mailto:intellirdb@cfmpulse.com)
 

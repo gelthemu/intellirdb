@@ -154,9 +154,6 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
     const newUserId = uuidv4().replace(/-/g, "").toLowerCase();
     const trimmedUsername = inputUsername.trim();
     const userCode = newUserId.slice(-4);
-    const timestamp = new Date().toLocaleString("en-US", {
-      timeZone: "Africa/Kampala",
-    });
 
     const userAgent = navigator.userAgent;
     const deviceInfo = {
@@ -178,42 +175,20 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
       isConnected: true,
     }));
 
-    let ipData = null;
     try {
-      const response = await fetch("https://ipwho.is/");
-      const s = await response.json();
-
-      if (response.ok && s.success !== false) {
-        ipData = {
-          ip: s.ip,
-          city: s.city,
-          region: s.region,
-          country: s.country,
-          continent: s.continent,
-          postal: s.postal,
-          latitude: s.latitude,
-          longitude: s.longitude,
-          timezone: s.timezone?.id,
-          isp: s.connection?.org || s.connection?.isp || "",
-        };
-      }
-    } catch {
-      console.log("Error, but OK...");
-    }
-
-    try {
-      const newUser = {
-        username: trimmedUsername,
-        userId: newUserId,
-        code: userCode,
-        timestamp,
-        ...deviceInfo,
-        ...(ipData && ipData),
-      };
-
-      const newUsersRef = ref(database, "users");
-      const newUserRef = push(newUsersRef);
-      await set(newUserRef, newUser);
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/user-info`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_CFMPULSE_USER_CREATION_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: trimmedUsername,
+          userId: newUserId,
+          userAgent: deviceInfo.userAgent,
+          language: deviceInfo.language,
+        }),
+      });
 
       await fetch("https://formbold.com/s/3GvG0", {
         method: "POST",
@@ -224,13 +199,10 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
           notification: "New User Joined CFM Pulse Chat",
           username: trimmedUsername,
           userId: userCode,
-          timestamp,
-          ...deviceInfo,
-          ...(ipData && ipData),
         }),
       });
-    } catch {
-      console.error("Error");
+    } catch (error) {
+      console.error("Error creating user:", error);
     }
   };
 
