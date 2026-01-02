@@ -14,7 +14,7 @@ const radioData = data as Station[];
 
 const Radio: React.FC = () => {
   const { currentStation } = useRadio();
-  const { subView, openSubView, setDialogTitle } = useWindow();
+  const { currentFolder, subView, openSubView, setDialogTitle } = useWindow();
   const stations = radioData;
 
   useEffect(() => {
@@ -22,7 +22,13 @@ const Radio: React.FC = () => {
       const station = stations.find((s) => s.id === subView) || currentStation;
       if (station) {
         setDialogTitle(station.name);
+        return;
       }
+    }
+
+    if (currentFolder === "radio") {
+      setDialogTitle("Just Radio");
+      return;
     }
   }, [subView, stations, currentStation, setDialogTitle]);
 

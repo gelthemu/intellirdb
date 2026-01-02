@@ -38,6 +38,24 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
     window.dispatchEvent(event);
   };
 
+  // Ensure a dedicated audio element exists for previews. This prevents relying on an external element
+  // and allows preview playback to work even when no component registers an <audio /> element.
+  useEffect(() => {
+    if (typeof window !== "undefined" && !audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.crossOrigin = "anonymous";
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+        registerAudio(null);
+      }
+    };
+    // registerAudio is stable
+  }, [registerAudio]);
+
   useEffect(() => {
     const handleRadioStart = () => {
       if (isPlaying && audioRef.current) {
@@ -62,6 +80,10 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
 
       if (currentTrack !== url) {
         audioRef.current.src = url;
+        // Some browsers need an explicit load call when changing src
+        try {
+          audioRef.current.load();
+        } catch (e) {}
         setCurrentTrack(url);
         setProgress(0);
       }

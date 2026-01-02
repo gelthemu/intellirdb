@@ -26,17 +26,29 @@ const assets = [
 ];
 
 const Assets: React.FC = () => {
-  const { subView, deepView, openSubView, openDeepView, setDialogTitle } =
-    useWindow();
+  const {
+    currentFolder,
+    subView,
+    deepView,
+    openSubView,
+    openDeepView,
+    setDialogTitle,
+  } = useWindow();
+
+  const selectedAsset = subView
+    ? assets.find((a) => a.folder === subView)
+    : undefined;
 
   useEffect(() => {
-    if (subView && assets.length > 0) {
-      const asset = assets.find((a) => a.folder === subView) || "";
-      if (asset) {
-        setDialogTitle(asset.title);
-      }
+    if (subView && selectedAsset) {
+      setDialogTitle(selectedAsset.title || "Asset");
+      return;
     }
-  }, [subView, assets, setDialogTitle]);
+
+    if (currentFolder === "assets") {
+      setDialogTitle("Assets");
+    }
+  }, [subView, selectedAsset, currentFolder, setDialogTitle]);
 
   const handleFolderClick = (folder: string) => {
     openSubView(folder);

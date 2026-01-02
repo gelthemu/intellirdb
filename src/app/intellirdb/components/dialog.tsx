@@ -4,6 +4,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWindow } from "@/app/contexts/window";
 import { useChat } from "@/app/contexts/chat";
+import { usePreview } from "@/app/contexts/preview";
 import Radio from "./folders/radio";
 import Assets from "./folders/assets";
 import CoinFlip from "./folders/coinflip";
@@ -15,6 +16,7 @@ import { cn } from "@/lib/cn";
 const Dialog: React.FC = () => {
   const { isOpen, currentFolder, goBack, dialogTitle } = useWindow();
   const { isChatVisible, toggleChatVisibility } = useChat();
+  const { isPlaying, pausePreview } = usePreview();
 
   const renderContent = () => {
     switch (currentFolder) {
@@ -115,6 +117,9 @@ const Dialog: React.FC = () => {
                 onClick={() => {
                   if (isChatVisible && toggleChatVisibility) {
                     toggleChatVisibility();
+                  }
+                  if (isPlaying && pausePreview) {
+                    pausePreview();
                   }
                   goBack();
                 }}
