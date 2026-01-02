@@ -116,13 +116,11 @@ export function PreviewBtn({
   const getText = () => {
     switch (true) {
       case isLoading:
-        return "Loading......";
-      case !previewUrl && !isLoading:
-        return "Preview Track";
+        return "Loading...";
       case isThisTrackPlaying:
         return "Pause Track";
       default:
-        return "Play Track";
+        return "Preview Track";
     }
   };
 
