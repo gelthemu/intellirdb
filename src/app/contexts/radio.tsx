@@ -39,7 +39,7 @@ export function RadioProvider({ children }: { children: React.ReactNode }) {
 
     const handlePlay = () => {
       setPlayState("playing");
-      // Dispatch event to pause preview when radio starts
+
       const event = new CustomEvent("radioStateChange", {
         detail: { type: "start", isPlaying: true },
       });
@@ -79,7 +79,6 @@ export function RadioProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Listen for preview starting to pause radio
   useEffect(() => {
     const handlePreviewStart = (event: Event) => {
       const customEvent = event as CustomEvent;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Track } from "@/types";
 import { usePreview } from "@/app/contexts/preview";
 import { cn } from "@/lib/cn";
@@ -21,9 +21,7 @@ export function PreviewBtn({
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [needsFreshUrl, setNeedsFreshUrl] = useState<boolean>(true);
-  const { isPlaying, currentTrack, togglePreview, registerAudio } =
-    usePreview();
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const { isPlaying, currentTrack, togglePreview } = usePreview();
 
   async function fetchPreview() {
     setIsLoading(true);
@@ -65,30 +63,6 @@ export function PreviewBtn({
     }
   }, [isPlaying, currentTrack, previewUrl]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    registerAudio(audio);
-
-    audio.volume = 0.75;
-    audio.setAttribute("data-preview", "true");
-
-    const handleEnded = () => {};
-
-    const handleError = () => {};
-
-    audio.addEventListener("ended", handleEnded);
-    audio.addEventListener("error", handleError);
-
-    return () => {
-      audio.pause();
-      audio.removeEventListener("ended", handleEnded);
-      audio.removeEventListener("error", handleError);
-      registerAudio(null);
-    };
-  }, [registerAudio]);
-
   const isThisTrackPlaying = currentTrack === previewUrl && isPlaying;
   const isDisabled = disabled || isLoading;
 
@@ -125,26 +99,23 @@ export function PreviewBtn({
   };
 
   return (
-    <>
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label={getText()}
-        onClick={handleClick}
-        className={cn(
-          "w-fit flex items-center justify-center border border-light/80",
-          isDisabled ? "cursor-default" : "cursor-pointer",
-          "focus:outline-none select-none"
-        )}
-        title={getText()}
-      >
-        {children || (
-          <div className="px-2 py-1 text-sm flex items-center justify-center">
-            <span>{getText()}</span>
-          </div>
-        )}
-      </div>
-      <audio ref={audioRef} />
-    </>
+    <div
+      role="button"
+      tabIndex={0}
+      aria-label={getText()}
+      onClick={handleClick}
+      className={cn(
+        "w-fit flex items-center justify-center border border-light/80",
+        isDisabled ? "cursor-default" : "cursor-pointer",
+        "focus:outline-none select-none"
+      )}
+      title={getText()}
+    >
+      {children || (
+        <div className="px-2 py-1 text-sm flex items-center justify-center">
+          <span>{getText()}</span>
+        </div>
+      )}
+    </div>
   );
 }

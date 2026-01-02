@@ -38,7 +38,6 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
     window.dispatchEvent(event);
   };
 
-  // Listen for radio starting to pause preview
   useEffect(() => {
     const handleRadioStart = () => {
       if (isPlaying && audioRef.current) {
@@ -105,12 +104,20 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    if (!isPlaying || !audioRef.current) {
+    const audio = audioRef.current;
+    if (!isPlaying || !audio) {
       setProgress(0);
       return;
     }
 
-    const audio = audioRef.current;
+    registerAudio(audio);
+
+    audio.volume = 0.75;
+    audio.setAttribute("data-preview", "true");
+
+    const handleEnded = () => {};
+
+    const handleError = () => {};
 
     const updateProgress = () => {
       if (audio.duration && !isNaN(audio.duration)) {
@@ -120,12 +127,18 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
 
     const updateInterval = setInterval(updateProgress, 100);
     audio.addEventListener("timeupdate", updateProgress);
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
 
     updateProgress();
 
     return () => {
+      audio.pause();
       clearInterval(updateInterval);
       audio.removeEventListener("timeupdate", updateProgress);
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
+      registerAudio(null);
     };
   }, [isPlaying]);
 
