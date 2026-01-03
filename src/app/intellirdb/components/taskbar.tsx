@@ -132,7 +132,10 @@ const Taskbar: React.FC = () => {
           >
             <motion.div
               ref={menuRef}
-              className="absolute bottom-3 left-3.5 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
+              className={cn(
+                "absolute bottom-3 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
+                !isOpen ? "left-3" : "left-3.5"
+              )}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
