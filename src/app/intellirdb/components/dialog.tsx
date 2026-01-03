@@ -84,7 +84,7 @@ const Dialog: React.FC = () => {
           className={cn(
             "absolute top-0 left-0 bottom-0 right-0 z-50",
             "flex flex-col transition-opacity duration-500 ease-in-out",
-            "p-2 bg-dark backdrop-blur-md border-none overflow-hidden"
+            "p-px bg-dark backdrop-blur-md border-none overflow-hidden"
           )}
           variants={dialogVariants}
           initial="hidden"

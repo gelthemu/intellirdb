@@ -131,15 +131,15 @@ export default async function RootLayout({
       <body
         className={cn(
           "relative font-pixel antialiased select-none",
-          "h-dvh flex flex-col",
-          "bg-dark/20 text-light intelli-canvas bg-blend-multiply"
+          "h-dvh flex flex-col p-2",
+          "bg-dark text-light  bg-blend-multiply"
         )}
       >
         <RadioProvider>
           <PreviewProvider>
             <WindowProvider>
               <ChatProvider initialMessages={messages} initialUsers={users}>
-                <main className="relative h-full flex-1 flex flex-col">
+                <main className="relative w-full h-full flex-1 flex flex-col intelli-canvas">
                   <div className="w-full h-full overflow-hidden">
                     {children}
                   </div>

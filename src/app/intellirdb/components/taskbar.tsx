@@ -125,14 +125,14 @@ const Taskbar: React.FC = () => {
       <AnimatePresence>
         {showStartMenu && (
           <motion.div
-            className="fixed bottom-10 left-0 right-0 top-0 z-[60] bg-dark/10 border-none"
+            className="fixed bottom-8 left-0 right-0 top-0 z-[60] bg-dark/10 border-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
               ref={menuRef}
-              className="absolute bottom-2 left-3 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
+              className="absolute bottom-3 left-3.5 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -198,7 +198,7 @@ const Taskbar: React.FC = () => {
 
       <div
         className={cn(
-          "w-full sticky bottom-0 z-50 px-2 pt-0 pb-2 bg-dark",
+          "w-full sticky bottom-0 z-50 p-px bg-dark",
           !isOpen ? "border-2 border-dark" : ""
         )}
       >
