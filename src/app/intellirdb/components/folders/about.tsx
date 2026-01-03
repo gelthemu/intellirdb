@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useWindow } from "@/app/contexts/window";
+import data from "@/data/webapp-info.json";
 import { cn } from "@/lib/cn";
 
 export default function About({ isOpen = true }: { isOpen: boolean }) {
@@ -35,15 +36,19 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
     };
 
     try {
-      await fetch("https://formbold.com/s/3nK8d", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/notice`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          subscriber: email,
-          timestamp,
-          ...deviceInfo,
+          code: "3nK8d",
+          text: "Subscriber",
+          userAgent: deviceInfo.userAgent,
+          language: deviceInfo.language,
+          payload: {
+            subscriber: email,
+          },
         }),
       });
 
@@ -73,7 +78,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
   if (!isOpen) return null;
 
   return (
-    <div className="w-full h-full p-4 overflow-y-auto space-y-4 text-dark">
+    <div className="w-full h-full relative p-4 overflow-y-auto space-y-4 text-dark">
       <div className="space-y-2">
         <h2 className="text-xl font-bold">Welcome to intelliRDB</h2>
         <p>
@@ -81,14 +86,16 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           <strong>PLAY</strong> to start listening.
         </p>
       </div>
-      <div className="space-y-1">
+      <div className="space-y-2">
         <p>Sign up for the radio playlist below:</p>
         <div className="flex flex-col gap-1 sm:flex-row">
           <input
             type="email"
             value={email}
             name="email"
-            onChange={(e) => setEmail(e.target.value.trim())}
+            onChange={(e: { target: { value: string } }) =>
+              setEmail(e.target.value.trim())
+            }
             onPaste={(e) => e.preventDefault()}
             onCopy={(e) => e.preventDefault()}
             onCut={(e) => e.preventDefault()}
@@ -126,12 +133,18 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           </a>
         </div>
       </div>
-      <div className="w-full h-8 bg-transparent"></div>
-      <div>
-        <p className="text-right text-sm opacity-60 flex flex-col">
-          <span>intelliRDB</span>
-          <span className="font-bold">v{process.env.SITE_VERSION} (i)</span>
-        </p>
+      <div className="w-full h-10 bg-transparent border-none"></div>
+      <div className="flex flex-col text-sm opacity-60">
+        <div>
+          <span className="font-bold">
+            intelliRDB v{process.env.SITE_VERSION} (iii)
+          </span>
+        </div>
+        <div>
+          {data["last-updated"].trim() !== "" ? (
+            <span>Updated: {data["last-updated"]}</span>
+          ) : null}
+        </div>
       </div>
     </div>
   );

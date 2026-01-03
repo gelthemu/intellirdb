@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import ChartHeader from "./chart-header";
 import TrackCard from "./track-card";
 import FalloutsList from "./fallouts-list";
 import BonusList from "./bonus-list";
@@ -15,7 +14,6 @@ interface ChartViewProps {
 const ChartView: React.FC<ChartViewProps> = ({ chart, openDeepView }) => {
   return (
     <div className="w-full h-full p-0 overflow-hidden relative overflow-y-auto pr-1">
-      <ChartHeader host={chart.host} date={chart.date} />
       <div className="min-h-screen space-y-6 overflow-hidden">
         <div className="grid grid-cols-1 gap-1">
           {chart.tracks.map((track, index) => (

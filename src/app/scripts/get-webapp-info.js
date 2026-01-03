@@ -45,7 +45,7 @@ const data = {
 
 const content = JSON.stringify(data, null, 2);
 
-const outputPath = path.join(__dirname, "src/data/webapp-info.json");
+const outputPath = path.join(__dirname, "../../data/webapp-info.json");
 
 fs.writeFileSync(outputPath, content);
 

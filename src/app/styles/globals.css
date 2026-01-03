@@ -86,6 +86,13 @@ body {
   height: 0.25rem;
 }
 
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+}
+
 ::-webkit-scrollbar-thumb {
   background-color: #000000a3;
   border-radius: 0px;
