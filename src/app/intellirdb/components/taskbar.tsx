@@ -26,7 +26,7 @@ type MenuItem = {
 const Taskbar: React.FC = () => {
   const [time, setTime] = useState(new Date());
   const [showStartMenu, setShowStartMenu] = useState(false);
-  const { openFolder } = useWindow();
+  const { isOpen, openFolder } = useWindow();
   const { currentStation } = useRadio();
   const menuRef = useRef<HTMLDivElement | null>(null);
   const startRef = useRef<HTMLDivElement | null>(null);
@@ -125,14 +125,14 @@ const Taskbar: React.FC = () => {
       <AnimatePresence>
         {showStartMenu && (
           <motion.div
-            className="fixed bottom-8 left-0 right-0 top-0 z-[60] bg-dark/10 border-none"
+            className="fixed bottom-10 left-0 right-0 top-0 z-[60] bg-dark/10 border-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
               ref={menuRef}
-              className="absolute bottom-1 left-2 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
+              className="absolute bottom-2 left-3 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -196,7 +196,12 @@ const Taskbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <div className="w-full sticky bottom-0 z-50">
+      <div
+        className={cn(
+          "w-full sticky bottom-0 z-50 px-2 pt-0 pb-2 bg-dark",
+          !isOpen ? "border-2 border-dark" : ""
+        )}
+      >
         <div className="flex flex-row items-center justify-between space-x-2 p-0 text-dark bg-beige border-none">
           <div
             ref={startRef}

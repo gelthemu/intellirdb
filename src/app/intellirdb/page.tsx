@@ -6,7 +6,7 @@ import { ChatBtn } from "./components/chat-btn";
 
 function DesktopContent() {
   return (
-    <div className="w-full h-full relative overflow-hidden border-4 border-dark">
+    <div className="w-full h-full relative overflow-hidden border-none bg-transparent">
       <div className="relative w-full h-full z-[0] overflow-hidden overflow-y-auto">
         <FolderIcons />
       </div>

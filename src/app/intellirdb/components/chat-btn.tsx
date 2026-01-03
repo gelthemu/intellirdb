@@ -6,7 +6,7 @@ import { useChat } from "@/app/contexts/chat";
 import { cn } from "@/lib/cn";
 
 const ChatBtn = () => {
-  const { openFolder } = useWindow();
+  const {  openFolder } = useWindow();
   const { messages, isChatVisible, toggleChatVisibility } = useChat();
 
   if (messages.length === 0) return null;
@@ -15,7 +15,7 @@ const ChatBtn = () => {
     <AnimatePresence>
       <motion.div
         className={cn(
-          "fixed bottom-8 left-1 right-1 border-none overflow-hidden z-50",
+          "fixed bottom-10 left-1 right-2 border-none overflow-hidden z-50",
           "flex justify-end bg-transparent pr-5 pb-1.5"
         )}
         role="dialog"

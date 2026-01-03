@@ -82,9 +82,9 @@ const Dialog: React.FC = () => {
       {isOpen && (
         <motion.div
           className={cn(
-            "absolute top-1 left-1 bottom-1 right-1 z-50",
+            "absolute top-0 left-0 bottom-0 right-0 z-50",
             "flex flex-col transition-opacity duration-500 ease-in-out",
-            "bg-beige/90 backdrop-blur-md border-none overflow-hidden"
+            "p-2 bg-dark backdrop-blur-md border-none overflow-hidden"
           )}
           variants={dialogVariants}
           initial="hidden"
@@ -92,62 +92,64 @@ const Dialog: React.FC = () => {
           exit="exit"
           layout
         >
-          <motion.div
-            className={cn(
-              "w-full overflow-hidden",
-              "border-b-2 border-dark bg-beige",
-              "flex flex-row items-center justify-between gap-2 p-0"
-            )}
-          >
+          <motion.div className="w-full h-full flex flex-col">
             <motion.div
-              className="flex items-center justify-center"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
+              className={cn(
+                "w-full overflow-hidden",
+                "border-b-2 border-dark bg-beige",
+                "flex flex-row items-center justify-between gap-2 p-0"
+              )}
             >
-              <div className="flex items-center justify-center">
-                <span className="font-bold px-2 py-0 text-dark uppercase line-clamp-1 text-ellipsis">
-                  {dialogTitle}
-                </span>
-              </div>
-            </motion.div>
-            <div className="flex items-center justify-center space-x-0">
-              <div
-                role="button"
-                onClick={() => {
-                  if (isChatVisible && toggleChatVisibility) {
-                    toggleChatVisibility();
-                  }
-                  if (isPlaying && pausePreview) {
-                    pausePreview();
-                  }
-                  goBack();
-                }}
-                className={cn(
-                  "w-10 h-8 shrink-0 flex items-center justify-center",
-                  "group px-1 bg-red-500 cursor-pointer"
-                )}
-                aria-label="Close"
-                title="Close"
+              <motion.div
+                className="flex items-center justify-center"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
               >
-                <div className="flex items-center justify-center group-hover:rotate-90 transition-all duration-300 ease-in-out">
-                  <span className="block bg-light h-0.5 absolute rotate-45 w-3" />
-                  <span className="block bg-light h-0.5 absolute -rotate-45 w-3" />
+                <div className="flex items-center justify-center">
+                  <span className="font-bold px-2 py-0 text-dark uppercase line-clamp-1 text-ellipsis">
+                    {dialogTitle}
+                  </span>
+                </div>
+              </motion.div>
+              <div className="flex items-center justify-center space-x-0">
+                <div
+                  role="button"
+                  onClick={() => {
+                    if (isChatVisible && toggleChatVisibility) {
+                      toggleChatVisibility();
+                    }
+                    if (isPlaying && pausePreview) {
+                      pausePreview();
+                    }
+                    goBack();
+                  }}
+                  className={cn(
+                    "w-10 h-8 shrink-0 flex items-center justify-center",
+                    "group px-1 bg-red-500 cursor-pointer"
+                  )}
+                  aria-label="Close"
+                  title="Close"
+                >
+                  <div className="flex items-center justify-center group-hover:rotate-90 transition-all duration-300 ease-in-out">
+                    <span className="block bg-light h-0.5 absolute rotate-45 w-3" />
+                    <span className="block bg-light h-0.5 absolute -rotate-45 w-3" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <motion.div
-            className="w-full h-full p-1 overflow-hidden overflow-y-auto"
-            variants={contentVariants}
-            initial="hidden"
-            animate="visible"
-            key={currentFolder}
-          >
-            <div className="w-full h-full intelli-canvas border border-dark p-1 text-dark">
-              {renderContent()}
-            </div>
+            <motion.div
+              className="w-full h-full overflow-hidden overflow-y-auto"
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              key={currentFolder}
+            >
+              <div className="w-full h-full intelli-canvas borde border-ark p-1 text-dark">
+                {renderContent()}
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}
