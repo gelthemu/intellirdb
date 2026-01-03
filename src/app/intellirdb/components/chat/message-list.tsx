@@ -101,7 +101,7 @@ const MessageList = () => {
             <span className="text-sm opacity-60">Loading messages...</span>
           </div>
         ) : messages.length !== 0 ? (
-          <div className="h-full flex flex-col divide-y divide-dark/20">
+          <div className="w-full h-full flex flex-col divide-y divide-dark/20">
             <Suspense fallback={null}>
               {messages.map((message) => (
                 <div key={message.id}>
