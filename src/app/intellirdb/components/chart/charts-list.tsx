@@ -20,7 +20,7 @@ const ChartsList: React.FC<ChartsListProps> = ({ charts, openSubView }) => {
             className="px-3 py-2 border border-dark/50 cursor-pointer select-none"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.25 }}
+            transition={{ delay: index * 0.1 }}
           >
             <div className="flex flex-col">
               <div className="font-bold">{chart.label}</div>

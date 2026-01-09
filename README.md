@@ -8,7 +8,7 @@
 
 ### License
 
-> This project is licensed under the MIT License—see the LICENSE file for details. Ideas welcome—whether it’s code, design, or just a wild suggestion.
+> This project is licensed under the MIT License—see the LICENSE file for details.
 
 ### Got questions or feedback?
 
