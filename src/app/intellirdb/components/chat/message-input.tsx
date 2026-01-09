@@ -61,7 +61,7 @@ const MessageInput = ({
           </div>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="relative flex items-center space-1 md:space-x-3">
+          <div className="relative flex items-center space-x-2 md:space-x-3">
             <div className="w-full flex-1 flex flex-row items-center space-x-2 md:space-x-3 relative">
               <label htmlFor="message" className="shrink-0 font-semibold">
                 {"Message"}:
