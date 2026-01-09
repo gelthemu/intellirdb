@@ -153,13 +153,6 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
   const setUsername = async (inputUsername: string) => {
     const newUserId = uuidv4().replace(/-/g, "").toLowerCase();
     const trimmedUsername = inputUsername.trim();
-    const userCode = newUserId.slice(-4);
-
-    const userAgent = navigator.userAgent;
-    const deviceInfo = {
-      userAgent,
-      language: navigator.language || "",
-    };
 
     Cookies.set(CHAT_USERNAME, `${trimmedUsername}|${newUserId}`, {
       expires: 120,
@@ -183,30 +176,21 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         },
         body: JSON.stringify({
           username: trimmedUsername,
-          userId: newUserId,
-          userAgent: deviceInfo.userAgent,
-          language: deviceInfo.language,
         }),
       });
 
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notice`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: "982gx",
-          text: "User",
-          userAgent: deviceInfo.userAgent,
-          language: deviceInfo.language,
-          payload: {
-            username: trimmedUsername,
-            userId: userCode,
-          },
-        }),
+      const queryParams = new URLSearchParams({
+        code: "982gx",
+        username: trimmedUsername,
       });
-    } catch (error) {
-      console.error("Error creating user:", error);
+
+      await fetch(
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/api/notice?${queryParams.toString()}`
+      );
+    } catch {
+      // fail silently
     }
   };
 
@@ -224,34 +208,22 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         timestamp: serverTimestamp(),
       };
 
-      const userAgent = navigator.userAgent;
-      const deviceInfo = {
-        userAgent,
-        language: navigator.language || "",
-      };
-
       const newMessageRef = push(messagesRef);
       await set(newMessageRef, newMessage);
 
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notice`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: "982gx",
-          text: "Message",
-          userAgent: deviceInfo.userAgent,
-          language: deviceInfo.language,
-          payload: {
-            username: username,
-            text: content.text.trim(),
-            userId: userId,
-          },
-        }),
+      const queryParams = new URLSearchParams({
+        code: "oWQ2p",
+        username: username,
+        text: content.text.trim(),
       });
+
+      await fetch(
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/api/notice?${queryParams.toString()}`
+      );
     } catch {
-      console.error("Error");
+      // fail silently
     }
   };
 
