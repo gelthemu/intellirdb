@@ -24,7 +24,10 @@ const ChartsList: React.FC<ChartsListProps> = ({ charts, openSubView }) => {
           >
             <div className="flex flex-col">
               <div className="font-bold">{chart.label}</div>
-              <div className="text-sm opacity-75">{chart.date}{chart.host ? `, with ${chart?.host}` : ""}</div>
+              <div className="text-sm opacity-75">
+                {chart.date}
+                {chart.host ? `; with ${chart?.host}` : ""}
+              </div>
             </div>
           </motion.div>
         ))}
