@@ -83,7 +83,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
           </div>
         </div>
         <div>
-          <PreviewBtn track={track} sr={true} className="text-light" />
+          <PreviewBtn track={track} />
         </div>
       </div>
     </div>
