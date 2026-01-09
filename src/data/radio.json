@@ -1,0 +1,120 @@
+[
+  {
+    "id": "american-top-40-rerun",
+    "name": "American Top 40 Rerun",
+    "url": "https://stream.revma.ihrhls.com/zc4802",
+    "tagline": "The Biggest Countdown in the World",
+    "location": "Global"
+  },
+  {
+    "id": "american-top-40-rerun-classics",
+    "name": "Classic American Top 40 Rerun",
+    "url": "https://stream.revma.ihrhls.com/zc6545",
+    "tagline": "Classic Hits from the 80s, 90s, and 2000s",
+    "location": "Global"
+  },
+  {
+    "id": "bbc-world-service",
+    "name": "BBC World Service",
+    "url": "https://stream.live.vc.bbcmedia.co.uk/bbc_world_service",
+    "location": "Global"
+  },
+  {
+    "id": "bucks-radio",
+    "name": "Bucks Radio",
+    "url": "https://stream.radiojar.com/f6mru9artg0uv",
+    "location": "Buckinghamshire, UK"
+  },
+  {
+    "id": "capital-fm-london",
+    "name": "Capital FM, London",
+    "url": "https://media-ssl.musicradio.com/CapitalUK",
+    "tagline": "The UK's No.1 Hit Music Station",
+    "location": "London, UK"
+  },
+  {
+    "id": "capital-fm-uganda",
+    "name": "Capital FM, Uganda",
+    "url": "https://capitalfm.cloudrad.io/stream/1/",
+    "tagline": "Fresh Hits & Throwbacks",
+    "location": "Kampala, Uganda"
+  },
+  {
+    "id": "cksy-94-3",
+    "name": "CKSY 94.3",
+    "url": "https://blackburn-ais.leanstream.co/CKSYFM?args=web_01",
+    "tagline": "Chatham-Kent's Best Music",
+    "location": "Chatham-Kent, Canada"
+  },
+  {
+    "id": "classic-105",
+    "name": "Classic 105",
+    "url": "https://classic105-atunwadigital.streamguys1.com/classic105",
+    "tagline": "Good Times & Great Hits",
+    "location": "Nairobi, Kenya"
+  },
+  {
+    "id": "crooze-fm",
+    "name": "Crooze FM",
+    "url": "https://stream.zeno.fm/vyxwdk08apxtv",
+    "tagline": "Great Music, Great Friends",
+    "location": "Mbarara, Uganda"
+  },
+  {
+    "id": "fox-news-radio",
+    "name": "FOX News Radio",
+    "url": "https://live.amperwave.net/direct/foxnewsradio-foxnewsradioaac-imc?source=fnr.web",
+    "tagline": "America Is Listening To FOX News",
+    "location": "Global"
+  },
+  {
+    "id": "heart-fm-2000s",
+    "name": "Heart FM (2000s)",
+    "url": "https://media-ssl.musicradio.com/Heart00s",
+    "tagline": "Non-stop 00s Feel Good",
+    "location": "London, UK"
+  },
+  {
+    "id": "heart-fm-2010s",
+    "name": "Heart FM (2010s)",
+    "url": "https://media-ssl.musicradio.com/Heart10s",
+    "tagline": "Non-stop 10s Feel Good",
+    "location": "London, UK"
+  },
+  {
+    "id": "heart-fm-1990s",
+    "name": "Heart FM (1990s)",
+    "url": "https://media-ssl.musicradio.com/Heart90s",
+    "tagline": "Non-stop 90s Feel Good",
+    "location": "London, UK"
+  },
+  {
+    "id": "heart-fm-uk",
+    "name": "Heart FM",
+    "url": "https://media-ssl.musicradio.com/HeartUK",
+    "tagline": "Turn Up The Feel Good!",
+    "location": "London, UK"
+  },
+  {
+    "id": "kiis-fm-102-7",
+    "name": "KIIS FM 102.7",
+    "url": "https://stream.revma.ihrhls.com/zc185",
+    "tagline": "LA's #1 Hit Music Radio Station",
+    "location": "Los Angeles, CA"
+  },
+  {
+    "id": "kzrc-mix-96-1",
+    "name": "KZRC Mix 96.1",
+    "url": "https://crystalout.surfernetwork.com:8001/KZRC-FM_MP3",
+    "tagline": "Texoma's Best Music Mix",
+    "location": "Durant, OK"
+  },
+  {
+    "id": "moving-92-5",
+    "name": "Moving 92.5",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/KQMVFMAAC.aac",
+    "tagline": "The Best Of Seattle",
+    "location": "Seattle, WA",
+    "notes": "Requires a VPN for users outside the States"
+  }
+]

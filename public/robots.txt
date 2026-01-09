@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/*
+
+# Host
+Host: https://cfmpulse.com
+
+# Sitemaps
+Sitemap: https://cfmpulse.com/sitemap.xml
