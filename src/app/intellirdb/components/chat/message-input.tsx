@@ -62,8 +62,8 @@ const MessageInput = ({
         </div>
         <form onSubmit={handleSubmit}>
           <div className="relative flex items-center space-1 md:space-x-3">
-            <div className="w-full flex flex-row items-center space-x-2 md:space-x-3 relative">
-              <label htmlFor="message" className="font-semibold">
+            <div className="w-full flex-1 flex flex-row items-center space-x-2 md:space-x-3 relative">
+              <label htmlFor="message" className="shrink-0 font-semibold">
                 {"Message"}:
               </label>
               <div className="relative flex-1">
@@ -93,7 +93,7 @@ const MessageInput = ({
                 />
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center shrink-0">
               <button
                 aria-label="Send message"
                 type="submit"

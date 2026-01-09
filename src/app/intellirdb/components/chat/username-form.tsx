@@ -77,8 +77,8 @@ const UsernameForm = ({ onSubmit }: UsernameFormProps) => {
       <div className="relative p-2 text-sm bg-light-accent dark:bg-dark-accent">
         <form onSubmit={handleSubmit}>
           <div className="w-full flex flex-row items-end space-x-2">
-            <div className="w-full flex flex-row items-end space-x-2">
-              <label htmlFor="username" className="font-semibold">
+            <div className="w-full flex-1 flex flex-row items-end space-x-2">
+              <label htmlFor="username" className="font-semibold shrink-0">
                 Username:
               </label>
               <div className="relative flex-1">
@@ -123,7 +123,7 @@ const UsernameForm = ({ onSubmit }: UsernameFormProps) => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="flex items-center shrink-0">
               <button
                 aria-label="Enter chat"
                 type="submit"
