@@ -147,7 +147,9 @@ const Assets: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <span className="text-sm text-center">{visual.title}</span>
+                  <div>
+                    <span className="text-sm text-left">{`IMG-MGMG9797-${visual.title}`}</span>
+                  </div>
                 </motion.div>
               </Suspense>
             ))}
