@@ -22,6 +22,7 @@ export function PreviewBtn({
   const { isPlaying, currentTrack, togglePreview } = usePreview();
 
   async function fetchPreview() {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `${
@@ -46,6 +47,8 @@ export function PreviewBtn({
       setPreviewUrl("");
       setNeedsFreshUrl(true);
       return "";
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -64,11 +67,8 @@ export function PreviewBtn({
 
     if (isDisabled) return;
 
-    setIsLoading(true);
-
     if (isThisTrackPlaying) {
       togglePreview(previewUrl);
-      setIsLoading(false);
       return;
     }
 
@@ -76,11 +76,9 @@ export function PreviewBtn({
       const freshUrl = await fetchPreview();
       if (freshUrl) {
         togglePreview(freshUrl);
-        setIsLoading(false);
       }
     } else {
       togglePreview(previewUrl);
-      setIsLoading(false);
     }
   };
 
