@@ -15,10 +15,6 @@ const config: Config = {
         light: "#ffffff",
         beige: "#f5f5f5",
       },
-      fontFamily: {
-        pixel: ["Typewriter", "Pixel Operator", "monospace"],
-        vcr: ["VT323", "monospace"],
-      },
     },
   },
   plugins: [scrollbarHide],

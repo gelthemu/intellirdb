@@ -94,14 +94,25 @@ const Dialog: React.FC = () => {
         >
           <motion.div className="w-full h-full flex flex-col">
             <motion.div
+              role="button"
+              aria-label="Go Back"
               className={cn(
-                "w-full overflow-hidden",
+                "relative group w-full cursor-pointer overflow-hidden",
                 "border-b-2 border-dark bg-beige",
                 "flex flex-row items-center justify-between gap-2 p-0"
               )}
+              onClick={() => {
+                if (isChatVisible && toggleChatVisibility) {
+                  toggleChatVisibility();
+                }
+                if (isPlaying && pausePreview) {
+                  pausePreview();
+                }
+                goBack();
+              }}
             >
               <motion.div
-                className="flex items-center justify-center"
+                className="flex items-center justify-center shrink-0"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
@@ -112,33 +123,14 @@ const Dialog: React.FC = () => {
                   </span>
                 </div>
               </motion.div>
-              <div className="flex items-center justify-center space-x-0">
-                <div
-                  role="button"
-                  onClick={() => {
-                    if (isChatVisible && toggleChatVisibility) {
-                      toggleChatVisibility();
-                    }
-                    if (isPlaying && pausePreview) {
-                      pausePreview();
-                    }
-                    goBack();
-                  }}
-                  className={cn(
-                    "w-10 h-8 shrink-0 flex items-center justify-center",
-                    "group px-1 bg-red-500 cursor-pointer"
-                  )}
-                  aria-label="Close"
-                  title="Close"
-                >
-                  <div className="flex items-center justify-center group-hover:rotate-90 transition-all duration-300 ease-in-out">
-                    <span className="block bg-light h-0.5 absolute rotate-45 w-3" />
-                    <span className="block bg-light h-0.5 absolute -rotate-45 w-3" />
-                  </div>
+              <div className="flex-1 h-8"></div>
+              <motion.div className="absolute top-0 bottom-0 right-0 w-10 flex items-center justify-center bg-transparent z-0">
+                <div className="flex items-center justify-center group-hover:rotate-90 transition-all duration-300 ease-in-out">
+                  <span className="block bg-dark group-hover:bg-red-600 h-0.5 absolute rotate-45 w-3" />
+                  <span className="block bg-dark group-hover:bg-red-600 h-0.5 absolute -rotate-45 w-3" />
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-
             <motion.div
               className="w-full h-full overflow-hidden overflow-y-auto"
               variants={contentVariants}

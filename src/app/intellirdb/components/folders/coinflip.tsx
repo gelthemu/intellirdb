@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from "react";
+import { useWindow } from "@/app/contexts/window";
 import { motion } from "framer-motion";
+import { fireConfetti } from "@/lib/confetti";
 
 type CoinResult = "heads" | "tails" | null;
 
@@ -10,13 +12,7 @@ interface CoinStats {
   tails: number;
 }
 
-interface GameHistory {
-  headsWins: number;
-  tailsWins: number;
-}
-
 const STORAGE_KEY = "coinflip";
-const HISTORY_KEY = "coinflip_history";
 const MAX_SCORE = 15;
 const GRAND_SLAM_SCORE = 7;
 
@@ -33,16 +29,17 @@ const getSecureRandom = (): boolean => {
 };
 
 const CoinFlip: React.FC = () => {
+  const { setDialogTitle } = useWindow();
   const [isFlipping, setIsFlipping] = useState(false);
   const [result, setResult] = useState<CoinResult>(null);
   const [gameResult, setGameResult] = useState<string | null>(null);
   const [flipCount, setFlipCount] = useState(0);
   const [stats, setStats] = useState<CoinStats>({ heads: 0, tails: 0 });
-  const [history, setHistory] = useState<GameHistory>({
-    headsWins: 0,
-    tailsWins: 0,
-  });
   const [isGrandSlam, setIsGrandSlam] = useState(false);
+
+  useEffect(() => {
+    setDialogTitle("Coin Flip");
+  }, [setDialogTitle]);
 
   useEffect(() => {
     try {
@@ -52,16 +49,17 @@ const CoinFlip: React.FC = () => {
         setStats(parsed);
         setFlipCount(parsed.heads + parsed.tails);
 
+        if (
+          parsed.heads === GRAND_SLAM_SCORE &&
+          parsed.tails === GRAND_SLAM_SCORE
+        ) {
+          setIsGrandSlam(true);
+        }
+
         if (parsed.heads + parsed.tails === MAX_SCORE) {
           const winner = parsed.heads > parsed.tails ? "Heads" : "Tails";
           setGameResult(`${winner} Win`);
         }
-      }
-
-      const savedHistory = localStorage.getItem(HISTORY_KEY);
-      if (savedHistory) {
-        const parsed = JSON.parse(savedHistory);
-        setHistory(parsed);
       }
     } catch {}
   }, []);
@@ -72,32 +70,8 @@ const CoinFlip: React.FC = () => {
     } catch {}
   }, [stats]);
 
-  useEffect(() => {
-    try {
-      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-    } catch {}
-  }, [history]);
-
-  const updateHistory = useCallback((winner: "heads" | "tails") => {
-    setHistory((prev) => {
-      const newHistory = { ...prev };
-
-      if (winner === "heads") {
-        newHistory.headsWins += 1;
-      } else {
-        newHistory.tailsWins += 1;
-      }
-
-      return newHistory;
-    });
-  }, []);
-
   const flipCoin = useCallback(() => {
     if (isFlipping || flipCount >= MAX_SCORE) return;
-
-    if (stats.heads === GRAND_SLAM_SCORE && stats.tails === GRAND_SLAM_SCORE) {
-      setIsGrandSlam(true);
-    }
 
     setIsFlipping(true);
     setResult(null);
@@ -115,16 +89,26 @@ const CoinFlip: React.FC = () => {
       };
       setStats(newStats);
 
+      // Check if score is now 7-7 (Grand Slam situation)
+      if (
+        newStats.heads === GRAND_SLAM_SCORE &&
+        newStats.tails === GRAND_SLAM_SCORE
+      ) {
+        setIsGrandSlam(true);
+      }
+
       if (newFlipCount === MAX_SCORE) {
         const winner = newStats.heads > newStats.tails ? "Heads" : "Tails";
         setGameResult(`${winner} Win`);
-        updateHistory(winner.toLowerCase() as "heads" | "tails");
+
+        setTimeout(() => {
+          fireConfetti();
+        }, 100);
       }
 
       setIsFlipping(false);
-      setIsGrandSlam(false);
     }, 1500);
-  }, [isFlipping, flipCount, stats, updateHistory]);
+  }, [isFlipping, flipCount, stats]);
 
   const resetStats = useCallback(() => {
     const newStats = { heads: 0, tails: 0 };
@@ -143,7 +127,7 @@ const CoinFlip: React.FC = () => {
       return "Reset Scores to resume...";
     }
     if (isGrandSlam && !isFlipping) {
-      return "This last flip is a Grand Slam win...";
+      return "This last flip is a GRAND SLAM win...";
     }
     if (isFlipping) {
       return "Flipping...";
@@ -206,29 +190,22 @@ const CoinFlip: React.FC = () => {
             {gameResult || (result ? `${result}` : "")}!
           </span>
         </motion.div>
-        <div className="w-64 p-2 text-center">
-          <div className="flex flex-row items-center justify-center space-x-2 text-sm mb-1">
-            <div>
-              H: <strong className="font-semibold">{stats.heads}</strong> - T:{" "}
-              <strong className="bold">{stats.tails}</strong>
-            </div>
+        <div className="w-48 p-2 text-center">
+          <div className="flex flex-row items-center justify-center text-sm mb-1">
             <div>
               <span className="text-sm opacity-60">
                 ({MAX_SCORE}-point tiebreak)
               </span>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-0 border-y border-dark text-sm text-center">
-            <div className="flex items-center justify-center flex-col">
-              <div className="text-sm opacity-90">Total</div>
+          <div className="grid grid-cols-2 gap-0 border-y border-dark text-sm text-center">
+            <div className="border-r border-dark py-1 flex items-center justify-center flex-col">
+              <div className="text-sm opacity-90">Heads</div>
+              <span className="text-lg font-bold">{stats.heads}</span>
             </div>
-            <div className="border-x border-dark py-px flex items-center justify-center flex-col">
-              <div className="text-xs opacity-90">Heads</div>
-              <span className="font-bold">{history.headsWins}</span>
-            </div>
-            <div className="py-px flex items-center justify-center flex-col">
-              <div className="text-xs opacity-90">Tails</div>
-              <span className="font-bold">{history.tailsWins}</span>
+            <div className="py-1 flex items-center justify-center flex-col">
+              <div className="text-sm opacity-90">Tails</div>
+              <span className="text-lg font-bold">{stats.tails}</span>
             </div>
           </div>
           <button

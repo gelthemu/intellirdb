@@ -111,7 +111,7 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-row items-end justify-between gap-2">
+        <div className="w-full flex flex-row items-end justify-between gap-2 select-text">
           <div>
             <div className="text-sm opacity-80">INFO:</div>
             <div className="font-bold">{station.name}</div>
@@ -119,15 +119,19 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
               <div className="opacity-90">{station.tagline}...</div>
             )}
             {station.location && (
-              <div className="flex flex-row items-center gap-1.5 text-sm opacity-80">
-                <LocateFixed size={18} />
-                <span>{station.location}</span>
+              <div className="flex flex-row items-center gap-1.5 opacity-60">
+                <span className="shrink-0">
+                  <LocateFixed size={18} />
+                </span>
+                <span className="text-sm">{station.location}</span>
               </div>
             )}
             {station.notes && (
-              <div className="flex flex-row items-center gap-1.5 text-sm text-red-400 opacity-80">
-                <ShieldAlert size={18} />
-                <span>{station.notes}</span>
+              <div className="flex flex-row items-start gap-1.5 text-red-400 opacity-60 mt-1">
+                <span className="shrink-0">
+                  <ShieldAlert size={18} />
+                </span>
+                <span className="text-sm">{station.notes}</span>
               </div>
             )}
           </div>

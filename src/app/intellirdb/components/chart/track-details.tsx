@@ -77,7 +77,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
               </div>
             </div>
           </motion.div>
-          <div className="flex-1">
+          <div className="flex-1 select-text">
             <div className="text-2xl font-bold">{track.track_title}</div>
             <div className="text-lg opacity-75">{track.track_artist}</div>
           </div>

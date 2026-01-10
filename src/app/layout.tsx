@@ -130,7 +130,7 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "relative font-pixel antialiased select-none",
+          "relative antialiased select-none",
           "h-dvh flex flex-col p-2",
           "bg-dark text-light  bg-blend-multiply"
         )}
