@@ -116,5 +116,209 @@
     "tagline": "The Best Of Seattle",
     "location": "Seattle, WA",
     "notes": "Requires a VPN for users outside the States"
+  },
+  {
+    "id": "boona-fm-91-8",
+    "name": "Boona FM 91.8",
+    "url": "https://stream.zeno.fm/ndi9k9r4lp9uv",
+    "tagline": "Your Community Voice",
+    "location": "Rukungiri, Uganda"
+  },
+  {
+    "id": "eiraka-radio",
+    "name": "Eiraka Radio",
+    "url": "https://stream.zeno.fm/jvdkav9peaztv",
+    "tagline": "Connecting Communities",
+    "location": "Ibanda, Uganda"
+  },
+  {
+    "id": "endigyito-radio",
+    "name": "Endigyito Radio",
+    "url": "https://stream.zeno.fm/ma8a3sdkpd0uv",
+    "tagline": "Voice of the People",
+    "location": "Mbarara, Uganda"
+  },
+  {
+    "id": "express-fm",
+    "name": "Express FM",
+    "url": "https://s2.xrad.io:9414/stream",
+    "tagline": "Your Local Sound",
+    "location": "Portsmouth, UK"
+  },
+  {
+    "id": "greatest-hits-radio",
+    "name": "Greatest Hits Radio",
+    "url": "https://stream-mz.hellorayo.co.uk/net2national.aac?direct=true&aw_0_1st.skey=1602676850&rp_source=1",
+    "tagline": "The UK's Greatest Music",
+    "location": "UK"
+  },
+  {
+    "id": "hills-fm",
+    "name": "Hills FM",
+    "url": "http://s40.myradiostream.com:21392/",
+    "tagline": "Kabale's Premier Station",
+    "location": "Kabale, Uganda"
+  },
+  {
+    "id": "k-fm-uganda",
+    "name": "K FM Uganda",
+    "url": "http://81.199.17.51:8000/stream",
+    "tagline": "Modern Hits & Entertainment",
+    "location": "Uganda"
+  },
+  {
+    "id": "k105",
+    "name": "K105",
+    "url": "https://crystalout.surfernetwork.com:8001/WKHG_MP3",
+    "tagline": "Kentucky's Hit Music Station",
+    "location": "Leitchfield, KY"
+  },
+  {
+    "id": "kiis-100-9",
+    "name": "KIIS 100.9",
+    "url": "https://14867.cloudrad.io:9224/live",
+    "tagline": "Kampala's Hit Music Station",
+    "location": "Kampala, Uganda"
+  },
+  {
+    "id": "k-town-fm",
+    "name": "K-Town FM",
+    "url": "https://stream.rcs.revma.com/w33p2cfap98uv",
+    "tagline": "Kabale's Hometown Radio",
+    "location": "Kabale, Uganda"
+  },
+  {
+    "id": "queerly-radio",
+    "name": "Queerly Radio",
+    "url": "https://play.queerlyradio.com/radio/8000/queerly256.mp3",
+    "tagline": "Proud & Out Loud",
+    "location": "London, UK"
+  },
+  {
+    "id": "radio-5",
+    "name": "Radio 5",
+    "url": "https://stream.zeno.fm/cafehrgw5hatv",
+    "tagline": "Community Connection",
+    "location": "Rushere, Uganda"
+  },
+  {
+    "id": "radio-one-fm-90",
+    "name": "Radio One FM 90",
+    "url": "https://radioone.loftuganda.tech/stream",
+    "tagline": "Uganda's #1 Station",
+    "location": "Kampala, Uganda"
+  },
+  {
+    "id": "radio-wave",
+    "name": "Radio Wave",
+    "url": "https://edge.iono.fm/xice/194_medium.aac",
+    "tagline": "Riding the Airwaves",
+    "location": "Namibia"
+  },
+  {
+    "id": "radio-west",
+    "name": "Radio West",
+    "url": "https://stream.hydeinnovations.com:2020/stream/radiowest/stream",
+    "tagline": "Western Uganda's Voice",
+    "location": "Mbarara, Uganda"
+  },
+  {
+    "id": "royal-fm-94-3",
+    "name": "Royal FM 94.3",
+    "url": "https://stream.zeno.fm/w54dstn6dkhvv",
+    "tagline": "Kigali's Royal Sound",
+    "location": "Kigali, Rwanda"
+  },
+  {
+    "id": "rx-radio",
+    "name": "RX Radio",
+    "url": "https://c14.radioboss.fm/stream/223",
+    "tagline": "Beautiful Music, Amazing Programmes, Thousands of Podcasts",
+    "location": "Kampala, Uganda"
+  },
+  {
+    "id": "sanyu-fm",
+    "name": "Sanyu FM",
+    "url": "http://91.121.178.222:8138/listen.mp3",
+    "tagline": "Today's Best Music",
+    "location": "Kampala, Uganda"
+  },
+  {
+    "id": "smooth-country",
+    "name": "Smooth Country",
+    "url": "https://media-ssl.musicradio.com/SmoothCountry",
+    "tagline": "Just Great Country",
+    "location": "London, United Kingdom"
+  },
+  {
+    "id": "vok-87-9",
+    "name": "VOK 87.9",
+    "url": "https://s43.myradiostream.com:23288/",
+    "tagline": "Voice of Kamwenge",
+    "location": "Kamwenge, Uganda"
+  },
+  {
+    "id": "vision-radio-89-1",
+    "name": "Vision Radio 89.1",
+    "url": "https://stream.zeno.fm/rmtdek37zxhvv",
+    "tagline": "Feel Good",
+    "location": "Mbarara, Uganda"
+  },
+  {
+    "id": "x-fm",
+    "name": "94.8 X FM",
+    "url": "https://stream.hydeinnovations.com:2020/stream/xfm/stream",
+    "tagline": "Today's Hit Music",
+    "location": "Kampala, Uganda"
+  },
+  {
+    "id": "5dn-cruise-1323",
+    "name": "5DN Cruise 1323 AM",
+    "url": "https://ais-arn.streamguys1.com/au_008_icy",
+    "tagline": "Classic Hits",
+    "location": "Adelaide, South Australia"
+  },
+  {
+    "id": "98q-wdaq-fm",
+    "name": "98Q WDAQ-FM, 98.3",
+    "url": "https://ice10.securenetsystems.net/WDAQ",
+    "tagline": "Danbury's Hit Music Station",
+    "location": "Danbury, Connecticut"
+  },
+  {
+    "id": "kisn-95-1-fm",
+    "name": "KISN 95.1 FM",
+    "url": "https://ice6.securenetsystems.net/KISNLP",
+    "tagline": "Home of the Good Guys",
+    "location": "Portland, ORegon"
+  },
+  {
+    "id": "96-1-whnn",
+    "name": "96.1 WHNN",
+    "url": "https://26223.live.streamtheworld.com/WHNNFMAAC.aac",
+    "tagline": "80's, 90's and Now!",
+    "location": "Saginaw, Michigan"
+  },
+  {
+    "id": "620-ckrm",
+    "name": "620 CKRM",
+    "url": "https://ais-sa1.streamon.fm/7267_64k.aac/playlist.m3u8",
+    "tagline": "The Voice of Saskatchewan",
+    "location": "Regina, Saskatchewan"
+  },
+  {
+    "id": "capricorn-fm",
+    "name": "Capricorn FM",
+    "url": "https://edge.iono.fm/xice/67_medium.aac",
+    "tagline": "Limpopo's Hotest Frequency",
+    "location": "Polokwane, South Africa"
+  },
+  {
+    "id": "c89-5",
+    "name": "C89.5",
+    "url": "https://www.c895.org/live.m3u",
+    "tagline": "Seattle's Home for Dance",
+    "location": "Seattle, Washington",
+    "notes": "Requires a VPN for users outside the States"
   }
 ]

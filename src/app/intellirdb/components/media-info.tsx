@@ -116,7 +116,7 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
             <div className="text-sm opacity-80">INFO:</div>
             <div className="font-bold">{station.name}</div>
             {station.tagline && (
-              <div className="opacity-90">{station.tagline}...</div>
+              <div className="opacity-90">{station.tagline} . . .</div>
             )}
             {station.location && (
               <div className="flex flex-row items-center gap-1.5 opacity-60">
