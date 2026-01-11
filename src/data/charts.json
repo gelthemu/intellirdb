@@ -1,4 +1,300 @@
 {
+  "2025-12-20": {
+    "id": "at40",
+    "tracks": [
+      {
+        "track_artist": "Olivia Dean",
+        "track_title": "Man I Need",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/73eb46e655061c72096b67f70a8dc609/500x500-000000-80-0-0.jpg",
+        "track_position": 1,
+        "track_previous_position": 6
+      },
+      {
+        "track_artist": "HUNTR/X",
+        "track_title": "Golden",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/e54bda0628749119f7a9a05b71b40283/500x500-000000-80-0-0.jpg",
+        "track_position": 2,
+        "track_previous_position": 2
+      },
+      {
+        "track_artist": "Taylor Swift",
+        "track_title": "The Fate of Ophelia",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/d0bed55a0efb3c5c3ddb3dacda67d9b3/500x500-000000-80-0-0.jpg",
+        "track_position": 3,
+        "track_previous_position": 1
+      },
+      {
+        "track_artist": "Myles Smith",
+        "track_title": "Nice To Meet You",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/d390722bfdf715e24655ee5548c0929d/500x500-000000-80-0-0.jpg",
+        "track_position": 4,
+        "track_previous_position": 7
+      },
+      {
+        "track_artist": "sombr",
+        "track_title": "back to friends",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/37a20b62f754b7ff5a9a29a8f2fe9d27/500x500-000000-80-0-0.jpg",
+        "track_position": 5,
+        "track_previous_position": 8
+      },
+      {
+        "track_artist": "Leon Thomas",
+        "track_title": "MUTT",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/1c318762a31c79bd28e9f7951bdab5b4/500x500-000000-80-0-0.jpg",
+        "track_position": 6,
+        "track_previous_position": 4
+      },
+      {
+        "track_artist": "Alex Warren",
+        "track_title": "Ordinary",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/f4246416b5e3e71a35adf1e2cbe98bfb/500x500-000000-80-0-0.jpg",
+        "track_position": 7,
+        "track_previous_position": 3
+      },
+      {
+        "track_artist": "Justin Bieber",
+        "track_title": "DAISIES",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/e4336418c51c0449aa50bfd31a9988db/500x500-000000-80-0-0.jpg",
+        "track_position": 8,
+        "track_previous_position": 5
+      },
+      {
+        "track_artist": "KATSEYE",
+        "track_title": "Gabriela",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/1494eab6b5e209bbaeeab5bbdfc1a9fa/500x500-000000-80-0-0.jpg",
+        "track_position": 9,
+        "track_previous_position": 10
+      },
+      {
+        "track_artist": "Tate McRae",
+        "track_title": "TIT FOR TAT",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/82cca97c900dadda4ce5876dce81c731/500x500-000000-80-0-0.jpg",
+        "track_position": 10,
+        "track_previous_position": 12
+      },
+      {
+        "track_artist": "Ed Sheeran",
+        "track_title": "Camera",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/09f34007fcf245de7ef8f67d2173ee6e/500x500-000000-80-0-0.jpg",
+        "track_position": 11,
+        "track_previous_position": 13
+      },
+      {
+        "track_artist": "Taylor Swift",
+        "track_title": "Opalite",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/d0bed55a0efb3c5c3ddb3dacda67d9b3/500x500-000000-80-0-0.jpg",
+        "track_position": 12,
+        "track_previous_position": 16
+      },
+      {
+        "track_artist": "David Guetta, Teddy Swims & Tones And I",
+        "track_title": "Gone Gone Gone",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/34fdbc4aa1b7552d23d19117b02593d8/500x500-000000-80-0-0.jpg",
+        "track_position": 13,
+        "track_previous_position": 17
+      },
+      {
+        "track_artist": "Justin Bieber",
+        "track_title": "YUKON",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/d0f4411377c5b6a81cdf18d9587a7641/500x500-000000-80-0-0.jpg",
+        "track_position": 14,
+        "track_previous_position": 15
+      },
+      {
+        "track_artist": "Lady Gaga",
+        "track_title": "The Dead Dance",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/fc4424eb510961154235c0d1d562beeb/500x500-000000-80-0-0.jpg",
+        "track_position": 15,
+        "track_previous_position": 11
+      },
+      {
+        "track_artist": "Sabrina Carpenter",
+        "track_title": "Tears",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/c2fd3775c93a906c415f3581b3b06d7e/500x500-000000-80-0-0.jpg",
+        "track_position": 16,
+        "track_previous_position": 9
+      },
+      {
+        "track_artist": "RAYE",
+        "track_title": "WHERE IS MY HUSBAND!",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/924237f02fb85d4c849ab324ff42b30d/500x500-000000-80-0-0.jpg",
+        "track_position": 17,
+        "track_previous_position": 29
+      },
+      {
+        "track_artist": "MOLIY & Silent Addy ft. Skillibeng & Shenseea",
+        "track_title": "Shake It To The Max (FLY) [Remix]",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/ede4411251f486959ecea9634a16728e/500x500-000000-80-0-0.jpg",
+        "track_position": 18,
+        "track_previous_position": 23
+      },
+      {
+        "track_artist": "Chappell Roan",
+        "track_title": "Pink Pony Club",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/71486ce8b24f612c4887efa0f79a9f66/500x500-000000-80-0-0.jpg",
+        "track_position": 19,
+        "track_previous_position": 18
+      },
+      {
+        "track_artist": "Tyler, The Creator",
+        "track_title": "Sugar On My Tongue",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/d79052872c09468fd80bd288928962c9/500x500-000000-80-0-0.jpg",
+        "track_position": 20,
+        "track_previous_position": 25
+      },
+      {
+        "track_artist": "Lady Gaga & Bruno Mars",
+        "track_title": "Die With A Smile",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/4bd5903f4ce8f2601916bfadb44efe8a/500x500-000000-80-0-0.jpg",
+        "track_position": 21,
+        "track_previous_position": 19
+      },
+      {
+        "track_artist": "Conan Gray",
+        "track_title": "Vodka Cranberry",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/a827e769491a705534261902c17af3fb/500x500-000000-80-0-0.jpg",
+        "track_position": 22,
+        "track_previous_position": 27
+      },
+      {
+        "track_artist": "Zara Larsson",
+        "track_title": "Crush",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/19bf09a63824955c504abea3f958c584/500x500-000000-80-0-0.jpg",
+        "track_position": 23,
+        "track_previous_position": 20
+      },
+      {
+        "track_artist": "Benson Boone",
+        "track_title": "Sorry I'm Here For Someone Else",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/c7d5adb6b77348cf17ee5712b61a19c1/500x500-000000-80-0-0.jpg",
+        "track_position": 24,
+        "track_previous_position": 22
+      },
+      {
+        "track_artist": "Doja Cat",
+        "track_title": "Jealous Type",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/0733e2ba03767a583e35cafc0fee076c/500x500-000000-80-0-0.jpg",
+        "track_position": 25,
+        "track_previous_position": 14
+      },
+      {
+        "track_artist": "Ravyn Lenae",
+        "track_title": "Love Me Not",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/9801ef458ad49afbc613ca2abeb79734/500x500-000000-80-0-0.jpg",
+        "track_position": 26,
+        "track_previous_position": 24
+      },
+      {
+        "track_artist": "The Weeknd",
+        "track_title": "Cry For Me",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/07d837e8865ce86684a86fb79ccece96/500x500-000000-80-0-0.jpg",
+        "track_position": 27,
+        "track_previous_position": 26
+      },
+      {
+        "track_artist": "Alex Warren ft. Jelly Roll",
+        "track_title": "Bloodline",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/c873465f7fcca50960c004a687074e14/500x500-000000-80-0-0.jpg",
+        "track_position": 28,
+        "track_previous_position": 37
+      },
+      {
+        "track_artist": "Benson Boone",
+        "track_title": "Mystical Magical",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/6c868cb8dcbb7066f2f224707cef59f2/500x500-000000-80-0-0.jpg",
+        "track_position": 29,
+        "track_previous_position": 28
+      },
+      {
+        "track_artist": "Benson Boone",
+        "track_title": "Mr Electric Blue",
+        "track_image": "",
+        "track_position": 30,
+        "track_previous_position": null
+      },
+      {
+        "track_artist": "Sabrina Carpenter",
+        "track_title": "Manchild",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/272cc67ce5d91682cc7281f171241f6c/500x500-000000-80-0-0.jpg",
+        "track_position": 31,
+        "track_previous_position": 30
+      },
+      {
+        "track_artist": "Jackson Wang",
+        "track_title": "Made Me a Man",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/1b5739135aafb1203d5bfe01166817f0/500x500-000000-80-0-0.jpg",
+        "track_position": 32,
+        "track_previous_position": 33
+      },
+      {
+        "track_artist": "Billie Eilish",
+        "track_title": "BIRDS OF A FEATHER",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/5d284b31cb9ddeb1a0c79aede5a94e1c/500x500-000000-80-0-0.jpg",
+        "track_position": 33,
+        "track_previous_position": 32
+      },
+      {
+        "track_artist": "Russell Dickerson",
+        "track_title": "Happen To Me",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/5c5836d36d7ce71673b967a3a32d58cc/500x500-000000-80-0-0.jpg",
+        "track_position": 34,
+        "track_previous_position": 31
+      },
+      {
+        "track_artist": "Tate McRae",
+        "track_title": "Revolving Door",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/74a47f9832735b37a41d8fd49cd23354/500x500-000000-80-0-0.jpg",
+        "track_position": 35,
+        "track_previous_position": 34
+      },
+      {
+        "track_artist": "Madison Beer",
+        "track_title": "bittersweet",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/a52aea8e5e3f28d5a303d919e11bbaa0/500x500-000000-80-0-0.jpg",
+        "track_position": 36,
+        "track_previous_position": 35
+      },
+      {
+        "track_artist": "Hozier",
+        "track_title": "Too Sweet",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/709d3b19ad6de1f8017c4b6999c3a953/500x500-000000-80-0-0.jpg",
+        "track_position": 37,
+        "track_previous_position": 36
+      },
+      {
+        "track_artist": "AJR",
+        "track_title": "The Big Goodbye",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/98de94929dcc0c8dc8d32ee07aba4dae/500x500-000000-80-0-0.jpg",
+        "track_position": 38,
+        "track_previous_position": 39
+      },
+      {
+        "track_artist": "Myles Smith",
+        "track_title": "Stargazing",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/49a829eff545c18e26a4314eff9c0414/500x500-000000-80-0-0.jpg",
+        "track_position": 39,
+        "track_previous_position": 40
+      },
+      {
+        "track_artist": "Sombr",
+        "track_title": "Undressed",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/927b2216e87a03d5e9929e3a0df35b1a/500x500-000000-80-0-0.jpg",
+        "track_position": 40,
+        "track_previous_position": 38
+      }
+    ],
+    "bonus": [],
+    "fallouts": [
+      {
+        "track_artist": "Disco Lines & Tinashe",
+        "track_title": "No Broke Boys",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/87001d51243fd7164a02a74cb38e2e4c/500x500-000000-80-0-0.jpg",
+        "track_position": 21
+      }
+    ],
+    "date": "December 20, 2025",
+    "host": "Ryan Seacrest"
+  },
   "2026-01-05": {
     "id": "kt10",
     "tracks": [
@@ -6,61 +302,81 @@
         "track_artist": "Sheebah ft. Bentrom",
         "track_title": "Dance For The Lord (Remix)",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/16bfbc4bc21e5061a0c1a99fc076a8ac/500x500-000000-80-0-0.jpg",
-        "track_position": 1
+        "track_preview": "",
+        "track_position": 1,
+        "track_previous_position": null
       },
       {
         "track_artist": "Vyroota",
         "track_title": "Ku Nsi",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/83231d3c39b99c1e0565d17b05a00b4a/500x500-000000-80-0-0.jpg",
-        "track_position": 2
+        "track_preview": "https://www.howwe.ug/download/song/118804",
+        "track_position": 2,
+        "track_previous_position": 1
       },
       {
         "track_artist": "Kapeke",
         "track_title": "Simanyi",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/3fd9d5796ec876e8f63dc40d2665e6af/500x500-000000-80-0-0.jpg",
-        "track_position": 3
+        "track_preview": "https://www.howwe.ug/download/song/117295",
+        "track_position": 3,
+        "track_previous_position": 3
       },
       {
         "track_artist": "Spice Diana & Vyroota",
         "track_title": "Nze Nakiriza",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/1a4f2b6774c090e0925aa9b74a17cc31/500x500-000000-80-0-0.jpg",
-        "track_position": 4
+        "track_preview": "https://www.howwe.ug/download/song/116231",
+        "track_position": 4,
+        "track_previous_position": 4
       },
       {
         "track_artist": "Cindy Sanyu ft. Bruno K",
         "track_title": "Like You",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/a6e2be2a95cc33353e04b2f32408e5c3/500x500-000000-80-0-0.jpg",
-        "track_position": 5
+        "track_preview": "",
+        "track_position": 5,
+        "track_previous_position": null
       },
       {
         "track_artist": "Feffe Bussi & All Stars",
         "track_title": "Nzalina",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/e7d959524161fbe9dd3ba6be8bd73a18/500x500-000000-80-0-0.jpg",
-        "track_position": 6
+        "track_preview": "https://www.howwe.ug/download/song/118103",
+        "track_position": 6,
+        "track_previous_position": 2
       },
       {
         "track_artist": "Joshua Baraka",
         "track_title": "Morocco",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/004ea0f351ddb01a2066a66c9e0c65b4/500x500-000000-80-0-0.jpg",
-        "track_position": 7
+        "track_preview": "https://www.howwe.ug/download/song/118225",
+        "track_position": 7,
+        "track_previous_position": 7
       },
       {
         "track_artist": "Pawaboy AB",
         "track_title": "Yandalula",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/e7c8d64022ed6c3781d8f6da344fc5e4/500x500-000000-80-0-0.jpg",
-        "track_position": 8
+        "track_preview": "https://www.howwe.ug/download/song/113447",
+        "track_position": 8,
+        "track_previous_position": 9
       },
       {
         "track_artist": "Gloria Bugie ft. King Saha",
         "track_title": "Time Temala",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/79b9103daa55d409acd38c0a3adce39f/500x500-000000-80-0-0.jpg",
-        "track_position": 9
+        "track_preview": "https://www.howwe.ug/download/song/117429",
+        "track_position": 9,
+        "track_previous_position": 8
       },
       {
         "track_artist": "Elijah Kitaka",
         "track_title": "Daily bundle",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/95e5579840183ce58be42673440c6aba/500x500-000000-80-0-0.jpg",
-        "track_position": 10
+        "track_preview": "https://www.howwe.ug/download/song/115929",
+        "track_position": 10,
+        "track_previous_position": "returning"
       }
     ],
     "bonus": [
@@ -68,12 +384,14 @@
         "track_artist": "Alien Skin",
         "track_title": "Akalulu",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/ea0c87601b3fb33868ec0367bb51c1e3/500x500-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/118728",
         "track_position": 11
       },
       {
         "track_artist": "Vinka",
         "track_title": "Lalala",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/3a5bd4f2945b1f9f3d3d55e4ac4e9d7e/500x500-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/116513",
         "track_position": 12
       }
     ],
@@ -81,256 +399,6 @@
     "date": "Week #2",
     "label": "Weekly Top 10 Hits in Kampala",
     "host": ""
-  },
-  "2026-01-03": {
-    "id": "at40",
-    "tracks": [
-      {
-        "track_artist": "Lady Gaga ft. Bruno Mars",
-        "track_title": "Die With A Smile",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/4bd5903f4ce8f2601916bfadb44efe8a/500x500-000000-80-0-0.jpg",
-        "track_position": 1
-      },
-      {
-        "track_artist": "Alex Warren",
-        "track_title": "Ordinary",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/f4246416b5e3e71a35adf1e2cbe98bfb/500x500-000000-80-0-0.jpg",
-        "track_position": 2
-      },
-      {
-        "track_artist": "Myles Smith",
-        "track_title": "Stargazing",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/49a829eff545c18e26a4314eff9c0414/500x500-000000-80-0-0.jpg",
-        "track_position": 3
-      },
-      {
-        "track_artist": "Chappell Roan",
-        "track_title": "Pink Pony Club",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/71486ce8b24f612c4887efa0f79a9f66/500x500-000000-80-0-0.jpg",
-        "track_position": 4
-      },
-      {
-        "track_artist": "Billie Eilish",
-        "track_title": "Birds Of A Feather",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/5d284b31cb9ddeb1a0c79aede5a94e1c/500x500-000000-80-0-0.jpg",
-        "track_position": 5
-      },
-      {
-        "track_artist": "Sabrina Carpenter",
-        "track_title": "Taste",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/0fd6e3b346b959a8781ccfa89b63607a/500x500-000000-80-0-0.jpg",
-        "track_position": 6
-      },
-      {
-        "track_artist": "Rosé ft. Bruno Mars",
-        "track_title": "APT.",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/258e6042338ce64bb4157c0c94b232ac/500x500-000000-80-0-0.jpg",
-        "track_position": 7
-      },
-      {
-        "track_artist": "Hozier",
-        "track_title": "Too Sweet",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/709d3b19ad6de1f8017c4b6999c3a953/500x500-000000-80-0-0.jpg",
-        "track_position": 8
-      },
-      {
-        "track_artist": "Sabrina Carpenter",
-        "track_title": "Espresso",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/e3221287a77eb262944e6528766eeba4/500x500-000000-80-0-0.jpg",
-        "track_position": 9
-      },
-      {
-        "track_artist": "Gracie Abrams",
-        "track_title": "That's So True",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/967769c4612d74e8f5c7da8798b28e13/500x500-000000-80-0-0.jpg",
-        "track_position": 10
-      },
-      {
-        "track_artist": "Kendrick Lamar ft. SZA",
-        "track_title": "Luther",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/82db4c0f8e9412cafb1cd765b076d58c/500x500-000000-80-0-0.jpg",
-        "track_position": 11
-      },
-      {
-        "track_artist": "Benson Boone",
-        "track_title": "Sorry I'm Here For Someone Else",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/c7d5adb6b77348cf17ee5712b61a19c1/500x500-000000-80-0-0.jpg",
-        "track_position": 12
-      },
-      {
-        "track_artist": "Shaboozey",
-        "track_title": "A Bar Song (Tipsy)",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/d4f0d9289d6f68204dee8a22fe777c70/500x500-000000-80-0-0.jpg",
-        "track_position": 13
-      },
-      {
-        "track_artist": "Doechii",
-        "track_title": "Anxiety",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/a86cc99df85173d25b3b8a5e52b10a1f/500x500-000000-80-0-0.jpg",
-        "track_position": 14
-      },
-      {
-        "track_artist": "The Weeknd",
-        "track_title": "Cry For Me",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/07d837e8865ce86684a86fb79ccece96/500x500-000000-80-0-0.jpg",
-        "track_position": 15
-      },
-      {
-        "track_artist": "Sabrina Carpenter",
-        "track_title": "Bed Chem",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/0fd6e3b346b959a8781ccfa89b63607a/500x500-000000-80-0-0.jpg",
-        "track_position": 16
-      },
-      {
-        "track_artist": "Ravyn Lenae",
-        "track_title": "Love Me Not",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/9801ef458ad49afbc613ca2abeb79734/500x500-000000-80-0-0.jpg",
-        "track_position": 17
-      },
-      {
-        "track_artist": "Lola Young",
-        "track_title": "Messy",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/41b98b2c9cf64689c4c77569610e3cf1/500x500-000000-80-0-0.jpg",
-        "track_position": 18
-      },
-      {
-        "track_artist": "Sabrina Carpenter",
-        "track_title": "Manchild",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/272cc67ce5d91682cc7281f171241f6c/500x500-000000-80-0-0.jpg",
-        "track_position": 19
-      },
-      {
-        "track_artist": "Tate McRae",
-        "track_title": "Sports Car",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/74a47f9832735b37a41d8fd49cd23354/500x500-000000-80-0-0.jpg",
-        "track_position": 20
-      },
-      {
-        "track_artist": "Sombr",
-        "track_title": "Undressed",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/927b2216e87a03d5e9929e3a0df35b1a/500x500-000000-80-0-0.jpg",
-        "track_position": 21
-      },
-      {
-        "track_artist": "Justin Bieber",
-        "track_title": "Daisies",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/d0f4411377c5b6a81cdf18d9587a7641/500x500-000000-80-0-0.jpg",
-        "track_position": 22
-      },
-      {
-        "track_artist": "Lady Gaga",
-        "track_title": "Abracadabra",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/2a769f6f0cce0ca9e129ce4b61f83973/500x500-000000-80-0-0.jpg",
-        "track_position": 23
-      },
-      {
-        "track_artist": "Benson Boone",
-        "track_title": "Mystical Magical",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/6c868cb8dcbb7066f2f224707cef59f2/500x500-000000-80-0-0.jpg",
-        "track_position": 24
-      },
-      {
-        "track_artist": "Morgan Wallen ft. Tate McRae",
-        "track_title": "What I Want",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/c0a95c46e56018109a6786f9e795acb6/500x500-000000-80-0-0.jpg",
-        "track_position": 25
-      },
-      {
-        "track_artist": "Shaboozey",
-        "track_title": "Good News",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/d5777636ec076cc1e663183b4c4069e9/500x500-000000-80-0-0.jpg",
-        "track_position": 26
-      },
-      {
-        "track_artist": "Ariana Grande",
-        "track_title": "Twilight Zone",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/0924ef037bd95dc8589af0316f64524b/500x500-000000-80-0-0.jpg",
-        "track_position": 27
-      },
-      {
-        "track_artist": "HUNTR/X",
-        "track_title": "Golden",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/e54bda0628749119f7a9a05b71b40283/500x500-000000-80-0-0.jpg",
-        "track_position": 28
-      },
-      {
-        "track_artist": "The Weeknd ft. Playboi Carti",
-        "track_title": "Timeless",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/07d837e8865ce86684a86fb79ccece96/500x500-000000-80-0-0.jpg",
-        "track_position": 29
-      },
-      {
-        "track_artist": "Myles Smith",
-        "track_title": "Nice To Meet You",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/d390722bfdf715e24655ee5548c0929d/500x500-000000-80-0-0.jpg",
-        "track_position": 30
-      },
-      {
-        "track_artist": "Teddy Swims",
-        "track_title": "Bad Dreams",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/ebb148dd7d9d124ea9fbe39d4576fa46/500x500-000000-80-0-0.jpg",
-        "track_position": 31
-      },
-      {
-        "track_artist": "SZA ft. Kendrick Lamar",
-        "track_title": "30 For 30",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/992cc838b5f0cf0eebbd83011a979571/500x500-000000-80-0-0.jpg",
-        "track_position": 32
-      },
-      {
-        "track_artist": "Addison Rae",
-        "track_title": "Diet Pepsi",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/ee890cf16d00c684be76b0087c7108c4/500x500-000000-80-0-0.jpg",
-        "track_position": 33
-      },
-      {
-        "track_artist": "Kendrick Lamar",
-        "track_title": "Not Like Us",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/84345d29bc2ed8e713112425f8417e97/500x500-000000-80-0-0.jpg",
-        "track_position": 34
-      },
-      {
-        "track_artist": "Sabrina Carpenter",
-        "track_title": "Please Please Please",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/0fd6e3b346b959a8781ccfa89b63607a/500x500-000000-80-0-0.jpg",
-        "track_position": 35
-      },
-      {
-        "track_artist": "Tate McRae",
-        "track_title": "Revolving Door",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/74a47f9832735b37a41d8fd49cd23354/500x500-000000-80-0-0.jpg",
-        "track_position": 36
-      },
-      {
-        "track_artist": "SZA",
-        "track_title": "BMF",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/992cc838b5f0cf0eebbd83011a979571/500x500-000000-80-0-0.jpg",
-        "track_position": 37
-      },
-      {
-        "track_artist": "Jessie Murph",
-        "track_title": "Blue Strips",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/e454cbe12cec1e89a8bec00aaeca454d/500x500-000000-80-0-0.jpg",
-        "track_position": 38
-      },
-      {
-        "track_artist": "Billie Eilish",
-        "track_title": "Wildflower",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/5d284b31cb9ddeb1a0c79aede5a94e1c/500x500-000000-80-0-0.jpg",
-        "track_position": 39
-      },
-      {
-        "track_artist": "Ed Sheeran",
-        "track_title": "Azizam",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/5cead25b9f21b10393427a0c463ae170/500x500-000000-80-0-0.jpg",
-        "track_position": 40
-      }
-    ],
-    "fallouts": [],
-    "bonus": [],
-    "label": "American Top 40",
-    "date": "January 03, 2025",
-    "host": "Ryan Seacrest"
   },
   "2025-12-31": {
     "id": "kt10_2025",

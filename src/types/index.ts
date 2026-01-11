@@ -28,7 +28,9 @@ export interface Track {
   track_artist: string;
   track_title: string;
   track_image: string;
+  track_preview?: string;
   track_position: number;
+  track_previous_position?: number | null | "returning";
 }
 
 export interface ChartWeek {
