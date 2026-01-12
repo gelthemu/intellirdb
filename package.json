@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 | node src/app/scripts/show-network-url.mjs",
-    "prebuild": "node src/app/scripts/get-webapp-info.js",
+    "prebuild": "node src/app/scripts/get-prebuild-info.js",
     "build": "next build",
     "start": "next start",
     "postbuild": "next-sitemap --config next-sitemap.config.mjs",

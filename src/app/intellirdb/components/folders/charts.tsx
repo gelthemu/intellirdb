@@ -8,7 +8,11 @@ import ChartsList from "@/app/intellirdb/components/chart/charts-list";
 import ChartView from "@/app/intellirdb/components/chart/chart-view";
 import TrackDetails from "@/app/intellirdb/components/chart/track-details";
 
-const chartsData = data as ChartData;
+const chartsData = Object.fromEntries(
+  Object.entries(data).sort(
+    ([a], [b]) => new Date(b).getTime() - new Date(a).getTime()
+  )
+) as ChartData;
 
 const Charts: React.FC = () => {
   const {
