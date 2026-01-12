@@ -6,13 +6,14 @@ import { Star, TrendingUp, TrendingDown, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
 import { PreviewBtn } from "@/app/intellirdb/components/preview-btn";
 import { cn } from "@/lib/cn";
-import { Track } from "@/types";
+import { Track, ChartWeek } from "@/types";
 
 interface TrackDetailsProps {
   track: Track;
+  chart: ChartWeek;
 }
 
-const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
+const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
   const renderMovementIndicator = (track: Track) => {
     let pos = 0;
     let movement: "up" | "down" | "same" | "new" | "returning" = "new";
@@ -63,7 +64,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
             } this week!`}
           >
             <TrendingUp size={16} />
-            <span className="text-sm">+{Math.abs(pos)}</span>
+            <span className="text-sm">{Math.abs(pos)}</span>
           </div>
         );
       case "down":
@@ -159,7 +160,11 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
               </div>
             </motion.div>
             <div className="h-fit px-3 py-2 bg-dark/60 opacity-90">
-              {renderMovementIndicator(track)}
+              {(chart.id === "at40" || chart.id === "kt10") && (
+                <div>
+                  {renderMovementIndicator(track)}
+                </div>
+              )}
             </div>
           </div>
           <div className="flex-1 select-text">

@@ -14,6 +14,7 @@ import { ChatProvider } from "@/app/contexts/chat";
 import { cn } from "@/lib/cn";
 import { BASE_URL } from "@/lib/constants";
 import "@/app/styles/globals.css";
+import "@/app/styles/docs.css";
 
 const TITLE = "intelliRDB - Just Radio!";
 const DESCRIPTION =

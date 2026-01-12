@@ -1,0 +1,95 @@
+@tailwind base;
+
+@layer base {
+  ._img_ {
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+}
+
+article .prose h3 {
+  @apply font-semibold;
+  display: inline;
+}
+
+article .prose h3::before {
+  @apply w-4 h-1 content-[''] border-t-2 border-dark mr-2;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+article .prose p {
+  @apply my-6;
+}
+
+article .prose p strong {
+  @apply font-semibold;
+}
+
+article .prose p em {
+  @apply opacity-80 font-medium;
+}
+
+article .prose a {
+  @apply font-medium underline hover:opacity-80 px-0.5;
+}
+
+.prose img {
+  @apply relative w-[96%] aspect-auto rounded-sm grayscale-[1] _img_;
+}
+
+article .prose video {
+  @apply w-full aspect-auto;
+}
+
+article .prose ul {
+  @apply list-disc list-inside space-y-4 my-6;
+}
+
+article .prose ol {
+  @apply list-decimal list-inside space-y-4 my-6;
+}
+
+article .prose blockquote {
+  @apply m-2 md:m-4 p-4 flex flex-col space-y-4 rounded-sm border border-dark/60 bg-beige/10 font-medium select-none;
+}
+
+article .prose blockquote p {
+  @apply my-0;
+}
+
+article .prose div:has(div.twitter-tweet) {
+  @apply w-full my-6 px-4 py-4 md:py-4 flex items-center justify-center bg-[#15202b] hover:bg-[#1e2732] select-none;
+}
+
+article .prose .nfl-score-table {
+  @apply my-6 py-px flex flex-row overflow-x-auto scroll-smooth;
+}
+
+article .prose .nfl-score-table table {
+  @apply w-full max-w-[480px] p-px text-sm border-separate rounded-sm border border-gray-600/20 dark:border-light/20 bg-light dark:bg-dark;
+}
+
+article .prose .nfl-score-table th {
+  @apply font-semibold text-center px-2 py-1;
+}
+
+article .prose .nfl-score-table th:not(:first-child) {
+  @apply rounded-sm border border-gray-600/10 dark:border-light/10;
+}
+
+article .prose .nfl-score-table td {
+  @apply text-center font-medium p-2 rounded-sm border border-gray-600/10 dark:border-light/10;
+}
+
+article .prose .nfl-score-table td:first-child {
+  @apply whitespace-nowrap text-left font-semibold;
+}
+
+article .prose .nfl-score-table td:has(strong) {
+  @apply text-light font-extrabold border-none bg-red-600;
+}

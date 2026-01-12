@@ -18,9 +18,9 @@ export interface Visual {
 }
 
 export interface Doc {
-  id: string;
-  name: string;
-  filename: string;
+  slug: string;
+  title: string;
+  publication_date?: string | null;
   content: string;
 }
 

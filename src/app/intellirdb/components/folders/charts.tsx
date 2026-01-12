@@ -64,7 +64,7 @@ const Charts: React.FC = () => {
       );
     }
 
-    return <TrackDetails track={track} />;
+    return <TrackDetails track={track} chart={selectedChart} />;
   }
 
   if (subView && selectedChart) {

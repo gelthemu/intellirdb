@@ -24,6 +24,8 @@
     "firebase": "^10.7.0",
     "firebase-admin": "^13.6.0",
     "framer-motion": "^12.23.26",
+    "fs": "^0.0.1-security",
+    "gray-matter": "^4.0.3",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.556.0",
     "next": "^16.0.7",
@@ -31,6 +33,8 @@
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
+    "rehype-raw": "^7.0.0",
     "tailwind-merge": "^3.2.0",
     "tailwind-scrollbar-hide": "^4.0.0",
     "uuid": "^13.0.0"

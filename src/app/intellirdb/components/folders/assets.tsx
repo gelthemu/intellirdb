@@ -1,29 +1,14 @@
 "use client";
 
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useWindow } from "@/app/contexts/window";
-import data from "@/data/assets.json";
-import docsData from "@/data/docs.json";
+import { getAllDocs } from "@/app/intellirdb/components/docs/docs-parser";
+import { DocView } from "@/app/intellirdb/components/docs/doc-view";
+import { formatDate } from "@/lib/date";
 import { Visual, Doc } from "@/types";
-
-const visuals = data as Visual[];
-
-const docs = docsData as Doc[];
-
-const assets = [
-  {
-    folder: "visuals",
-    title: "Visuals",
-    array: visuals,
-  },
-  {
-    folder: "docs",
-    title: "Docs",
-    array: docs,
-  },
-];
+import data from "@/data/assets.json";
 
 const Assets: React.FC = () => {
   const {
@@ -35,11 +20,44 @@ const Assets: React.FC = () => {
     setDialogTitle,
   } = useWindow();
 
+  const [docs, setDocs] = useState<Doc[]>([]);
+  const visuals = data as Visual[];
+
+  const assets = [
+    {
+      folder: "visuals",
+      title: "Visuals",
+      array: visuals,
+    },
+    {
+      folder: "docs",
+      title: "Docs",
+      array: docs,
+    },
+  ];
+
+  useEffect(() => {
+    const fetchDocs = async () => {
+      const docs = await getAllDocs();
+      setDocs(docs);
+    };
+    fetchDocs();
+  }, []);
+
   const selectedAsset = subView
     ? assets.find((a) => a.folder === subView)
     : undefined;
 
   useEffect(() => {
+    if (deepView && selectedAsset) {
+      const slug = deepView;
+      const doc = docs.find((d) => d.slug === slug);
+      if (doc) {
+        setDialogTitle(doc.title || "Doc");
+      }
+      return;
+    }
+
     if (subView && selectedAsset) {
       setDialogTitle(selectedAsset.title || "Asset");
       return;
@@ -89,22 +107,11 @@ const Assets: React.FC = () => {
 
   if (subView?.startsWith("docs") && deepView) {
     const docId = deepView;
-    const doc = docs.find((d) => d.id === docId);
+    const doc = docs.find((d) => d.slug === docId);
 
     if (!doc) return null;
 
-    const renderMarkdown = (content: string) => {
-      return content;
-    };
-
-    return (
-      <div
-        id="doc-view"
-        className="relative w-full h-full flex items-center justify-center bg-beige/10 p-px"
-      >
-        <article>{renderMarkdown(doc.content)}</article>
-      </div>
-    );
+    return <DocView doc={doc} />;
   }
 
   if (subView === "visuals") {
@@ -173,16 +180,21 @@ const Assets: React.FC = () => {
           <div className="space-y-2">
             {docs.map((doc, index) => (
               <motion.div
-                key={doc.id}
+                key={doc.slug}
                 className="px-3 py-2 border border-dark/50 cursor-pointer select-none"
-                onClick={() => handleItemClick(doc.id)}
+                onClick={() => handleItemClick(doc.slug)}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.5 }}
+                transition={{ delay: index * 0.15 }}
               >
                 <div className="flex flex-col">
-                  <div className="font-bold">{doc.name}</div>
-                  <div>{doc.filename}</div>
+                  <div className="font-bold">{doc.title}</div>
+                  <div>{`${doc.slug}.txt`}</div>
+                  {doc.publication_date && (
+                    <div className="text-sm opacity-70">
+                      Posted: {formatDate(doc.publication_date)}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
