@@ -12,7 +12,7 @@ interface CoinStats {
   tails: number;
 }
 
-const STORAGE_KEY = "coinflip";
+const STORAGE_KEY = "__coinflip";
 const MAX_SCORE = 15;
 const GRAND_SLAM_SCORE = 7;
 

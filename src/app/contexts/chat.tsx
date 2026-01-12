@@ -13,7 +13,7 @@ import {
   query,
 } from "firebase/database";
 
-const CHAT_USERNAME = "_cfmpulse_USER";
+const CHAT_USERNAME = "__cfmpulse_user";
 
 interface Message {
   id: string;

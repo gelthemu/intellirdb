@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import { useWindow } from "@/app/contexts/window";
 import data from "@/data/webapp-info.json";
 import { cn } from "@/lib/cn";
 
+const SUB_KEY = "__cfmpulse_sub";
+
 export default function About({ isOpen = true }: { isOpen: boolean }) {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [buttonState, setButtonState] = useState<
     "idle" | "submitting" | "success"
   >("idle");
@@ -21,30 +25,54 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+  const subKey = Cookies.get(SUB_KEY);
+
   const handleSignUp = async () => {
-    if (!email || !validateEmail(email)) return;
+    setError("");
+
+    if (!email) {
+      setError("email is required");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setError("invalid email");
+      return;
+    }
+
+    if (subKey) {
+      setError("already signed up");
+      return;
+    }
 
     setButtonState("submitting");
 
-    const timestamp = new Date().toLocaleString("en-US", {
-      timeZone: "Africa/Kampala",
-    });
-    const userAgent = navigator.userAgent;
-    const deviceInfo = {
-      userAgent,
-      language: navigator.language || "",
-    };
-
     try {
-      const queryParams = new URLSearchParams({
-        code: "982gx",
-        subscriber: email,
+      try {
+        const queryParams = new URLSearchParams({
+          code: "982gx",
+          subscriber: email,
+        });
+
+        const response = await fetch(
+          `${
+            process.env.NEXT_PUBLIC_API_URL
+          }/api/notice?${queryParams.toString()}`
+        );
+
+        if (!response.ok) {
+          throw new Error("signup failed");
+        }
+      } catch {
+        setError("signup failed, try again!");
+        setButtonState("idle");
+        return;
+      }
+
+      Cookies.set(SUB_KEY, "1", {
+        expires: 1 / 24,
+        path: "/",
       });
-      await fetch(
-        `${
-          process.env.NEXT_PUBLIC_API_URL
-        }/api/notice?${queryParams.toString()}`
-      );
 
       await new Promise((resolve) => setTimeout(resolve, 2500));
 
@@ -54,6 +82,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setButtonState("idle");
     } catch {
+      setError("something went wrong");
       setButtonState("idle");
     }
   };
@@ -80,39 +109,47 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           <strong>PLAY</strong> to start listening.
         </p>
       </div>
-      <div className="space-y-2">
+      <div className="w-full space-y-2">
         <p>Sign up for the radio playlist below:</p>
-        <div className="flex flex-col gap-1 sm:flex-row">
-          <input
-            type="email"
-            value={email}
-            name="email"
-            onChange={(e: { target: { value: string } }) =>
-              setEmail(e.target.value.trim())
-            }
-            onPaste={(e) => e.preventDefault()}
-            onCopy={(e) => e.preventDefault()}
-            onCut={(e) => e.preventDefault()}
-            onContextMenu={(e) => e.preventDefault()}
-            autoComplete="off"
-            data-lpignore="true"
-            placeholder="Your email"
-            disabled={buttonState !== "idle"}
-            className="px-2 py-px border-2 border-dark text-dark bg-beige/80 focus:outline-none disabled:opacity-60"
-          />
-          <button
-            onClick={() => handleSignUp()}
-            disabled={!email || !validateEmail(email) || buttonState !== "idle"}
-            className={cn(
-              "w-fit px-2 py-px border-2 border-dark",
-              "bg-dark hover:bg-dark/80 text-light",
-              "font-bold transition-opacity duration-200 ease-in-out",
-              (!validateEmail(email) || buttonState !== "idle") &&
-                "opacity-60 cursor-default"
-            )}
-          >
-            {getButtonText()}
-          </button>
+        <div className="w-full flex flex-col gap-0">
+          <div className="w-full flex flex-row gap-1">
+            <input
+              type="email"
+              value={email}
+              name="email"
+              onChange={(e: { target: { value: string } }) =>
+                setEmail(e.target.value.trim())
+              }
+              onPaste={(e) => e.preventDefault()}
+              onCopy={(e) => e.preventDefault()}
+              onCut={(e) => e.preventDefault()}
+              onContextMenu={(e) => e.preventDefault()}
+              autoComplete="off"
+              data-lpignore="true"
+              placeholder="Your email"
+              disabled={buttonState !== "idle"}
+              className="flex-1 px-2 py-px border-2 border-dark text-dark bg-beige/80 focus:outline-none disabled:opacity-60"
+            />
+            <button
+              onClick={() => handleSignUp()}
+              disabled={buttonState !== "idle"}
+              className={cn(
+                "w-fit shrink-0 px-2 py-px border-2 border-dark",
+                "bg-dark hover:bg-dark/80 text-light",
+                "font-bold transition-opacity duration-200 ease-in-out",
+                buttonState !== "idle" && "opacity-60 cursor-default"
+              )}
+            >
+              {getButtonText()}
+            </button>
+          </div>
+          {error && (
+            <div className="lowercase">
+              <span className="text-red-800 text-bi">
+                {`⁕ ${error}` || "***"}
+              </span>
+            </div>
+          )}
         </div>
       </div>
       <div className="space-y-2">
