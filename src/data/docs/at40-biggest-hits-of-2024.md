@@ -19,6 +19,6 @@ Notable records were set in 2024. Rema and Selena Gomez’s _'Calm Down'_ (#14) 
 
 Extras like Beyoncé’s _'II Most Wanted'_ and Sophie Ellis-Bextor’s _'Murder On The Dancefloor'_ nodded to the year’s broader trends.
 
-As Seacrest echoed Casey Kasem’s timeless advice, **“Keep your feet on the ground and keep reaching for the stars,”** the 2024 American Top 40 encapsulated a year of unforgettable music.
+Preview the Biggest 40 Hits of 2024, [here](/intellirdb?v=charts&sv=at40-2024) or listen to the radio, and more of it... on CFMPulse.com/intelliRDB
 
-Listen to the radio, and more of it... on CFMPulse.com/intelliRDB
+**“Keep your feet on the ground and keep reaching for the stars,”**
