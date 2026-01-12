@@ -36,21 +36,15 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
     };
 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/notice`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          code: "3nK8d",
-          text: "Subscriber",
-          userAgent: deviceInfo.userAgent,
-          language: deviceInfo.language,
-          payload: {
-            subscriber: email,
-          },
-        }),
+      const queryParams = new URLSearchParams({
+        code: "982gx",
+        subscriber: email,
       });
+      await fetch(
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/api/notice?${queryParams.toString()}`
+      );
 
       await new Promise((resolve) => setTimeout(resolve, 2500));
 
