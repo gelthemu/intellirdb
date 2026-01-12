@@ -61,35 +61,3 @@ article .prose blockquote {
 article .prose blockquote p {
   @apply my-0;
 }
-
-article .prose div:has(div.twitter-tweet) {
-  @apply w-full my-6 px-4 py-4 md:py-4 flex items-center justify-center bg-[#15202b] hover:bg-[#1e2732] select-none;
-}
-
-article .prose .nfl-score-table {
-  @apply my-6 py-px flex flex-row overflow-x-auto scroll-smooth;
-}
-
-article .prose .nfl-score-table table {
-  @apply w-full max-w-[480px] p-px text-sm border-separate rounded-sm border border-gray-600/20 dark:border-light/20 bg-light dark:bg-dark;
-}
-
-article .prose .nfl-score-table th {
-  @apply font-semibold text-center px-2 py-1;
-}
-
-article .prose .nfl-score-table th:not(:first-child) {
-  @apply rounded-sm border border-gray-600/10 dark:border-light/10;
-}
-
-article .prose .nfl-score-table td {
-  @apply text-center font-medium p-2 rounded-sm border border-gray-600/10 dark:border-light/10;
-}
-
-article .prose .nfl-score-table td:first-child {
-  @apply whitespace-nowrap text-left font-semibold;
-}
-
-article .prose .nfl-score-table td:has(strong) {
-  @apply text-light font-extrabold border-none bg-red-600;
-}
