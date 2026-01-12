@@ -125,7 +125,7 @@ const Taskbar: React.FC = () => {
       <AnimatePresence>
         {showStartMenu && (
           <motion.div
-            className="fixed inset-0 z-[60] bg-transparent border-none"
+            className="absolute inset-0 z-[999] bg-transparent border-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
