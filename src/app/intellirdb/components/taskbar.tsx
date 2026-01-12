@@ -125,7 +125,7 @@ const Taskbar: React.FC = () => {
       <AnimatePresence>
         {showStartMenu && (
           <motion.div
-            className="fixed bottom-0 left-0 right-0 top-0 z-[60] bg-transparent border-none"
+            className="fixed inset-0 z-[60] bg-transparent border-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -133,8 +133,8 @@ const Taskbar: React.FC = () => {
             <motion.div
               ref={menuRef}
               className={cn(
-                "absolute bottom-2 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
-                !isOpen ? "left-2" : "left-2"
+                "absolute bottom-10 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
+                !isOpen ? "left-2.5" : "left-2.5"
               )}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -202,7 +202,7 @@ const Taskbar: React.FC = () => {
       <div
         className={cn(
           "w-full sticky bottom-0 z-50 p-px bg-dark",
-          !isOpen ? "border-t-2 border-dark" : ""
+          !isOpen ? "border-t border-dark" : ""
         )}
       >
         <div className="flex flex-row items-center justify-between space-x-2 p-0 text-dark bg-beige border-none">
@@ -211,7 +211,7 @@ const Taskbar: React.FC = () => {
             role="button"
             tabIndex={0}
             onClick={toggleStartMenu}
-            className="relative flex flex-row items-center justify-start space-x-1 cursor-pointer focus:outline-none select-none"
+            className="relative flex flex-row items-center justify-start space-x-1 shrink-0 cursor-pointer focus:outline-none select-none"
           >
             <div className="w-7 aspect-square flex items-center justify-center">
               <Image
@@ -231,7 +231,7 @@ const Taskbar: React.FC = () => {
           {currentStation ? (
             <AudioControls />
           ) : (
-            <div className="px-2 py-px text-sm font-bold opacity-80">
+            <div className="shrink-0 px-2 py-px text-sm font-bold opacity-80">
               <span>{formatTime(time)}</span>
             </div>
           )}

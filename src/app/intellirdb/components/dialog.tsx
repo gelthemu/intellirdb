@@ -138,7 +138,7 @@ const Dialog: React.FC = () => {
               animate="visible"
               key={currentFolder}
             >
-              <div className="w-full h-full intelli-canvas borde border-ark p-1 text-dark">
+              <div className="w-full h-full intelli-canvas p-1 text-dark">
                 {renderContent()}
               </div>
             </motion.div>

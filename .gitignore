@@ -34,3 +34,5 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+/public/250413-233541.mp3

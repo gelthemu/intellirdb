@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { Star, TrendingUp, TrendingDown, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
 import { PreviewBtn } from "@/app/intellirdb/components/preview-btn";
 import { cn } from "@/lib/cn";
@@ -12,6 +13,85 @@ interface TrackDetailsProps {
 }
 
 const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
+  const renderMovementIndicator = (track: Track) => {
+    let pos = 0;
+    let movement: "up" | "down" | "same" | "new" | "returning" = "new";
+
+    if (track.track_previous_position === "returning") {
+      movement = "returning";
+    } else if (
+      track.track_previous_position &&
+      typeof track.track_previous_position === "number"
+    ) {
+      pos = track.track_previous_position - track.track_position;
+      if (pos > 0) {
+        movement = "up";
+      } else if (pos < 0) {
+        movement = "down";
+      } else {
+        movement = "same";
+      }
+    } else {
+      movement = "new";
+    }
+
+    switch (movement) {
+      case "new":
+        return (
+          <div
+            className="flex items-center justify-center"
+            title="New entry this week!"
+          >
+            <Star size={16} />
+          </div>
+        );
+      case "returning":
+        return (
+          <div
+            className="flex items-center justify-center"
+            title="Re-entry this week!"
+          >
+            <RotateCcw size={16} />
+          </div>
+        );
+      case "up":
+        return (
+          <div
+            className="flex items-center justify-center space-x-1.5"
+            title={`Up ${Math.abs(pos)} place${
+              Math.abs(pos) !== 1 ? "s" : ""
+            } this week!`}
+          >
+            <TrendingUp size={16} />
+            <span className="text-sm">+{Math.abs(pos)}</span>
+          </div>
+        );
+      case "down":
+        return (
+          <div
+            className="flex items-center justify-center space-x-1.5"
+            title={`Down ${Math.abs(pos)} place${
+              Math.abs(pos) !== 1 ? "s" : ""
+            } this week!`}
+          >
+            <TrendingDown size={16} />
+            <span className="text-sm">{Math.abs(pos)}</span>
+          </div>
+        );
+      case "same":
+        return (
+          <div
+            className="flex items-center justify-center"
+            title="No movement this week!"
+          >
+            <span className="text-sm">#</span>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div
       id="track-details"
@@ -35,48 +115,53 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track }) => {
           "text-light bg-dark/40 bg-blend-multiply bg-repeat overflow-hidden"
         )}
       >
-        <div className="flex flex-col gap-4 items-start">
-          <motion.div
-            className="w-20 md:w-24 aspect-square grayscale border-2 border-light/60 flex items-center justify-center shrink-0 overflow-hidden"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div
-              className="relative w-full h-full intelli-canvas bg-blend-multiply"
-              style={{
-                aspectRatio: "1/1",
-              }}
+        <div className="w-full flex flex-col gap-4 items-start">
+          <div className="w-full flex flex-row justify-between gap-2">
+            <motion.div
+              className="w-20 md:w-24 aspect-square grayscale border-2 border-light/60 flex items-center justify-center shrink-0 overflow-hidden"
+              whileHover={{ scale: 1.05 }}
             >
-              {!track.track_image ? (
-                <div className="relative w-full h-full bg-gray/40 animate-pulse" />
-              ) : (
-                <Image
-                  src={track.track_image}
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  unoptimized
-                  loading="eager"
-                  className="w-full h-full object-cover aspect-square intelli-none sepia"
-                />
-              )}
               <div
-                className="absolute inset-0"
+                className="relative w-full h-full intelli-canvas bg-blend-multiply"
                 style={{
                   aspectRatio: "1/1",
                 }}
               >
-                <Image
-                  src="/tl..webp"
-                  alt=""
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  unoptimized
-                  loading="eager"
-                  className="w-full h-full object-cover aspect-square intelli-none"
-                />
+                {!track.track_image ? (
+                  <div className="relative w-full h-full bg-gray/40 animate-pulse" />
+                ) : (
+                  <Image
+                    src={track.track_image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized
+                    loading="eager"
+                    className="w-full h-full object-cover aspect-square intelli-none sepia"
+                  />
+                )}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    aspectRatio: "1/1",
+                  }}
+                >
+                  <Image
+                    src="/tl..webp"
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    unoptimized
+                    loading="eager"
+                    className="w-full h-full object-cover aspect-square intelli-none"
+                  />
+                </div>
               </div>
+            </motion.div>
+            <div className="h-fit px-3 py-2 bg-dark/60 opacity-90">
+              {renderMovementIndicator(track)}
             </div>
-          </motion.div>
+          </div>
           <div className="flex-1 select-text">
             <div className="text-2xl font-bold">{track.track_title}</div>
             <div className="text-lg opacity-75">{track.track_artist}</div>

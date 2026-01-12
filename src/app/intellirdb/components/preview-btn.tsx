@@ -24,21 +24,28 @@ export function PreviewBtn({
   async function fetchPreview() {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${
-          process.env.NEXT_PUBLIC_API_URL
-        }/api/cfmpulse/track-preview?artist=${encodeURIComponent(
-          track.track_artist
-        )}&title=${encodeURIComponent(track.track_title)}`,
-        {
-          cache: "no-store",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      const newUrl = data.preview || "";
+      let newUrl;
+      if (track.track_preview) {
+        // newUrl = "/250413-233541.mp3";
+        newUrl = track.track_preview;
+      } else {
+        const response = await fetch(
+          `${
+            process.env.NEXT_PUBLIC_API_URL
+          }/api/cfmpulse/track-preview?artist=${encodeURIComponent(
+            track.track_artist
+          )}&title=${encodeURIComponent(track.track_title)}`,
+          {
+            cache: "no-store",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        newUrl = data.preview || "";
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setPreviewUrl(newUrl);
       setNeedsFreshUrl(false);
       return newUrl;

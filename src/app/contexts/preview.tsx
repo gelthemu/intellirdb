@@ -38,8 +38,6 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
     window.dispatchEvent(event);
   };
 
-  // Ensure a dedicated audio element exists for previews. This prevents relying on an external element
-  // and allows preview playback to work even when no component registers an <audio /> element.
   useEffect(() => {
     if (typeof window !== "undefined" && !audioRef.current) {
       audioRef.current = new Audio();
@@ -50,11 +48,10 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.src = "";
-        registerAudio(null);
+        audioRef.current = null;
       }
     };
-    // registerAudio is stable
-  }, [registerAudio]);
+  }, []);
 
   useEffect(() => {
     const handleRadioStart = () => {
@@ -71,6 +68,23 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
     };
   }, [isPlaying]);
 
+  useEffect(() => {
+    const handleBackButtonToggle = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+        setCurrentTrack(null);
+        setProgress(0);
+        dispatchPreviewEvent("stop");
+      }
+    };
+
+    window.addEventListener("backButtonToggle", handleBackButtonToggle);
+    return () => {
+      window.removeEventListener("backButtonToggle", handleBackButtonToggle);
+    };
+  }, []);
+
   const playPreview = useCallback(
     (url: string) => {
       if (!audioRef.current) {
@@ -80,7 +94,6 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
 
       if (currentTrack !== url) {
         audioRef.current.src = url;
-        // Some browsers need an explicit load call when changing src
         try {
           audioRef.current.load();
         } catch (e) {}
@@ -95,7 +108,7 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
           dispatchPreviewEvent("start");
         })
         .catch((error) => {
-          console.error("Error playing preview:", error);
+          console.error(error);
           setIsPlaying(false);
           setCurrentTrack(null);
           setProgress(0);
@@ -132,14 +145,20 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    registerAudio(audio);
-
     audio.volume = 0.75;
     audio.setAttribute("data-preview", "true");
 
-    const handleEnded = () => {};
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setProgress(0);
+      dispatchPreviewEvent("stop");
+    };
 
-    const handleError = () => {};
+    const handleError = () => {
+      setIsPlaying(false);
+      setProgress(0);
+      dispatchPreviewEvent("stop");
+    };
 
     const updateProgress = () => {
       if (audio.duration && !isNaN(audio.duration)) {
@@ -155,12 +174,10 @@ export function PreviewProvider({ children }: { children: React.ReactNode }) {
     updateProgress();
 
     return () => {
-      audio.pause();
       clearInterval(updateInterval);
       audio.removeEventListener("timeupdate", updateProgress);
       audio.removeEventListener("ended", handleEnded);
       audio.removeEventListener("error", handleError);
-      registerAudio(null);
     };
   }, [isPlaying]);
 
