@@ -112,7 +112,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
       <div className="w-full space-y-2">
         <p>Sign up for the radio playlist below:</p>
         <div className="w-full flex flex-col gap-0">
-          <div className="w-full flex flex-row gap-1">
+          <div className="w-full max-w-sm flex flex-row gap-1">
             <input
               type="email"
               value={email}
@@ -143,13 +143,11 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
               {getButtonText()}
             </button>
           </div>
-          {error && (
-            <div className="lowercase">
-              <span className="text-red-800 text-bi">
-                {`⁕ ${error}` || "***"}
-              </span>
-            </div>
-          )}
+          <div className="lowercase">
+            <span className={cn("text-xs", error ? "text-red-800" : "")}>
+              {error ? `⁕ ${error}` : "."}
+            </span>
+          </div>
         </div>
       </div>
       <div className="space-y-2">
