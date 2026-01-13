@@ -3,7 +3,9 @@ title: "AT40: 55 Years of America's Legendary Syndicated Radio Show"
 publication_date: "2025-07-04T03:38:07+03:00"
 ---
 
-[**American TOP 40**](/intellirdb?v=charts&sv=at40) — AT40 is a legendary syndicated radio program that has been counting down America's most popular songs for over five decades. Celebrating its 55th anniversary on July 4, 2025, AT40 remains one of the most influential and enduring programs in radio history.
+[**American TOP 40**](/intellirdb?v=charts&sv=at40)
+
+AT40 is a legendary syndicated radio program that has been counting down America's most popular songs for over five decades. Celebrating its 55th anniversary on July 4, 2025, AT40 remains one of the most influential and enduring programs in radio history.
 
 ### Origins and Historic Debut
 

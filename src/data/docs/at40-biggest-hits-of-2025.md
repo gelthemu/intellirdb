@@ -3,7 +3,9 @@ title: "AT40 with Ryan Seacrest: The Biggest Hits of 2025"
 publication_date: "2025-12-29T23:16:45+03:00"
 ---
 
-[**American TOP 40**](/intellirdb?v=charts&sv=at40) — December 27th weekend 2025.
+[**American TOP 40**](/intellirdb?v=charts&sv=at40)
+
+December 27th weekend 2025.
 
 Claiming the #1 spot for the year was Lady Gaga and Bruno Mars' duet _'Die With A Smile,'_ a collaboration that captured hearts with its timeless ballad quality and emotional depth, proving that superstar pairings still resonate in today's music landscape.
 

@@ -74,12 +74,12 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
         path: "/",
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 2500));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
 
       setButtonState("success");
       setEmail("");
 
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setButtonState("idle");
     } catch {
       setError("something went wrong");
@@ -90,7 +90,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
   const getButtonText = () => {
     switch (buttonState) {
       case "submitting":
-        return "Signing Up...";
+        return "Sign Up...";
       case "success":
         return "Signed Up!";
       default:
@@ -156,7 +156,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           <span>Please send an email to:</span>
           <a
             href="mailto:intellirdb@cfmpulse.com"
-            className="w-fit underline hover:opacity-80"
+            className="w-fit underline hover:opacity-80 select-text"
           >
             intellirdb@cfmpulse.com
           </a>

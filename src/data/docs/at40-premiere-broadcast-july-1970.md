@@ -3,7 +3,9 @@ title: "AT40: The Premiere Broadcast, from July 4, 1970"
 publication_date: "2011-11-11T11:11:11+03:00"
 ---
 
-[**American TOP 40**](/intellirdb?v=charts&sv=at40) — July 4th weekend 1970.
+[**American TOP 40**](/intellirdb?v=charts&sv=at40)
+
+July 4th weekend 1970.
 
 
 July 4th weekend 1970 — a new sound hit the airwaves from KDEO in El Cajon, California. Casey Kasem, a seasoned radio personality, kicked off the first-ever American Top 40 (AT40) broadcast, a show that would redefine how America listened to music.

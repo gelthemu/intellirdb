@@ -112,19 +112,17 @@ const Dialog: React.FC = () => {
               }}
             >
               <motion.div
-                className="flex items-center justify-center shrink-0"
+                className="flex-1 flex items-center justify-start shrink-0"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <div className="flex items-center justify-center">
-                  <span className="font-bold px-2 py-0 text-dark uppercase line-clamp-1 text-ellipsis">
-                    {dialogTitle}
-                  </span>
-                </div>
+                <span className="font-bold px-2 py-0 text-dark uppercase leading-none line-clamp-1 text-ellipsis">
+                  {dialogTitle}
+                </span>
               </motion.div>
-              <div className="flex-1 h-8"></div>
-              <motion.div className="absolute top-0 bottom-0 right-0 w-10 flex items-center justify-center bg-transparent z-0">
+              <div className="shrink-0 h-8 min-w-10"></div>
+              <motion.div className="absolute top-0 bottom-0 right-0 w-10 flex items-center justify-center border-none bg-beige z-0">
                 <div className="flex items-center justify-center group-hover:rotate-90 transition-all duration-300 ease-in-out">
                   <span className="block bg-dark group-hover:bg-red-600 h-0.5 absolute rotate-45 w-3" />
                   <span className="block bg-dark group-hover:bg-red-600 h-0.5 absolute -rotate-45 w-3" />

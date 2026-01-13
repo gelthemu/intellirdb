@@ -3,7 +3,9 @@ title: "AT40 with Ryan Seacrest: The Biggest Hits of 2024"
 publication_date: "2024-12-23T23:23:23+03:00"
 ---
 
-[**American TOP 40**](/intellirdb?v=charts&sv=at40) — December 21st weekend 2024.
+[**American TOP 40**](/intellirdb?v=charts&sv=at40)
+
+December 21st weekend 2024.
 
 Topping the chart at #1 was Tate McRae’s _'Greedy,'_ which held strong for 7 weeks and spent 47 weeks on the chart. Its infectious energy made it a fan favorite, cementing McRae’s breakout year.
 

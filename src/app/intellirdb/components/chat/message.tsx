@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Message } from "@/app/contexts/chat";
 import { COLOR_CIRCLE } from "./color-circle";
 import { FORMAT_TIMESTAMP } from "./timestamp";
+import { YouTubeEmbed } from "@next/third-parties/google";
 import { cn } from "@/lib/cn";
 
 const Mentions = ({ text }: { text: string }) => {
@@ -14,8 +15,27 @@ const Mentions = ({ text }: { text: string }) => {
   const parts = normalizedText.split(regex).filter(Boolean);
 
   const formattedText = parts.map((part, index) => {
+    if (!part) return null;
+
     if (part === "\n") {
       return <br key={`br-${index}`} />;
+    }
+
+    const youtubeRegex =
+      /(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/i;
+    const youtubeMatch = part.match(youtubeRegex);
+
+    if (youtubeMatch) {
+      const videoId = youtubeMatch[1];
+      return (
+        <div
+          key={`yt-${index}`}
+          className="w-full max-w-[360px] relative aspect-auto overflow-hidden grayscale"
+        >
+          <div className="h-1 p-0"></div>
+          <YouTubeEmbed videoid={videoId} params="rel=0" />
+        </div>
+      );
     }
 
     if (part.startsWith("#")) {
