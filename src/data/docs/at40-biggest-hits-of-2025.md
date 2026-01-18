@@ -1,5 +1,5 @@
 ---
-title: "AT40 with Ryan Seacrest: The Biggest Hits of 2025"
+title: "AT40: Biggest Hits of 2025"
 publication_date: "2025-12-29T23:16:45+03:00"
 ---
 
