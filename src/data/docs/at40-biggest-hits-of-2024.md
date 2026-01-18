@@ -1,5 +1,5 @@
 ---
-title: "AT40: The Biggest Hits of 2024"
+title: "AT40: Biggest Hits of 2024"
 publication_date: "2024-12-23T23:23:23+03:00"
 ---
 
