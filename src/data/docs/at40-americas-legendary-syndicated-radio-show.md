@@ -1,5 +1,5 @@
 ---
-title: "AT40: 55 Years of America's Legendary Syndicated Radio Show"
+title: "AT40: 55 Years of Radio"
 publication_date: "2025-07-04T03:38:07+03:00"
 ---
 
