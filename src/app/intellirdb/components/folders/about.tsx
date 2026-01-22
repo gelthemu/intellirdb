@@ -57,7 +57,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
         const response = await fetch(
           `${
             process.env.NEXT_PUBLIC_API_URL
-          }/api/notice?${queryParams.toString()}`
+          }/api/notice?${queryParams.toString()}`,
         );
 
         if (!response.ok) {
@@ -137,7 +137,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
                 "w-fit shrink-0 px-2 py-px border-2 border-dark",
                 "bg-dark hover:bg-dark/80 text-light",
                 "font-bold transition-opacity duration-200 ease-in-out",
-                buttonState !== "idle" && "opacity-60 cursor-default"
+                buttonState !== "idle" && "opacity-60 cursor-default",
               )}
             >
               {getButtonText()}
@@ -160,6 +160,12 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           >
             intellirdb@cfmpulse.com
           </a>
+          <span>
+            To request the addition of a new radio station on this site, please
+            send an email with the subject line 'Urgent' and include the
+            station's details (such as name, location, and other relevant
+            information).
+          </span>
         </div>
       </div>
       <div className="w-full h-10 bg-transparent border-none"></div>
