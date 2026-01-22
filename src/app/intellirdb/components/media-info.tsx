@@ -69,7 +69,7 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
 
   return (
     <div
-      id="radio-player"
+      id="media-info"
       className="w-full h-full p-px overflow-hidden relative"
       onDoubleClick={playerFullScreen}
     >
