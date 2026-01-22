@@ -83,8 +83,8 @@ const MessageInput = ({
                   required={false}
                   placeholder={placeholder}
                   className={cn(
-                    "w-full ps-2 pe-2 pt-1 pb-0 text-base font-bold  font-retro bg-transparent border-b-2 border-dark placeholder:text-dark/40",
-                    "resize-none focus:outline-none max-h-[60px] overflow-y-auto overscroll-none scroll-smooth scrollbar-hide"
+                    "w-full ps-2 pe-2 pt-1 pb-0 text-base font-semibold bg-transparent border-b-2 border-dark placeholder:text-dark/40",
+                    "resize-none focus:outline-none max-h-[60px] overflow-y-auto overscroll-none scroll-smooth scrollbar-hide",
                   )}
                   rows={1}
                   maxLength={200}
