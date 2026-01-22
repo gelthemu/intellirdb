@@ -86,14 +86,14 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
         router.push(newUrl, { scroll: false });
       }
     },
-    [router]
+    [router],
   );
 
   const openFolder = useCallback(
     (folder: FolderType) => {
       updateUrl(folder);
     },
-    [updateUrl]
+    [updateUrl],
   );
 
   const openSubView = useCallback(
@@ -102,7 +102,7 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
         updateUrl(currentFolder, view);
       }
     },
-    [currentFolder, updateUrl]
+    [currentFolder, updateUrl],
   );
 
   const openDeepView = useCallback(
@@ -111,7 +111,7 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
         updateUrl(currentFolder, subView, view);
       }
     },
-    [currentFolder, subView, updateUrl]
+    [currentFolder, subView, updateUrl],
   );
 
   const goBack = useCallback(() => {

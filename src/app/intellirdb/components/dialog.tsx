@@ -105,9 +105,6 @@ const Dialog: React.FC = () => {
                 if (isChatVisible && toggleChatVisibility) {
                   toggleChatVisibility();
                 }
-                if (preview.currentPreview  && preview.stop) {
-                  preview.stop();
-                }
                 goBack();
               }}
             >

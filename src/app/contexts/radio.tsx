@@ -35,7 +35,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
 
     if (typeof window === "undefined") return null;
 
-    const audio = document.getElementById("radio-player") as HTMLAudioElement;
+    const audio = document.getElementById("radio-medium") as HTMLAudioElement;
     if (audio instanceof HTMLAudioElement) {
       audioRef.current = audio;
       return audio;

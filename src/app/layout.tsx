@@ -170,11 +170,11 @@ export default async function RootLayout({
                     className="hidden intelli-none"
                   />
                   <audio
-                    id="radio-player"
+                    id="radio-medium"
                     className="w-10 opacity-0 intelli-none"
                   />
                   <audio
-                    id="preview-player"
+                    id="preview-medium"
                     className="w-10 opacity-0 intelli-none"
                   />
                 </main>
