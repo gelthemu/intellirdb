@@ -57,7 +57,7 @@ const MessageList = () => {
   }, [messages, isUserScrolling, username, isUsernameFormVisible]);
 
   const isAtBottom = (element: HTMLElement) => {
-    const threshold = 220;
+    const threshold = 100;
     return (
       Math.abs(
         element.scrollHeight - element.clientHeight - element.scrollTop
