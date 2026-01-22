@@ -80,7 +80,7 @@ const Assets: React.FC = () => {
   if (subView?.startsWith("visuals") && deepView) {
     const visualId = deepView;
     const visual = visuals.find(
-      (v) => v.title.toLowerCase().replace(/\s+/g, "-") === visualId
+      (v) => v.title.toLowerCase().replace(/\s+/g, "-") === visualId,
     );
 
     if (!visual) return null;
@@ -146,7 +146,8 @@ const Assets: React.FC = () => {
                       <div
                         className="absolute inset-0 bg-black/20"
                         style={{
-                          backgroundImage: "url('https://assets.cfmpulse.com/intellirdb/assets/tl..webp')",
+                          backgroundImage:
+                            "url('https://assets.cfmpulse.com/intellirdb/assets/tl..webp')",
                           backgroundRepeat: "repeat",
                           backgroundSize: "cover",
                           opacity: 1,
@@ -189,7 +190,7 @@ const Assets: React.FC = () => {
               >
                 <div className="flex flex-col">
                   <div className="font-bold font-var">{doc.title}</div>
-                  <div>{`${doc.slug}.txt`}</div>
+                  <div className="font-retro">{`${doc.slug}.txt`}</div>
                   {doc.publication_date && (
                     <div className="text-sm opacity-70">
                       Posted: {formatDate(doc.publication_date)}
