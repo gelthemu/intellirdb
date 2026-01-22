@@ -131,7 +131,7 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "relative antialiased select-none",
+          "relative _912cfm antialiased select-none",
           "h-dvh flex flex-col p-2",
           "bg-dark text-light  bg-blend-multiply",
         )}
@@ -161,8 +161,14 @@ export default async function RootLayout({
                     height={0}
                     className="hidden intelli-none"
                   />
-                  <audio id="radio-player" className="hidden intelli-none" />
-                  <audio id="preview-player" className="hidden intelli-none" />
+                  <audio
+                    id="radio-player"
+                    className="w-10 opacity-0 intelli-none"
+                  />
+                  <audio
+                    id="preview-player"
+                    className="w-10 opacity-0 intelli-none"
+                  />
                 </main>
                 <Suspense>
                   <Taskbar />

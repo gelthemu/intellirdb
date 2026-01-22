@@ -41,11 +41,18 @@ export default function AudioControls() {
       <div className="flex flex-col gap-1 min-w-0 flex-1">
         <div className="flex flex-row items-center gap-1">
           <div
-            role="button"
+            role={
+              radio.playState == "loading" || radio.playState === "error"
+                ? undefined
+                : "button"
+            }
             tabIndex={0}
             onClick={handleClick}
             className={cn(
-              "px-2 py-px cursor-pointer focus:outline-none select-none",
+              "px-2 py-px focus:outline-none select-none",
+              radio.playState == "loading" || radio.playState === "error"
+                ? "cursor-default"
+                : "cursor-pointer",
               radio.playState !== "loading" ? "border border-dark" : "",
               radio.playState === "error"
                 ? "bg-red-500 text-light"
@@ -62,7 +69,7 @@ export default function AudioControls() {
             <div
               role="button"
               tabIndex={0}
-              onClick={stop}
+              onClick={radio.stop}
               className="px-2 py-px text-dark bg-transparent border border-dark cursor-pointer focus:outline-none select-none"
             >
               {radio.playState === "error" ? "Exit" : "Stop"}

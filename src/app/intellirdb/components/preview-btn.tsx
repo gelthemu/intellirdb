@@ -107,13 +107,13 @@ export function PreviewBtn({
 
   return (
     <div
-      role="button"
+      role={isDisabled || isError ? undefined : "button"}
       tabIndex={0}
       aria-label={getText()}
       onClick={handleClick}
       className={cn(
         "w-fit flex items-center justify-center border border-light/80",
-        isDisabled ? "cursor-default" : "cursor-pointer",
+        isDisabled || isError ? "cursor-default" : "cursor-pointer",
         isError || preview.playState === "error" ? "bg-red-500" : "",
         "focus:outline-none select-none",
       )}

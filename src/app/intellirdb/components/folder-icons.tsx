@@ -58,7 +58,7 @@ const FolderIcons = () => {
             />
           </div>
           <div className="pb-2">
-            <span>{icon.title}</span>
+            <span className="font-var">{icon.title}</span>
           </div>
         </div>
       ))}
