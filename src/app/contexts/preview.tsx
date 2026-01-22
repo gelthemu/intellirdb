@@ -7,6 +7,7 @@ import {
   useState,
   useRef,
   ReactNode,
+  Suspense,
 } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { audioManager } from "@/lib/audio-manager";
@@ -27,7 +28,7 @@ interface PreviewContextType {
 
 const PreviewContext = createContext<PreviewContextType | undefined>(undefined);
 
-export function PreviewProvider({ children }: { children: ReactNode }) {
+function PreviewProviderContent({ children }: { children: ReactNode }) {
   const [playState, setPlayState] = useState<PlayState>("paused");
   const [currentPreview, setCurrentPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -250,6 +251,16 @@ export function PreviewProvider({ children }: { children: ReactNode }) {
     </PreviewContext.Provider>
   );
 }
+
+export const PreviewProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return (
+    <Suspense fallback={null}>
+      <PreviewProviderContent>{children}</PreviewProviderContent>
+    </Suspense>
+  );
+};
 
 export const usePreview = () => {
   const context = useContext(PreviewContext);

@@ -36,14 +36,6 @@ interface WindowContextType {
 
 const WindowContext = createContext<WindowContextType | null>(null);
 
-export const useWindow = () => {
-  const context = useContext(WindowContext);
-  if (!context) {
-    throw new Error("useWindow must be used within a WindowProvider");
-  }
-  return context;
-};
-
 const DEFAULT_TITLE = "Just Radio";
 
 function WindowProviderContent({ children }: { children: React.ReactNode }) {
@@ -157,4 +149,12 @@ export const WindowProvider: React.FC<{ children: React.ReactNode }> = ({
       <WindowProviderContent>{children}</WindowProviderContent>
     </Suspense>
   );
+};
+
+export const useWindow = () => {
+  const context = useContext(WindowContext);
+  if (!context) {
+    throw new Error("useWindow must be used within a WindowProvider");
+  }
+  return context;
 };
