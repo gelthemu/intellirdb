@@ -160,6 +160,8 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           >
             intellirdb@cfmpulse.com
           </a>
+        </div>
+        <div>
           <span>
             To request the addition of a new radio station on this site, please
             send an email with the subject line 'Urgent' and include the
