@@ -23,7 +23,7 @@ const BonusList: React.FC<BonusListProps> = ({ bonus }) => {
             className={cn(
               "p-2 flex flex-row items-center justify-between gap-2",
               "border border-dark/50 select-none",
-              "bg-light/40 hover:bg-light/60"
+              "bg-light/40 hover:bg-light/60",
             )}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}

@@ -128,8 +128,8 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
               }
               const match = username.match(/^(.+?)(\s\(\w+\))?$/);
               return match ? match[1] : username;
-            })
-          )
+            }),
+          ),
         );
 
         setTimeout(() => {
@@ -142,9 +142,9 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
         }, 2500);
       },
       (error) => {
-        console.error("Firebase error:", error);
+        console.error(error);
         setState((prevState) => ({ ...prevState, isConnected: false }));
-      }
+      },
     );
 
     return () => unsubscribe();
@@ -187,7 +187,7 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
       await fetch(
         `${
           process.env.NEXT_PUBLIC_API_URL
-        }/api/notice?${queryParams.toString()}`
+        }/api/notice?${queryParams.toString()}`,
       );
     } catch {
       // fail silently
@@ -220,7 +220,7 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
       await fetch(
         `${
           process.env.NEXT_PUBLIC_API_URL
-        }/api/notice?${queryParams.toString()}`
+        }/api/notice?${queryParams.toString()}`,
       );
     } catch {
       // fail silently

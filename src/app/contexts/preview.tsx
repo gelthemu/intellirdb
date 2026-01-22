@@ -124,7 +124,7 @@ export function PreviewProvider({ children }: { children: ReactNode }) {
     const audio = getAudioElement();
 
     if (!audio) {
-      console.error("Preview audio element not found or invalid");
+      console.error("preview element not found or invalid");
       setPlayState("error");
       setError("Audio player not initialized");
       return;

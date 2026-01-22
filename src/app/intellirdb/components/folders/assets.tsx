@@ -146,7 +146,7 @@ const Assets: React.FC = () => {
                       <div
                         className="absolute inset-0 bg-black/20"
                         style={{
-                          backgroundImage: "url('/tl..webp')",
+                          backgroundImage: "url('https://assets.cfmpulse.com/intellirdb/assets/tl..webp')",
                           backgroundRepeat: "repeat",
                           backgroundSize: "cover",
                           opacity: 1,

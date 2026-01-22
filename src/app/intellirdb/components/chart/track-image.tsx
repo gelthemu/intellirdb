@@ -39,7 +39,7 @@ const TrackImage: React.FC<TrackImageProps> = ({ trackImage, size }) => {
           }}
         >
           <Image
-            src="/tl.webp"
+            src="https://assets.cfmpulse.com/intellirdb/assets/tl.webp"
             alt=""
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

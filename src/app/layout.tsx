@@ -29,7 +29,8 @@ const KEYWORDS = [
   "listen",
   "discover",
 ];
-const OG_IMAGE_URL = `${BASE_URL}/intellirdb-opengraph.webp`;
+const OG_IMAGE_URL =
+  "https://assets.cfmpulse.com/intellirdb/assets/intellirdb-opengraph.webp";
 const APPLICATION_NAME = "intelliRDB";
 const CREATOR = "Gelthem M.";
 
@@ -117,7 +118,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://assets.cfmpulse.com" />
         <link
           rel="preload"
-          href="https://cfmpulse.com/fonts/cfmpulse.woff2"
+          href="https://assets.cfmpulse.com/intellirdb/fonts/cfmpulse.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -155,14 +156,14 @@ export default async function RootLayout({
                     <Dialog />
                   </Suspense>
                   <Image
-                    src="https://cfmpulse.com/img-radio-pixelart.gif"
+                    src="https://assets.cfmpulse.com/intellirdb/assets/img-radio-pixelart.gif"
                     alt=""
                     width={0}
                     height={0}
                     className="hidden intelli-none"
                   />
                   <Image
-                    src="https://cfmpulse.com/intellirdb-canvas.jpg"
+                    src="https://assets.cfmpulse.com/intellirdb/assets/intellirdb-canvas.jpg"
                     alt=""
                     width={0}
                     height={0}

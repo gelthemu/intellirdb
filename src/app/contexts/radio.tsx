@@ -124,7 +124,7 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     const audio = getAudioElement();
 
     if (!audio) {
-      console.error("Radio audio element not found or invalid");
+      console.error("radio element not found or invalid");
       setPlayState("error");
       setError("Audio player not initialized");
       return;

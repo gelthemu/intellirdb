@@ -75,7 +75,7 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
     >
       <div className="w-full h-full relative">
         <Image
-          src="https://cfmpulse.com/img-radio-pixelart.gif"
+          src="https://assets.cfmpulse.com/intellirdb/assets/img-radio-pixelart.gif"
           alt="Radio"
           fill
           unoptimized

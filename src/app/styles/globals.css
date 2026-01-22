@@ -14,7 +14,7 @@
 
   .intelli-canvas {
     background: rgba(0, 0, 0, 0.938)
-      url("https://cfmpulse.com/intellirdb-canvas.jpg") 0 0 repeat;
+      url("https://assets.cfmpulse.com/intellirdb/assets/intellirdb-canvas.jpg") 0 0 repeat;
   }
 }
 
@@ -44,7 +44,7 @@
 
 @font-face {
   font-family: "Typewriter";
-  src: url("https://cfmpulse.com/fonts/veteran-typewriter.ttf")
+  src: url("https://assets.cfmpulse.com/intellirdb/fonts/veteran-typewriter.ttf")
     format("truetype");
   font-style: normal;
   font-display: swap;
@@ -52,7 +52,7 @@
 
 @font-face {
   font-family: "Cfmpulse";
-  src: url("https://cfmpulse.com/fonts/cfmpulse.woff2") format("woff2");
+  src: url("https://assets.cfmpulse.com/intellirdb/fonts/cfmpulse.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }

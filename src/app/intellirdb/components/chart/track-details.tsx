@@ -100,7 +100,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
     >
       <div className="w-full h-full relative">
         <Image
-          src="https://cfmpulse.com/img-radio-pixelart.gif"
+          src="https://assets.cfmpulse.com/intellirdb/assets/img-radio-pixelart.gif"
           alt="Radio"
           fill
           unoptimized
@@ -148,7 +148,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
                   }}
                 >
                   <Image
-                    src="/tl..webp"
+                    src="https://assets.cfmpulse.com/intellirdb/assets/tl..webp"
                     alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
