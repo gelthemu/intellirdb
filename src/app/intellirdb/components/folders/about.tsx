@@ -128,7 +128,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
               data-lpignore="true"
               placeholder="Your email"
               disabled={buttonState !== "idle"}
-              className="flex-1 px-2 py-px border-2 border-dark text-dark bg-beige/80 focus:outline-none disabled:opacity-60"
+              className="flex-1 px-2 py-px border-2 border-dark text-dark font-retro bg-beige/80 focus:outline-none disabled:opacity-60"
             />
             <button
               onClick={() => handleSignUp()}

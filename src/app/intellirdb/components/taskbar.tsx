@@ -141,7 +141,7 @@ const Taskbar: React.FC = () => {
               exit={{ opacity: 0, x: -50 }}
             >
               <ul>
-                <li className="w-full text-left px-2 py-px border-none text-light bg-dark cursor-default focus:outline-none">
+                <li className="w-full text-left px-2 py-px border-none font-var text-light bg-dark cursor-default focus:outline-none">
                   <span>intelliRDB</span>
                 </li>
                 {startFolders.map((folder, index) => (
@@ -159,7 +159,7 @@ const Taskbar: React.FC = () => {
                       height={1500}
                       unoptimized
                       loading="lazy"
-                      className="w-3.5 aspect-square object-contain intelli-none"
+                      className="w-5 aspect-square object-contain intelli-none"
                     />
                     <span>{folder.label}</span>
                   </li>
@@ -188,7 +188,7 @@ const Taskbar: React.FC = () => {
                       height={1500}
                       unoptimized
                       loading="lazy"
-                      className="w-3.5 aspect-square object-contain intelli-none"
+                      className="w-5 aspect-square object-contain intelli-none"
                     />
                     <span>{item.label}</span>
                   </li>
@@ -224,14 +224,14 @@ const Taskbar: React.FC = () => {
                 className="w-full h-full object-contain intelli-none"
               />
             </div>
-            <div className="px-1 py-px font-bold">
+            <div className="px-1 py-px font-bold font-var">
               <span>Start</span>
             </div>
           </div>
           {currentStation ? (
             <AudioControls />
           ) : (
-            <div className="shrink-0 px-2 py-px text-sm font-bold opacity-80">
+            <div className="shrink-0 px-2 py-px text-sm font-bold font-var opacity-80">
               <span>{formatTime(time)}</span>
             </div>
           )}

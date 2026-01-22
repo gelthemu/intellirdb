@@ -101,7 +101,7 @@ const UsernameForm = ({ onSubmit }: UsernameFormProps) => {
                   }}
                   required
                   className={cn(
-                    "w-full font-bold bg-transparent ps-1 pe-10 pt-2 pb-0 placeholder:text-dark/40",
+                    "w-full font-bold font-retro bg-transparent ps-1 pe-10 pt-2 pb-0 placeholder:text-dark/40",
                     "text-base border-b-2 border-dark focus:outline-none"
                   )}
                   placeholder="Enter a username . . ."

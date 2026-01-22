@@ -15,6 +15,9 @@ const config: Config = {
         light: "#ffffff",
         beige: "#f5f5f5",
       },
+      fontFamily: {
+        retro: ["Typewriter", "monospace"],
+      },
     },
   },
   plugins: [scrollbarHide],

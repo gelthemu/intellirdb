@@ -117,7 +117,7 @@ const Dialog: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
               >
-                <span className="font-bold px-2 py-0 text-dark uppercase leading-none line-clamp-1 text-ellipsis">
+                <span className="font-var font-extrabold px-2 py-0 text-dark uppercase leading-none line-clamp-1 text-ellipsis">
                   {dialogTitle}
                 </span>
               </motion.div>
