@@ -1,5 +1,5 @@
 ---
-title: "AT40: The Premiere Broadcast, from July 4, 1970"
+title: "AT40: Premiere Broadcast"
 publication_date: "2011-11-11T11:11:11+03:00"
 ---
 
