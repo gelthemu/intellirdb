@@ -1,4 +1,3 @@
-// contexts/RadioContext.tsx
 "use client";
 
 import {
@@ -29,19 +28,19 @@ export function RadioProvider({ children }: { children: ReactNode }) {
   const [currentStation, setCurrentStation] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Helper function to get audio element
   const getAudioElement = (): HTMLAudioElement | null => {
     if (audioRef.current) return audioRef.current;
-    
-    if (typeof window === 'undefined') return null;
-    
+
+    if (typeof window === "undefined") return null;
+
     const audio = document.getElementById("radio-player") as HTMLAudioElement;
     if (audio instanceof HTMLAudioElement) {
       audioRef.current = audio;
       return audio;
     }
-    
+
     return null;
   };
 
@@ -56,19 +55,32 @@ export function RadioProvider({ children }: { children: ReactNode }) {
 
     const handleCanPlay = () => {
       if (playState === "loading") {
-        setPlayState("playing");
+        if (loadingTimeoutRef.current) {
+          clearTimeout(loadingTimeoutRef.current);
+        }
+        loadingTimeoutRef.current = setTimeout(() => {
+          setPlayState("playing");
+        }, 1500);
       }
     };
 
     const handlePlaying = () => {
-      setPlayState("playing");
+      if (playState !== "loading") {
+        setPlayState("playing");
+      }
     };
 
     const handlePause = () => {
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
       setPlayState("paused");
     };
 
     const handleError = () => {
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
       setPlayState("error");
       setError(
         audio.error?.message || "An error occurred while loading the audio",
@@ -100,12 +112,17 @@ export function RadioProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
+    };
   }, []);
 
   const play = (stationUrl: string) => {
     const audio = getAudioElement();
-    
+
     if (!audio) {
       console.error("Radio audio element not found or invalid");
       setPlayState("error");
@@ -121,6 +138,9 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
+        if (loadingTimeoutRef.current) {
+          clearTimeout(loadingTimeoutRef.current);
+        }
         setPlayState("error");
         setError(err.message || "Failed to play audio");
       });
@@ -145,6 +165,9 @@ export function RadioProvider({ children }: { children: ReactNode }) {
       setCurrentStation(null);
       setError(null);
       audioManager.stop();
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
     }
   };
 

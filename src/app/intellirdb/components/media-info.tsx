@@ -36,7 +36,10 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
     };
   }, [station.id, isOpen]);
 
-  const handlePlay = () => {
+  const handlePlay = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (!isCurrentStation) {
       radio.play(station.url);
       if (onPlay) {

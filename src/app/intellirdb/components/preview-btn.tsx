@@ -25,43 +25,39 @@ export function PreviewBtn({
     setIsLoading(true);
     setIsError(false);
     try {
-      let newUrl;
-      if (track.track_preview) {
-        // newUrl = "/250413-233541.mp3";
-        newUrl = track.track_preview;
-      } else {
-        const response = await fetch(
-          `${
-            process.env.NEXT_PUBLIC_API_URL
-          }/api/cfmpulse/track-preview?artist=${encodeURIComponent(
-            track.track_artist,
-          )}&title=${encodeURIComponent(track.track_title)}`,
-          {
-            cache: "no-store",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
-        const data = await response.json();
-        newUrl = data.preview || "";
-      }
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/track-preview?artist=${encodeURIComponent(
+          track.track_artist,
+        )}&title=${encodeURIComponent(track.track_title)}`,
+        {
+          cache: "no-store",
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+
+      if (!response.ok) throw new Error("Fetch failed");
+
+      const data = await response.json();
+      const newUrl = data.preview || "";
+
+      if (!newUrl) throw new Error("No URL returned");
+
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setPreviewUrl(newUrl);
       return newUrl;
-    } catch {
+    } catch (err) {
+      console.error("Preview fetch error:", err);
       setIsError(true);
       setPreviewUrl("");
       return "";
     } finally {
       setIsLoading(false);
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      setIsError(false);
     }
   }
 
   const isThisTrackPlaying =
-    preview.currentPreview === previewUrl && previewUrl !== "";
+    preview.currentPreview === (track.track_preview || previewUrl) &&
+    (track.track_preview || previewUrl) !== "";
   const isDisabled = disabled || isLoading || isError;
 
   const handleClick = async (e: React.MouseEvent) => {
@@ -70,13 +66,17 @@ export function PreviewBtn({
 
     if (isDisabled) return;
 
-    if (isThisTrackPlaying && preview.playState === "playing") {
-      preview.pause();
+    if (isThisTrackPlaying) {
+      if (preview.playState === "playing") {
+        preview.pause();
+      } else {
+        preview.play(track.track_preview || previewUrl);
+      }
       return;
     }
 
-    if (isThisTrackPlaying && preview.playState === "paused") {
-      preview.play(previewUrl);
+    if (track.track_preview) {
+      preview.play(track.track_preview);
       return;
     }
 
@@ -91,30 +91,25 @@ export function PreviewBtn({
   };
 
   const getText = () => {
-    switch (true) {
-      case isLoading || preview.playState === "loading":
-        return "Loading...";
-      case isThisTrackPlaying && preview.playState === "playing":
-        return "Stop Preview";
-      case isThisTrackPlaying && preview.playState === "paused":
-        return "Resume Track";
-      case isError || preview.playState === "error":
-        return "Preview Error";
-      default:
-        return "Preview Track";
-    }
+    if (isLoading || preview.playState === "loading") return "Loading...";
+    if (isError || (previewUrl && preview.error)) return "Preview Error";
+    if (isThisTrackPlaying && preview.playState === "playing")
+      return "Stop Preview";
+    if (isThisTrackPlaying && preview.playState === "paused")
+      return "Resume Track";
+    return "Preview Track";
   };
 
   return (
     <div
-      role={isDisabled || isError ? undefined : "button"}
+      role={isDisabled ? undefined : "button"}
       tabIndex={0}
       aria-label={getText()}
       onClick={handleClick}
       className={cn(
-        "w-fit flex items-center justify-center border border-light/80",
-        isDisabled || isError ? "cursor-default" : "cursor-pointer",
-        isError || preview.playState === "error" ? "bg-red-500" : "",
+        "w-fit flex items-center justify-center border border-light/80 transition-colors",
+        isDisabled ? "cursor-default opacity-70" : "cursor-pointer",
+        isError || (previewUrl && preview.error) ? "bg-red-500" : "",
         "focus:outline-none select-none",
       )}
       title={getText()}

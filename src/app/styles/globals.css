@@ -44,14 +44,15 @@
 
 @font-face {
   font-family: "Typewriter";
-  src: url("/fonts/veteran-typewriter.ttf") format("truetype");
+  src: url("https://cfmpulse.com/fonts/veteran-typewriter.ttf")
+    format("truetype");
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Cfmpulse";
-  src: url("/fonts/cfmpulse.woff2") format("woff2");
+  src: url("https://cfmpulse.com/fonts/cfmpulse.woff2") format("woff2");
   font-style: normal;
   font-display: swap;
 }

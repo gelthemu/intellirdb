@@ -1,4 +1,3 @@
-// lib/audioManager.ts
 type AudioType = "radio" | "preview";
 
 class AudioManager {
