@@ -131,7 +131,7 @@
       {
         "track_artist": "Benson Boone",
         "track_title": "Mr Electric Blue",
-        "track_image": "",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/6c868cb8dcbb7066f2f224707cef59f2/500x500-000000-80-0-0.jpg",
         "track_position": 19,
         "track_previous_position": 30
       },
@@ -243,7 +243,7 @@
       {
         "track_artist": "Meghan Trainor",
         "track_title": "Still Don't Care",
-        "track_image": "",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/24a01de503c74f45739687db8ea43cc8/500x500-000000-80-0-0.jpg",
         "track_position": 35,
         "track_previous_position": null
       },
@@ -264,7 +264,7 @@
       {
         "track_artist": "Kehlani",
         "track_title": "Folded",
-        "track_image": "",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/f1b892e30ac58b8319d978d56dca572d/500x500-000000-80-0-0.jpg",
         "track_position": 38,
         "track_previous_position": null
       },

@@ -25,6 +25,6 @@ Other notable tracks included The Beatles’ _“The Long and Winding Road”_ a
 
 Read More About This Legendary Syndicated Radio Show, [here](/intellirdb?v=assets&sv=docs&dv=at40-americas-legendary-syndicated-radio-show)!!!
 
-![2003 Radio Music Awards - Show | Michael Caulfield Archive/GettyImages](https://assets.cfmpulse.com/resources/at40/casey-kasem-2003-radio-music-awards-show.webp)
+![2003 Radio Music Awards - Show | Michael Caulfield Archive/GettyImages](https://assets.cfmpulse.com/intellirdb/charts/at40-assets/casey-kasem-2003-radio-music-awards-show.webp)
 
 Listen to the radio, and more of it... on CFMPulse.com/intelliRDB

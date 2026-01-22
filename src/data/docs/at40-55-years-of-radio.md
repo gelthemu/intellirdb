@@ -35,7 +35,7 @@ Casey Kasem hosted [the original run from July 4, 1970](/intellirdb?v=assets&sv=
 
 Kasem's tenure established many of the show's most beloved features. His warm, conversational style and philosophical approach to broadcasting made him a household name. Kasem told the New York Times in 1990 "I accentuate the positive and eliminate the negative. That is the timeless thing."
 
-![American Top 40 w/ Casey Kasem](https://assets.cfmpulse.com/resources/at40/at40-with-casey-kasem.webp)
+![American Top 40 w/ Casey Kasem](https://assets.cfmpulse.com/intellirdb/charts/at40-assets/at40-with-casey-kasem.webp)
 
 Kasem's closing became legendary in broadcasting. After the number-one song was played, the bumper music began playing, and over that, Kasem typically reported that week's chart date and read the end credits, then signed off with what became his, and the show's, unofficial motto: "Keep your feet on the ground, and keep reaching for the stars."
 
@@ -51,13 +51,13 @@ Shadoe Stevens' first American Top 40 show aired on August 13, 1988, on 1,014 st
 
 Stevens attempted to modernize the format with new features including interview clips, music news, and flashbacks, but the transition proved challenging as many stations defected when Kasem launched his competing show on Westwood One. ABC kept American Top 40 in its syndication lineup despite the continued lack of improvement in ratings, but in 1994 the network finally decided to cut its losses. The original AT40 ended on January 28, 1995.
 
-![American Top 40 w/ Shadoe Stevens](https://assets.cfmpulse.com/resources/at40/at40-with-shadoe-stevens.webp)
+![American Top 40 w/ Shadoe Stevens](https://assets.cfmpulse.com/intellirdb/charts/at40-assets/at40-with-shadoe-stevens.webp)
 
 ### Ryan Seacrest (2004-Present)
 
 Ryan Seacrest assumed hosting responsibilities on January 10, 2004, transforming AT40 with a contemporary approach and updated format. The show introduced a revolutionary chart system without recurrent rules, allowing songs to maintain chart positions far longer than traditional Billboard rankings. This change created impressive longevity milestones, culminating in Rema & Selena Gomez's "Calm Down" holding the all-time record at 75 consecutive weeks from November 2022 to April 2024.
 
-![American Top 40 w/ Ryan Seacrest](https://assets.cfmpulse.com/resources/at40/at40-with-ryan-seacrest.webp)
+![American Top 40 w/ Ryan Seacrest](https://assets.cfmpulse.com/intellirdb/charts/at40-assets/at40-with-ryan-seacrest.webp)
 
 Under Seacrest's leadership, AT40 embraced digital interactivity through online voting, social media integration, and mobile applications. The program incorporated listener "shoutouts" via toll-free numbers and expanded internationally through Twitter and Facebook engagement. These technological adaptations allowed global audiences to participate in the AT40 Extra segment and influence chart rankings through website voting.
 
@@ -73,7 +73,7 @@ The show's chart sources have evolved significantly over its history, reflecting
 - **1993-1998**: Used Billboard Top 40 Mainstream chart
 - **1998-Present**: The current source for the American Top 40 charts are unpublished mainstream Top 40 and hot adult contemporary charts compiled by Mediabase
 
-![The Billboard Hot 100 chart featured on the debut AT40 episode (dated July 11, 1970.)](https://assets.cfmpulse.com/resources/at40/billboard-hot-100-chart-dated-1970-07-11.webp)
+![The Billboard Hot 100 chart featured on the debut AT40 episode (dated July 11, 1970.)](https://assets.cfmpulse.com/intellirdb/charts/at40-assets/billboard-hot-100-chart-dated-1970-07-11.webp)
 
 ### Pandemic Adaptation and Modern Resilience
 
