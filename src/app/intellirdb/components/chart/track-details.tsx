@@ -166,8 +166,8 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
             </div>
           </div>
           <div className="flex-1 select-text">
-            <div className="text-2xl font-bold">{track.track_title}</div>
-            <div className="text-lg opacity-75">{track.track_artist}</div>
+            <div className="text-xl font-bold font-var">{track.track_title}</div>
+            <div className="opacity-75">{track.track_artist}</div>
           </div>
         </div>
         <div>

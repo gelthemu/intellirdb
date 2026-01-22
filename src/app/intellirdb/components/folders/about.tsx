@@ -103,7 +103,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
   return (
     <div className="w-full h-full relative p-4 overflow-y-auto space-y-4 text-dark">
       <div className="space-y-2">
-        <h2 className="text-xl font-bold">Welcome to intelliRDB</h2>
+        <h2 className="text-xl font-bold font-var">Welcome to intelliRDB</h2>
         <p>
           Discover some of the best radio stations from around the world. Click{" "}
           <strong>PLAY</strong> to start listening.
@@ -156,7 +156,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
           <span>Please send an email to:</span>
           <a
             href="mailto:intellirdb@cfmpulse.com"
-            className="w-fit underline hover:opacity-80 select-text"
+            className="w-fit font-medium underline hover:opacity-80 select-text"
           >
             intellirdb@cfmpulse.com
           </a>

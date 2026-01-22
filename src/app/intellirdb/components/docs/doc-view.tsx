@@ -53,7 +53,7 @@ const DocView: React.FC<DocViewProps> = ({ doc }) => {
     >
       <div className="w-full overflow-hidden pr-1">
         {doc.publication_date && (
-          <div className="w-full text-sm text-right opacity-70 border-b border-dark/40 pb-3 mb-2">
+          <div className="w-full text-sm text-right opacity-80 border-b border-dark/40 pb-3 mb-2">
             Posted: {formatDate(doc.publication_date)}
           </div>
         )}

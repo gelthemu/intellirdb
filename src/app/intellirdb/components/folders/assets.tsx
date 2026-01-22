@@ -188,7 +188,7 @@ const Assets: React.FC = () => {
                 transition={{ delay: index * 0.15 }}
               >
                 <div className="flex flex-col">
-                  <div className="font-bold">{doc.title}</div>
+                  <div className="font-bold font-var">{doc.title}</div>
                   <div>{`${doc.slug}.txt`}</div>
                   {doc.publication_date && (
                     <div className="text-sm opacity-70">

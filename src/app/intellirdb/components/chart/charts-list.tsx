@@ -23,7 +23,7 @@ const ChartsList: React.FC<ChartsListProps> = ({ charts, openSubView }) => {
             transition={{ delay: index * 0.1 }}
           >
             <div className="flex flex-col">
-              <div className="font-bold">{chart.label}</div>
+              <div className="font-bold font-var">{chart.label}</div>
               <div className="text-sm opacity-75">
                 {chart.date}
                 {chart.host ? `; with ${chart?.host}` : ""}

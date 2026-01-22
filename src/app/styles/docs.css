@@ -1,6 +1,10 @@
 @tailwind base;
 
 @layer base {
+  .font-var {
+    font-feature-settings: "ss02", "ss03";
+    font-variation-settings: "opsz" 500;
+  }
   ._img_ {
     pointer-events: none;
     -webkit-user-drag: none;
@@ -12,7 +16,7 @@
 }
 
 article .prose h3 {
-  @apply font-semibold;
+  @apply font-semibold font-var;
   display: inline;
 }
 

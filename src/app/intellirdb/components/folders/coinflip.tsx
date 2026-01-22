@@ -142,7 +142,7 @@ const CoinFlip: React.FC = () => {
       <div className="w-full h-full flex flex-col items-center justify-center">
         <div
           onClick={flipCoin}
-          className={`relative w-28 aspect-square flex items-center justify-center font-bold text-light border-none rounded-full overflow-hidden shadow-lg shadow-dark/60 transition-opacity duration-300 ${
+          className={`relative w-28 aspect-square flex items-center justify-center font-bold font-var text-light border-none rounded-full overflow-hidden shadow-lg shadow-dark/60 transition-opacity duration-300 ${
             gameComplete ? "opacity-60 cursor-default" : "cursor-pointer"
           }`}
           style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
@@ -186,7 +186,7 @@ const CoinFlip: React.FC = () => {
           animate={{ opacity: gameResult || (result && !isFlipping) ? 1 : 0 }}
           className="my-4"
         >
-          <span className="result capitalize text-xl font-bold text-dark">
+          <span className="result capitalize text-xl font-bold font-var text-dark">
             {gameResult || (result ? `${result}` : "")}!
           </span>
         </motion.div>
@@ -201,11 +201,11 @@ const CoinFlip: React.FC = () => {
           <div className="grid grid-cols-2 gap-0 border-y border-dark text-sm text-center">
             <div className="border-r border-dark py-1 flex items-center justify-center flex-col">
               <div className="text-sm opacity-90">Heads</div>
-              <span className="text-lg font-bold">{stats.heads}</span>
+              <span className="text-lg font-bold font-var">{stats.heads}</span>
             </div>
             <div className="py-1 flex items-center justify-center flex-col">
               <div className="text-sm opacity-90">Tails</div>
-              <span className="text-lg font-bold">{stats.tails}</span>
+              <span className="text-lg font-bold font-var">{stats.tails}</span>
             </div>
           </div>
           <button
