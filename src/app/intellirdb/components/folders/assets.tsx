@@ -88,19 +88,33 @@ const Assets: React.FC = () => {
     return (
       <div
         id="visual-view"
-        className="relative w-full h-full flex items-center justify-center bg-beige/10 p-px"
+        className="relative w-full h-full flex items-center justify-center bg-beige/40 p-px"
         onDoubleClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
         }}
       >
-        <Image
-          src={visual.url}
-          alt={visual.title}
-          fill
-          className="object-contain intelli-none"
-          unoptimized
-        />
+        <div className="w-full h-full relative border-none overflow-hidden">
+          <Image
+            src={visual.url}
+            alt={visual.title}
+            fill
+            className="w-full h-full object-contain intelli-none grayscale"
+            unoptimized
+          />
+          <div className="absolute inset-0 pointer-events-none grayscale opacity-80">
+            <div
+              className="absolute inset-0 bg-dark/20"
+              style={{
+                backgroundImage:
+                  "url('https://assets.cfmpulse.com/intellirdb/assets/tl..webp')",
+                backgroundRepeat: "repeat",
+                backgroundSize: "contain",
+                opacity: 1,
+              }}
+            />
+          </div>
+        </div>
       </div>
     );
   }
@@ -144,7 +158,7 @@ const Assets: React.FC = () => {
                     )}
                     <div className="absolute inset-0 pointer-events-none grayscale">
                       <div
-                        className="absolute inset-0 bg-black/20"
+                        className="absolute inset-0 bg-dark/20"
                         style={{
                           backgroundImage:
                             "url('https://assets.cfmpulse.com/intellirdb/assets/tl..webp')",
