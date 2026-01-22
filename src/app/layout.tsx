@@ -133,7 +133,7 @@ export default async function RootLayout({
         className={cn(
           "relative antialiased select-none",
           "h-dvh flex flex-col p-2",
-          "bg-dark text-light  bg-blend-multiply"
+          "bg-dark text-light  bg-blend-multiply",
         )}
       >
         <RadioProvider>
@@ -150,15 +150,19 @@ export default async function RootLayout({
                   <Image
                     src="https://cfmpulse.com/img-radio-pixelart.gif"
                     alt=""
-                    fill
+                    width={0}
+                    height={0}
                     className="hidden intelli-none"
                   />
                   <Image
                     src="https://cfmpulse.com/intellirdb-canvas.jpg"
                     alt=""
-                    fill
+                    width={0}
+                    height={0}
                     className="hidden intelli-none"
                   />
+                  <audio id="radio-player" className="hidden intelli-none" />
+                  <audio id="preview-player" className="hidden intelli-none" />
                 </main>
                 <Suspense>
                   <Taskbar />

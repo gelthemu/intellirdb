@@ -18,11 +18,12 @@ export function PreviewBtn({
 }: PreviewBtnProps) {
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [needsFreshUrl, setNeedsFreshUrl] = useState<boolean>(true);
-  const { isPlaying, currentTrack, togglePreview } = usePreview();
+  const [isError, setIsError] = useState<boolean>(false);
+  const preview = usePreview();
 
   async function fetchPreview() {
     setIsLoading(true);
+    setIsError(false);
     try {
       let newUrl;
       if (track.track_preview) {
@@ -33,40 +34,35 @@ export function PreviewBtn({
           `${
             process.env.NEXT_PUBLIC_API_URL
           }/api/cfmpulse/track-preview?artist=${encodeURIComponent(
-            track.track_artist
+            track.track_artist,
           )}&title=${encodeURIComponent(track.track_title)}`,
           {
             cache: "no-store",
             headers: {
               "Content-Type": "application/json",
             },
-          }
+          },
         );
         const data = await response.json();
         newUrl = data.preview || "";
       }
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setPreviewUrl(newUrl);
-      setNeedsFreshUrl(false);
       return newUrl;
-    } catch (error) {
-      console.error(error);
+    } catch {
+      setIsError(true);
       setPreviewUrl("");
-      setNeedsFreshUrl(true);
       return "";
     } finally {
       setIsLoading(false);
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      setIsError(false);
     }
   }
 
-  useEffect(() => {
-    if (currentTrack === previewUrl && !isPlaying) {
-      setNeedsFreshUrl(true);
-    }
-  }, [isPlaying, currentTrack, previewUrl]);
-
-  const isThisTrackPlaying = currentTrack === previewUrl && isPlaying;
-  const isDisabled = disabled || isLoading;
+  const isThisTrackPlaying =
+    preview.currentPreview === previewUrl && previewUrl !== "";
+  const isDisabled = disabled || isLoading || isError;
 
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -74,27 +70,36 @@ export function PreviewBtn({
 
     if (isDisabled) return;
 
-    if (isThisTrackPlaying) {
-      togglePreview(previewUrl);
+    if (isThisTrackPlaying && preview.playState === "playing") {
+      preview.pause();
       return;
     }
 
-    if (needsFreshUrl || !previewUrl) {
-      const freshUrl = await fetchPreview();
-      if (freshUrl) {
-        togglePreview(freshUrl);
+    if (isThisTrackPlaying && preview.playState === "paused") {
+      preview.play(previewUrl);
+      return;
+    }
+
+    if (!previewUrl) {
+      const url = await fetchPreview();
+      if (url) {
+        preview.play(url);
       }
     } else {
-      togglePreview(previewUrl);
+      preview.play(previewUrl);
     }
   };
 
   const getText = () => {
     switch (true) {
-      case isLoading:
+      case isLoading || preview.playState === "loading":
         return "Loading...";
-      case isThisTrackPlaying:
-        return "Pause Track";
+      case isThisTrackPlaying && preview.playState === "playing":
+        return "Stop Preview";
+      case isThisTrackPlaying && preview.playState === "paused":
+        return "Resume Track";
+      case isError || preview.playState === "error":
+        return "Preview Error";
       default:
         return "Preview Track";
     }
@@ -109,7 +114,8 @@ export function PreviewBtn({
       className={cn(
         "w-fit flex items-center justify-center border border-light/80",
         isDisabled ? "cursor-default" : "cursor-pointer",
-        "focus:outline-none select-none"
+        isError || preview.playState === "error" ? "bg-red-500" : "",
+        "focus:outline-none select-none",
       )}
       title={getText()}
     >

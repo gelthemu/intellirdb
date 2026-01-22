@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import data from "@/data/radio.json";
@@ -19,7 +19,9 @@ const Radio: React.FC = () => {
 
   useEffect(() => {
     if (subView && stations.length > 0) {
-      const station = stations.find((s) => s.id === subView) || currentStation;
+      const station =
+        stations.find((s) => s.id === subView) ||
+        stations.find((s) => s.url === currentStation);
       if (station) {
         setDialogTitle(station.name);
         return;
@@ -38,7 +40,9 @@ const Radio: React.FC = () => {
 
   if (subView) {
     const stationId = subView;
-    const station = stations.find((s) => s.id === stationId) || currentStation;
+    const station =
+      stations.find((s) => s.id === stationId) ||
+      stations.find((s) => s.url === currentStation);
 
     if (!station) return null;
 
@@ -55,9 +59,9 @@ const Radio: React.FC = () => {
             className={cn(
               "px-3 py-2 flex flex-row items-center justify-between gap-2",
               "border border-dark/50 cursor-pointer select-none",
-              currentStation?.id === station.id
+              currentStation === station.url
                 ? "font-bold bg-light/80"
-                : "bg-light/40 hover:bg-light/60"
+                : "bg-light/40 hover:bg-light/60",
             )}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,7 +73,7 @@ const Radio: React.FC = () => {
               </span>
             </div>
             <div className="w-5 aspect-square shrink-0 flex items-center justify-center">
-              {currentStation?.id === station.id ? (
+              {currentStation === station.url ? (
                 <Image
                   src="/folders/img-radio.png"
                   alt="Radio"

@@ -4,18 +4,31 @@ import { useRadio } from "@/app/contexts/radio";
 import { cn } from "@/lib/cn";
 
 export default function AudioControls() {
-  const { currentStation, playState, togglePlayPause, stop } = useRadio();
+  const radio = useRadio();
 
-  if (!currentStation) return null;
+  const handleClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (radio.currentStation && radio.playState === "playing") {
+      radio.pause();
+      return;
+    }
+
+    if (radio.currentStation && radio.playState === "paused") {
+      radio.play(radio.currentStation);
+      return;
+    }
+  };
 
   const getButtonText = () => {
-    switch (playState) {
+    switch (radio.playState) {
       case "loading":
         return "Loading...";
       case "playing":
         return "Pause";
       case "paused":
-        return "Play";
+        return "Resume";
       case "error":
         return "Error";
       default:
@@ -30,29 +43,29 @@ export default function AudioControls() {
           <div
             role="button"
             tabIndex={0}
-            onClick={togglePlayPause}
+            onClick={handleClick}
             className={cn(
               "px-2 py-px cursor-pointer focus:outline-none select-none",
-              playState !== "loading" ? "border border-dark" : "",
-              playState === "error"
+              radio.playState !== "loading" ? "border border-dark" : "",
+              radio.playState === "error"
                 ? "bg-red-500 text-light"
-                : playState === "loading"
-                ? "bg-transparent text-dark"
-                : "bg-dark text-light"
+                : radio.playState === "loading"
+                  ? "bg-transparent text-dark"
+                  : "bg-dark text-light",
             )}
           >
             {getButtonText()}
           </div>
-          {(playState === "playing" ||
-            playState === "paused" ||
-            playState === "error") && (
+          {(radio.playState === "playing" ||
+            radio.playState === "paused" ||
+            radio.playState === "error") && (
             <div
               role="button"
               tabIndex={0}
               onClick={stop}
               className="px-2 py-px text-dark bg-transparent border border-dark cursor-pointer focus:outline-none select-none"
             >
-              {playState === "error" ? "Exit" : "Stop"}
+              {radio.playState === "error" ? "Exit" : "Stop"}
             </div>
           )}
         </div>

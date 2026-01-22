@@ -1,200 +1,164 @@
+// contexts/RadioContext.tsx
 "use client";
 
-import React, {
+import {
   createContext,
   useContext,
+  useEffect,
   useState,
   useRef,
-  useEffect,
-  useCallback,
+  ReactNode,
 } from "react";
-import { Station } from "@/types";
-import { trackStationPlay } from "@/lib/analytics";
+import { audioManager } from "@/lib/audio-manager";
 
-type PlayState = "idle" | "loading" | "playing" | "paused" | "error";
+type PlayState = "loading" | "playing" | "paused" | "error";
 
 interface RadioContextType {
-  currentStation: Station | null;
   playState: PlayState;
-  playStation: (station: Station) => Promise<void>;
-  togglePlayPause: () => void;
+  currentStation: string | null;
+  error: string | null;
+  play: (stationUrl: string) => void;
+  pause: () => void;
   stop: () => void;
-  playBeep: () => void;
 }
 
 const RadioContext = createContext<RadioContextType | undefined>(undefined);
 
-export function RadioProvider({ children }: { children: React.ReactNode }) {
-  const [currentStation, setCurrentStation] = useState<Station | null>(null);
-  const [playState, setPlayState] = useState<PlayState>("idle");
+export function RadioProvider({ children }: { children: ReactNode }) {
+  const [playState, setPlayState] = useState<PlayState>("paused");
+  const [currentStation, setCurrentStation] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && !audioRef.current) {
-      audioRef.current = new Audio();
-      audioRef.current.crossOrigin = "anonymous";
+  // Helper function to get audio element
+  const getAudioElement = (): HTMLAudioElement | null => {
+    if (audioRef.current) return audioRef.current;
+    
+    if (typeof window === 'undefined') return null;
+    
+    const audio = document.getElementById("radio-player") as HTMLAudioElement;
+    if (audio instanceof HTMLAudioElement) {
+      audioRef.current = audio;
+      return audio;
     }
+    
+    return null;
+  };
 
-    if (!audioRef.current) return;
+  useEffect(() => {
+    const audio = getAudioElement();
+    if (!audio) return;
 
-    const handlePlay = () => {
+    const handleLoadStart = () => {
+      setPlayState("loading");
+      setError(null);
+    };
+
+    const handleCanPlay = () => {
+      if (playState === "loading") {
+        setPlayState("playing");
+      }
+    };
+
+    const handlePlaying = () => {
       setPlayState("playing");
-
-      const event = new CustomEvent("radioStateChange", {
-        detail: { type: "start", isPlaying: true },
-      });
-      window.dispatchEvent(event);
     };
 
     const handlePause = () => {
-      setPlayState((prev) => (prev === "playing" ? "paused" : prev));
+      setPlayState("paused");
     };
 
     const handleError = () => {
       setPlayState("error");
+      setError(
+        audio.error?.message || "An error occurred while loading the audio",
+      );
     };
 
-    const handleEnded = () => {
-      setPlayState("idle");
-    };
-
-    const handleLoadStart = () => {
-      setPlayState("loading");
-    };
-
-    audioRef.current.addEventListener("play", handlePlay);
-    audioRef.current.addEventListener("pause", handlePause);
-    audioRef.current.addEventListener("error", handleError);
-    audioRef.current.addEventListener("ended", handleEnded);
-    audioRef.current.addEventListener("loadstart", handleLoadStart);
+    audio.addEventListener("loadstart", handleLoadStart);
+    audio.addEventListener("canplay", handleCanPlay);
+    audio.addEventListener("playing", handlePlaying);
+    audio.addEventListener("pause", handlePause);
+    audio.addEventListener("error", handleError);
 
     return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener("play", handlePlay);
-        audioRef.current.removeEventListener("pause", handlePause);
-        audioRef.current.removeEventListener("error", handleError);
-        audioRef.current.removeEventListener("ended", handleEnded);
-        audioRef.current.removeEventListener("loadstart", handleLoadStart);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const handlePreviewStart = (event: Event) => {
-      const customEvent = event as CustomEvent;
-      if (
-        customEvent.detail.type === "start" &&
-        audioRef.current &&
-        playState === "playing"
-      ) {
-        audioRef.current.pause();
-        setPlayState("paused");
-      }
-    };
-
-    window.addEventListener("previewStateChange", handlePreviewStart);
-    return () => {
-      window.removeEventListener("previewStateChange", handlePreviewStart);
+      audio.removeEventListener("loadstart", handleLoadStart);
+      audio.removeEventListener("canplay", handleCanPlay);
+      audio.removeEventListener("playing", handlePlaying);
+      audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("error", handleError);
     };
   }, [playState]);
 
-  const playStation = useCallback(
-    async (station: Station) => {
-      if (!audioRef.current) return;
-
-      try {
-        if (currentStation && currentStation.id !== station.id) {
-          audioRef.current.pause();
-          audioRef.current.src = "";
+  useEffect(() => {
+    const unsubscribe = audioManager.subscribe((playingType) => {
+      if (playingType !== "radio" && playingType !== null) {
+        const audio = getAudioElement();
+        if (audio && !audio.paused) {
+          audio.pause();
         }
-
-        setCurrentStation(station);
-        setPlayState("loading");
-
-        audioRef.current.src = station.url;
-        audioRef.current.load();
-
-        await audioRef.current.play();
-
-        try {
-          await trackStationPlay(station.id);
-        } catch {
-          throw new Error("Analytics tracking failed");
-        }
-        setPlayState("playing");
-      } catch {
-        setPlayState("error");
-        throw new Error("Playback failed");
       }
-    },
-    [currentStation]
-  );
+    });
 
-  const togglePlayPause = useCallback(() => {
-    if (!audioRef.current || !currentStation) return;
+    return unsubscribe;
+  }, []);
 
-    if (playState === "playing") {
-      audioRef.current.pause();
-    } else if (playState === "paused") {
-      audioRef.current.play().catch(() => {
+  const play = (stationUrl: string) => {
+    const audio = getAudioElement();
+    
+    if (!audio) {
+      console.error("Radio audio element not found or invalid");
+      setPlayState("error");
+      setError("Audio player not initialized");
+      return;
+    }
+
+    audioManager.setPlaying("radio");
+    setPlayState("loading");
+    setError(null);
+    audio.src = stationUrl;
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((err) => {
         setPlayState("error");
-        throw new Error("Playback resume failed");
+        setError(err.message || "Failed to play audio");
       });
     }
-  }, [playState, currentStation]);
 
-  const stop = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.src = "";
+    setCurrentStation(stationUrl);
+  };
+
+  const pause = () => {
+    const audio = getAudioElement();
+    if (audio) {
+      audio.pause();
     }
-    setCurrentStation(null);
-    setPlayState("idle");
-  }, []);
+  };
 
-  const playBeep = useCallback(() => {
-    try {
-      const ctx = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
-      const oscillator = ctx.createOscillator();
-      const gainNode = ctx.createGain();
-
-      oscillator.connect(gainNode);
-      gainNode.connect(ctx.destination);
-
-      oscillator.type = "square";
-      oscillator.frequency.value = 500;
-      gainNode.gain.value = 0.1;
-
-      oscillator.start();
-      oscillator.stop(ctx.currentTime + 0.1);
-
-      if (navigator.vibrate) {
-        navigator.vibrate(50);
-      }
-    } catch (e) {}
-  }, []);
+  const stop = () => {
+    const audio = getAudioElement();
+    if (audio) {
+      audio.pause();
+      audio.src = "";
+      setPlayState("paused");
+      setCurrentStation(null);
+      setError(null);
+      audioManager.stop();
+    }
+  };
 
   return (
     <RadioContext.Provider
-      value={{
-        currentStation,
-        playState,
-        playStation,
-        togglePlayPause,
-        stop,
-        playBeep,
-      }}
+      value={{ playState, currentStation, error, play, pause, stop }}
     >
       {children}
     </RadioContext.Provider>
   );
 }
 
-export function useRadio() {
+export const useRadio = () => {
   const context = useContext(RadioContext);
-  if (context === undefined) {
-    throw new Error("useRadio must be used within a RadioProvider");
-  }
+  if (!context) throw new Error("useRadio must be used within RadioProvider");
   return context;
-}
+};

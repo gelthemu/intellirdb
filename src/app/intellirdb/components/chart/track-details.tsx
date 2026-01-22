@@ -113,7 +113,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
       <div
         className={cn(
           "absolute top-0 left-0 w-full h-full flex flex-col items-start justify-between space-y-4 p-4 md:p-6",
-          "text-light bg-dark/40 bg-blend-multiply bg-repeat overflow-hidden"
+          "text-light bg-dark/40 bg-blend-multiply bg-repeat overflow-hidden",
         )}
       >
         <div className="w-full flex flex-col gap-4 items-start">
@@ -161,9 +161,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
             </motion.div>
             <div className="h-fit px-3 py-2 bg-dark/60 opacity-90">
               {(chart.id === "at40" || chart.id === "kt10") && (
-                <div>
-                  {renderMovementIndicator(track)}
-                </div>
+                <div>{renderMovementIndicator(track)}</div>
               )}
             </div>
           </div>

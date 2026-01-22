@@ -16,9 +16,9 @@ interface MediaInfoProps {
 }
 
 function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
-  const { playStation, playState, currentStation } = useRadio();
+  const radio = useRadio();
   const [plays, setPlayCount] = useState<number>(0);
-  const isCurrentStation = currentStation?.id === station.id;
+  const isCurrentStation = radio.currentStation === station.url;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -36,9 +36,9 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
     };
   }, [station.id, isOpen]);
 
-  const handlePlay = async () => {
+  const handlePlay = () => {
     if (!isCurrentStation) {
-      await playStation(station);
+      radio.play(station.url);
       if (onPlay) {
         onPlay();
       }
@@ -48,13 +48,13 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
   const getButtonText = () => {
     if (!isCurrentStation) return "PLAY";
 
-    switch (playState) {
+    switch (radio.playState) {
       case "loading":
         return "LOADING...";
       case "playing":
         return "PLAYING";
       case "paused":
-        return "PAUSED";
+        return "RESUME";
       case "error":
         return "ERROR";
       default:
@@ -85,7 +85,7 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
       <div
         className={cn(
           "absolute top-0 left-0 w-full h-full flex flex-col items-start justify-between space-y-4 p-4 md:p-6",
-          "text-light bg-dark/40 bg-blend-multiply bg-repeat overflow-hidden"
+          "text-light bg-dark/40 bg-blend-multiply bg-repeat overflow-hidden",
         )}
       >
         <div className="w-full flex flex-row justify-between gap-2">
@@ -97,9 +97,9 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
               className={cn(
                 "px-2 py-px border-none font-bold",
                 isCurrentStation ? "cursor-default" : "cursor-pointer",
-                playState === "error" && isCurrentStation
+                radio.playState === "error" && isCurrentStation
                   ? "bg-red-500 text-light"
-                  : "text-dark bg-light"
+                  : "text-dark bg-light",
               )}
             >
               {getButtonText()}

@@ -134,7 +134,7 @@ const Taskbar: React.FC = () => {
               ref={menuRef}
               className={cn(
                 "absolute bottom-10 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
-                !isOpen ? "left-2.5" : "left-2.5"
+                !isOpen ? "left-2.5" : "left-2.5",
               )}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -174,7 +174,7 @@ const Taskbar: React.FC = () => {
                       "border-none bg-transparent cursor-pointer",
                       item.disabled
                         ? "opacity-50 cursor-default"
-                        : "hover:bg-dark/60 hover:text-light"
+                        : "hover:bg-dark/60 hover:text-light",
                     )}
                   >
                     <Image
@@ -202,7 +202,7 @@ const Taskbar: React.FC = () => {
       <div
         className={cn(
           "w-full sticky bottom-0 z-50 p-px bg-dark",
-          !isOpen ? "border-t border-dark" : ""
+          !isOpen ? "border-t border-dark" : "",
         )}
       >
         <div className="flex flex-row items-center justify-between space-x-2 p-0 text-dark bg-beige border-none">

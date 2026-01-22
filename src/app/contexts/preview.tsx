@@ -1,207 +1,165 @@
+// contexts/PreviewContext.tsx
 "use client";
 
-import React, {
+import {
   createContext,
   useContext,
-  useRef,
-  useState,
   useEffect,
-  useCallback,
+  useState,
+  useRef,
+  ReactNode,
 } from "react";
+import { audioManager } from "@/lib/audio-manager";
+
+type PlayState = "loading" | "playing" | "paused" | "error";
 
 interface PreviewContextType {
-  isPlaying: boolean;
-  currentTrack: string | null;
-  progress: number;
-  playPreview: (url: string) => void;
-  pausePreview: () => void;
-  togglePreview: (url: string) => void;
-  registerAudio: (element: HTMLAudioElement | null) => void;
+  playState: PlayState;
+  currentPreview: string | null;
+  error: string | null;
+  play: (previewUrl: string) => void;
+  pause: () => void;
+  stop: () => void;
 }
 
 const PreviewContext = createContext<PreviewContextType | undefined>(undefined);
 
-export function PreviewProvider({ children }: { children: React.ReactNode }) {
+export function PreviewProvider({ children }: { children: ReactNode }) {
+  const [playState, setPlayState] = useState<PlayState>("paused");
+  const [currentPreview, setCurrentPreview] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTrack, setCurrentTrack] = useState<string | null>(null);
-  const [progress, setProgress] = useState(0);
 
-  const registerAudio = useCallback((element: HTMLAudioElement | null) => {
-    audioRef.current = element;
-  }, []);
+  // Helper function to get audio element
+  const getAudioElement = (): HTMLAudioElement | null => {
+    if (audioRef.current) return audioRef.current;
 
-  const dispatchPreviewEvent = (type: "start" | "stop") => {
-    const event = new CustomEvent("previewStateChange", {
-      detail: { type, isPlaying: type === "start" },
-    });
-    window.dispatchEvent(event);
+    if (typeof window === "undefined") return null;
+
+    const audio = document.getElementById("preview-player") as HTMLAudioElement;
+    if (audio instanceof HTMLAudioElement) {
+      audioRef.current = audio;
+      return audio;
+    }
+
+    return null;
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined" && !audioRef.current) {
-      audioRef.current = new Audio();
-      audioRef.current.crossOrigin = "anonymous";
-    }
+    const audio = getAudioElement();
+    if (!audio) return;
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.src = "";
-        audioRef.current = null;
-      }
+    const handleLoadStart = () => {
+      setPlayState("loading");
+      setError(null);
     };
-  }, []);
 
-  useEffect(() => {
-    const handleRadioStart = () => {
-      if (isPlaying && audioRef.current) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-        setProgress(0);
+    const handleCanPlay = () => {
+      if (playState === "loading") {
+        setPlayState("playing");
       }
     };
 
-    window.addEventListener("radioStateChange", handleRadioStart);
-    return () => {
-      window.removeEventListener("radioStateChange", handleRadioStart);
-    };
-  }, [isPlaying]);
-
-  useEffect(() => {
-    const handleBackButtonToggle = () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-        setCurrentTrack(null);
-        setProgress(0);
-        dispatchPreviewEvent("stop");
-      }
+    const handlePlaying = () => {
+      setPlayState("playing");
     };
 
-    window.addEventListener("backButtonToggle", handleBackButtonToggle);
-    return () => {
-      window.removeEventListener("backButtonToggle", handleBackButtonToggle);
-    };
-  }, []);
-
-  const playPreview = useCallback(
-    (url: string) => {
-      if (!audioRef.current) {
-        console.warn("Audio element not registered");
-        return;
-      }
-
-      if (currentTrack !== url) {
-        audioRef.current.src = url;
-        try {
-          audioRef.current.load();
-        } catch (e) {}
-        setCurrentTrack(url);
-        setProgress(0);
-      }
-
-      audioRef.current
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-          dispatchPreviewEvent("start");
-        })
-        .catch((error) => {
-          console.error(error);
-          setIsPlaying(false);
-          setCurrentTrack(null);
-          setProgress(0);
-          dispatchPreviewEvent("stop");
-        });
-    },
-    [currentTrack]
-  );
-
-  const pausePreview = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-      setProgress(0);
-      dispatchPreviewEvent("stop");
-    }
-  }, []);
-
-  const togglePreview = useCallback(
-    (url: string) => {
-      if (isPlaying && currentTrack === url) {
-        pausePreview();
-      } else {
-        playPreview(url);
-      }
-    },
-    [isPlaying, currentTrack, playPreview, pausePreview]
-  );
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!isPlaying || !audio) {
-      setProgress(0);
-      return;
-    }
-
-    audio.volume = 0.75;
-    audio.setAttribute("data-preview", "true");
-
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setProgress(0);
-      dispatchPreviewEvent("stop");
+    const handlePause = () => {
+      setPlayState("paused");
     };
 
     const handleError = () => {
-      setIsPlaying(false);
-      setProgress(0);
-      dispatchPreviewEvent("stop");
+      setPlayState("error");
+      setError(
+        audio.error?.message || "An error occurred while loading the audio",
+      );
     };
 
-    const updateProgress = () => {
-      if (audio.duration && !isNaN(audio.duration)) {
-        setProgress(((audio.currentTime || 0) / audio.duration) * 100);
-      }
-    };
-
-    const updateInterval = setInterval(updateProgress, 100);
-    audio.addEventListener("timeupdate", updateProgress);
-    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("loadstart", handleLoadStart);
+    audio.addEventListener("canplay", handleCanPlay);
+    audio.addEventListener("playing", handlePlaying);
+    audio.addEventListener("pause", handlePause);
     audio.addEventListener("error", handleError);
 
-    updateProgress();
-
     return () => {
-      clearInterval(updateInterval);
-      audio.removeEventListener("timeupdate", updateProgress);
-      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("loadstart", handleLoadStart);
+      audio.removeEventListener("canplay", handleCanPlay);
+      audio.removeEventListener("playing", handlePlaying);
+      audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("error", handleError);
     };
-  }, [isPlaying]);
+  }, [playState]);
+
+  useEffect(() => {
+    const unsubscribe = audioManager.subscribe((playingType) => {
+      if (playingType !== "preview" && playingType !== null) {
+        const audio = getAudioElement();
+        if (audio && !audio.paused) {
+          audio.pause();
+        }
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const play = (previewUrl: string) => {
+    const audio = getAudioElement();
+
+    if (!audio) {
+      console.error("Preview audio element not found or invalid");
+      setPlayState("error");
+      setError("Audio player not initialized");
+      return;
+    }
+
+    audioManager.setPlaying("preview");
+    setPlayState("loading");
+    setError(null);
+    audio.src = previewUrl;
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((err) => {
+        setPlayState("error");
+        setError(err.message || "Failed to play audio");
+      });
+    }
+
+    setCurrentPreview(previewUrl);
+  };
+
+  const pause = () => {
+    const audio = getAudioElement();
+    if (audio) {
+      audio.pause();
+    }
+  };
+
+  const stop = () => {
+    const audio = getAudioElement();
+    if (audio) {
+      audio.pause();
+      audio.src = "";
+      setPlayState("paused");
+      setCurrentPreview(null);
+      setError(null);
+      audioManager.stop();
+    }
+  };
 
   return (
     <PreviewContext.Provider
-      value={{
-        isPlaying,
-        currentTrack,
-        progress,
-        playPreview,
-        pausePreview,
-        togglePreview,
-        registerAudio,
-      }}
+      value={{ playState, currentPreview, error, play, pause, stop }}
     >
       {children}
     </PreviewContext.Provider>
   );
 }
 
-export function usePreview() {
+export const usePreview = () => {
   const context = useContext(PreviewContext);
-  if (context === undefined) {
-    throw new Error("usePreview must be used within a PreviewProvider");
-  }
+  if (!context)
+    throw new Error("usePreview must be used within PreviewProvider");
   return context;
-}
+};
