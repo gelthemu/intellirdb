@@ -16,7 +16,7 @@ import { cn } from "@/lib/cn";
 const Dialog: React.FC = () => {
   const { isOpen, currentFolder, goBack, dialogTitle } = useWindow();
   const { isChatVisible, toggleChatVisibility } = useChat();
-  const { isPlaying, pausePreview } = usePreview();
+  const preview = usePreview();
 
   const renderContent = () => {
     switch (currentFolder) {
@@ -105,8 +105,8 @@ const Dialog: React.FC = () => {
                 if (isChatVisible && toggleChatVisibility) {
                   toggleChatVisibility();
                 }
-                if (isPlaying && pausePreview) {
-                  pausePreview();
+                if (preview.currentPreview  && preview.stop) {
+                  preview.stop();
                 }
                 goBack();
               }}
