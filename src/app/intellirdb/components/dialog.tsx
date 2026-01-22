@@ -84,7 +84,7 @@ const Dialog: React.FC = () => {
           className={cn(
             "absolute top-0 left-0 bottom-0 right-0 z-50",
             "flex flex-col transition-opacity duration-500 ease-in-out",
-            "p-px bg-dark backdrop-blur-md border-none overflow-hidden"
+            "p-px bg-light/40 backdrop-blur-md border-none overflow-hidden",
           )}
           variants={dialogVariants}
           initial="hidden"
@@ -99,7 +99,7 @@ const Dialog: React.FC = () => {
               className={cn(
                 "relative group w-full cursor-pointer overflow-hidden",
                 "border-b-2 border-dark bg-beige",
-                "flex flex-row items-center justify-between gap-2 p-0"
+                "flex flex-row items-center justify-between gap-2 p-0",
               )}
               onClick={() => {
                 if (isChatVisible && toggleChatVisibility) {
