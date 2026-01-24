@@ -11,7 +11,7 @@ interface ChartsListProps {
 
 const ChartsList: React.FC<ChartsListProps> = ({ charts, openSubView }) => {
   return (
-    <div className="w-full h-full p-0 overflow-hidden relative overflow-y-auto pr-1">
+    <div className="w-full h-full overflow-hidden relative overflow-y-auto p-2">
       <div className="space-y-2">
         {Object.values(charts).map((chart, index) => (
           <motion.div

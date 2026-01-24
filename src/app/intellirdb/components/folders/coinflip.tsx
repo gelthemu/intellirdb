@@ -138,7 +138,7 @@ const CoinFlip: React.FC = () => {
   const gameComplete = flipCount >= MAX_SCORE;
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full p-2">
       <div className="w-full h-full flex flex-col items-center justify-center">
         <div
           onClick={flipCoin}

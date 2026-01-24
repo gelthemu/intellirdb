@@ -49,7 +49,7 @@ const DocView: React.FC<DocViewProps> = ({ doc }) => {
   return (
     <div
       id="doc-view"
-      className="w-full h-full p-0 overflow-hidden relative overflow-y-auto py-2 pl-2 pr-1"
+      className="w-full h-full overflow-hidden relative overflow-y-auto p-2"
     >
       <div className="w-full overflow-hidden pr-1">
         {doc.publication_date && (

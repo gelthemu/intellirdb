@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import TrackImage from "./track-image";
 import { Track } from "@/types";
@@ -18,16 +17,13 @@ const BonusList: React.FC<BonusListProps> = ({ bonus }) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
         {bonus.map((track, index) => (
-          <motion.div
+          <div
             key={track.track_position || index}
             className={cn(
               "p-2 flex flex-row items-center justify-between gap-2",
               "border border-dark/50 select-none",
               "bg-light/40 hover:bg-light/60",
             )}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.1 }}
           >
             <div className="flex flex-row items-center space-x-2">
               <TrackImage trackImage={track.track_image} size="w-12 md:w-16" />
@@ -40,7 +36,7 @@ const BonusList: React.FC<BonusListProps> = ({ bonus }) => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

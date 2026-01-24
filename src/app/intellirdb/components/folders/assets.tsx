@@ -2,7 +2,6 @@
 
 import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useWindow } from "@/app/contexts/window";
 import { getAllDocs } from "@/app/intellirdb/components/docs/docs-parser";
 import { DocView } from "@/app/intellirdb/components/docs/doc-view";
@@ -130,12 +129,12 @@ const Assets: React.FC = () => {
 
   if (subView === "visuals") {
     return (
-      <div className="w-full h-full p-px overflow-hidden overflow-y-auto pr-1">
+      <div className="w-full h-full overflow-hidden overflow-y-auto p-1">
         {visuals.length > 0 ? (
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {visuals.map((visual, index) => (
               <Suspense key={index} fallback={null}>
-                <motion.div
+                <div
                   key={index}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -170,9 +169,9 @@ const Assets: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <span className="text-sm text-left">{`IMG-MGMG9797-${visual.title}`}</span>
+                    <span className="font-medium text-sm text-left">{`IMG-MGMG9797-${visual.title}`}</span>
                   </div>
-                </motion.div>
+                </div>
               </Suspense>
             ))}
           </div>
@@ -190,17 +189,14 @@ const Assets: React.FC = () => {
 
   if (subView === "docs") {
     return (
-      <div className="w-full h-full p-0 overflow-hidden relative overflow-y-auto pr-1">
+      <div className="w-full h-full overflow-hidden relative overflow-y-auto p-1">
         {docs.length > 0 ? (
           <div className="space-y-2">
             {docs.map((doc, index) => (
-              <motion.div
+              <div
                 key={doc.slug}
                 className="px-3 py-2 border border-dark/50 cursor-pointer select-none"
                 onClick={() => handleItemClick(doc.slug)}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15 }}
               >
                 <div className="flex flex-col">
                   <div className="font-bold font-var">{doc.title}</div>
@@ -211,7 +207,7 @@ const Assets: React.FC = () => {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         ) : (
@@ -228,12 +224,10 @@ const Assets: React.FC = () => {
       <div className="relative w-full h-full z-[0] overflow-hidden overflow-y-auto">
         <div className="flex flex-col gap-4 p-4">
           {assets.map((asset) => (
-            <motion.div
+            <div
               key={asset.folder}
               className="w-fit flex flex-row items-end gap-2 cursor-pointer"
               onClick={() => handleFolderClick(asset.folder)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               <div className="w-10 aspect-square flex items-center justify-center">
                 <Image
@@ -245,7 +239,7 @@ const Assets: React.FC = () => {
                   className="w-full h-full object-contain intelli-none"
                 />
               </div>
-              <div className="pb-1 text-sm">
+              <div className="pb-1 font-semibold text-sm">
                 <span>
                   {asset.title}{" "}
                   <span className="text-sm opacity-60">
@@ -253,7 +247,7 @@ const Assets: React.FC = () => {
                   </span>
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

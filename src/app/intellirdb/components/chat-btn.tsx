@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { useWindow } from "@/app/contexts/window";
 import { useChat } from "@/app/contexts/chat";
 import { cn } from "@/lib/cn";
@@ -12,18 +11,15 @@ const ChatBtn = () => {
   if (messages.length === 0) return null;
 
   return (
-    <AnimatePresence>
-      <motion.div
+    <div>
+      <div
         className={cn(
           "fixed bottom-10 left-1 right-2 border-none overflow-hidden z-50",
           "flex justify-end bg-transparent pr-5 pb-1.5"
         )}
         role="dialog"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
       >
-        <motion.div
+        <div
           role="button"
           tabIndex={0}
           onClick={() => {
@@ -34,18 +30,15 @@ const ChatBtn = () => {
           }}
           aria-label="Open Chat"
           className="relative flex justify-start items-center text-sm bg-gray px-2 py-1 text-light border-2 border-dark/50 focus:outline-none"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 50 }}
         >
           <span className="flex justify-start items-center">Chat</span>
           <span className="absolute -end-4 top-1/2 -translate-y-1/2 text-nowrap px-1 py-0.5 min-w-5 text-center text-xs bg-dark/90">
             <span className="absolute top-0 start-0 rounded-none -z-10 animate-ping bg-dark/50 w-full h-full" />
             {messages.length}
           </span>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+        </div>
+      </div>
+    </div>
   );
 };
 

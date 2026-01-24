@@ -1,5 +1,5 @@
 const playerFullScreen = () => {
-  const player = document.getElementById("radio-player");
+  const player = document.getElementById("media-info");
   if (!player) return;
 
   if (document.fullscreenElement) {

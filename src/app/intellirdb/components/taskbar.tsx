@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRadio } from "@/app/contexts/radio";
 import { BASE_URL } from "@/lib/constants";
-import { motion, AnimatePresence } from "framer-motion";
 import { useWindow } from "@/app/contexts/window";
 import { FolderType } from "@/app/contexts/window";
 import AudioControls from "@/app/intellirdb/components/audio-controls";
@@ -122,23 +121,15 @@ const Taskbar: React.FC = () => {
 
   return (
     <>
-      <AnimatePresence>
+      <div>
         {showStartMenu && (
-          <motion.div
-            className="absolute inset-0 z-[999] bg-transparent border-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
+          <div className="absolute inset-0 z-[999] bg-transparent border-none">
+            <div
               ref={menuRef}
               className={cn(
                 "absolute bottom-10 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
                 !isOpen ? "left-2.5" : "left-2.5",
               )}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
             >
               <ul>
                 <li className="w-full text-left px-2 py-px border-none font-var text-light bg-dark cursor-default focus:outline-none">
@@ -194,10 +185,10 @@ const Taskbar: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+      </div>
 
       <div
         className={cn(
