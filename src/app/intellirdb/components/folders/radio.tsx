@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import data from "@/data/radio.json";
 import { useRadio } from "@/app/contexts/radio";
 import { useWindow } from "@/app/contexts/window";
@@ -52,7 +53,7 @@ const Radio: React.FC = () => {
     <div className="w-full h-full p-0 relative overflow-y-auto pr-1">
       <div className="min-h-screen grid grid-cols-1 gap-1">
         {stations.map((station, index) => (
-          <div
+          <motion.div
             key={station.id || index}
             onClick={() => handleStationClick(station)}
             className={cn(
@@ -62,6 +63,9 @@ const Radio: React.FC = () => {
                 ? "font-bold bg-light/80"
                 : "bg-light/40 hover:bg-light/60",
             )}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
           >
             <div className="flex-1">
               <span className="line-clamp-1 text-ellipsis">
@@ -82,7 +86,7 @@ const Radio: React.FC = () => {
                 " "
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <div className="w-full h-10 bg-transparent"></div>
