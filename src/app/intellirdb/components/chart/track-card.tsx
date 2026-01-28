@@ -10,14 +10,24 @@ interface TrackCardProps {
   track: Track;
   openDeepView: (id: string) => void;
   chart: ChartWeek;
+  currentPreviewedTrack: Track | null;
 }
 
 const TrackCard: React.FC<TrackCardProps> = ({
   track,
   openDeepView,
   chart,
+  currentPreviewedTrack,
 }) => {
   const { currentPreview } = usePreview();
+
+  const isCurrentPreviewedTrack = () => {
+    if (!currentPreviewedTrack) return false;
+    return (
+      currentPreviewedTrack.track_artist === track.track_artist &&
+      currentPreviewedTrack.track_title === track.track_title
+    );
+  };
 
   return (
     <div
@@ -25,7 +35,9 @@ const TrackCard: React.FC<TrackCardProps> = ({
       className={cn(
         "px-3 py-2 flex flex-row items-center justify-between gap-2",
         "border border-dark/50 cursor-pointer select-none",
-        "bg-light/40 hover:bg-light/60",
+        isCurrentPreviewedTrack()
+          ? "bg-light/80"
+          : "bg-light/40 hover:bg-light/60",
       )}
     >
       <div className="flex-1 flex flex-row items-center space-x-2">
@@ -43,11 +55,14 @@ const TrackCard: React.FC<TrackCardProps> = ({
         </div>
       </div>
       <div
-        className="w-4 h-full mr-1 md:mr-2 aspect-square shrink-0 flex items-center justify-center opacity-70"
+        className={cn(
+          "w-4 h-full mr-1 md:mr-2 aspect-square shrink-0 flex items-center justify-center",
+          isCurrentPreviewedTrack() ? "text-lg" : "opacity-70",
+        )}
         aria-label="Preview"
         title="Preview"
       >
-        ▶
+        <div>{isCurrentPreviewedTrack() ? "♪" : "▶"}</div>
       </div>
     </div>
   );

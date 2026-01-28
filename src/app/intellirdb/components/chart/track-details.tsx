@@ -11,9 +11,14 @@ import { Track, ChartWeek } from "@/types";
 interface TrackDetailsProps {
   track: Track;
   chart: ChartWeek;
+  setCurrentPreviewedTrack: (track: Track | null) => void;
 }
 
-const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
+const TrackDetails: React.FC<TrackDetailsProps> = ({
+  track,
+  chart,
+  setCurrentPreviewedTrack,
+}) => {
   const renderMovementIndicator = (track: Track) => {
     let pos = 0;
     let movement: "up" | "down" | "same" | "new" | "returning" = "new";
@@ -166,12 +171,17 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
             </div>
           </div>
           <div className="flex-1 select-text">
-            <div className="text-xl font-bold font-var">{track.track_title}</div>
+            <div className="text-xl font-bold font-var">
+              {track.track_title}
+            </div>
             <div className="opacity-75">{track.track_artist}</div>
           </div>
         </div>
         <div>
-          <PreviewBtn track={track} />
+          <PreviewBtn
+            track={track}
+            setCurrentPreviewedTrack={setCurrentPreviewedTrack}
+          />
         </div>
       </div>
     </div>

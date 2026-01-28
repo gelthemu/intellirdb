@@ -1,20 +1,23 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useWindow } from "@/app/contexts/window";
 import data from "@/data/charts.json";
-import { ChartData } from "@/types";
+import { Track, ChartData } from "@/types";
 import ChartsList from "@/app/intellirdb/components/chart/charts-list";
 import ChartView from "@/app/intellirdb/components/chart/chart-view";
 import TrackDetails from "@/app/intellirdb/components/chart/track-details";
 
 const chartsData = Object.fromEntries(
   Object.entries(data).sort(
-    ([a], [b]) => new Date(b).getTime() - new Date(a).getTime()
-  )
+    ([a], [b]) => new Date(b).getTime() - new Date(a).getTime(),
+  ),
 ) as ChartData;
 
 const Charts: React.FC = () => {
+  const [currentPreviewedTrack, setCurrentPreviewedTrack] =
+    useState<Track | null>(null);
+
   const {
     currentFolder,
     subView,
@@ -23,6 +26,7 @@ const Charts: React.FC = () => {
     openDeepView,
     setDialogTitle,
   } = useWindow();
+
   const charts = chartsData;
 
   const selectedChart = subView
@@ -33,7 +37,7 @@ const Charts: React.FC = () => {
     if (deepView?.startsWith("no.") && selectedChart) {
       const index = deepView.split(".");
       const track = selectedChart.tracks.find(
-        (t) => t.track_position === parseInt(index[1])
+        (t) => t.track_position === parseInt(index[1]),
       );
       if (track) {
         setDialogTitle(`#${track.track_position} - ${track.track_title}`);
@@ -57,7 +61,7 @@ const Charts: React.FC = () => {
   if (trackDetails) {
     const index = trackDetails.split(".");
     const track = selectedChart?.tracks.find(
-      (t) => t.track_position === parseInt(index[1])
+      (t) => t.track_position === parseInt(index[1]),
     );
 
     if (!track || !selectedChart) {
@@ -68,7 +72,13 @@ const Charts: React.FC = () => {
       );
     }
 
-    return <TrackDetails track={track} chart={selectedChart} />;
+    return (
+      <TrackDetails
+        track={track}
+        chart={selectedChart}
+        setCurrentPreviewedTrack={setCurrentPreviewedTrack}
+      />
+    );
   }
 
   if (subView && selectedChart) {
@@ -81,7 +91,13 @@ const Charts: React.FC = () => {
         </div>
       );
     }
-    return <ChartView chart={chart} openDeepView={openDeepView} />;
+    return (
+      <ChartView
+        chart={chart}
+        openDeepView={openDeepView}
+        currentPreviewedTrack={currentPreviewedTrack}
+      />
+    );
   }
 
   return <ChartsList charts={charts} openSubView={openSubView} />;
