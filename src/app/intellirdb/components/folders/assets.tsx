@@ -1,15 +1,24 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useRef } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useWindow } from "@/app/contexts/window";
 import { getAllDocs } from "@/app/intellirdb/components/docs/docs-parser";
 import { DocView } from "@/app/intellirdb/components/docs/doc-view";
+import { PageLoader } from "@/app/intellirdb/components/page-loader";
 import { formatDate } from "@/lib/date";
 import { Visual, Doc } from "@/types";
 import data from "@/data/assets.json";
 
 const Assets: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+  const [docs, setDocs] = useState<Doc[]>([]);
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const hasLoadedRef = useRef(false);
+
   const {
     currentFolder,
     subView,
@@ -19,7 +28,6 @@ const Assets: React.FC = () => {
     setDialogTitle,
   } = useWindow();
 
-  const [docs, setDocs] = useState<Doc[]>([]);
   const visuals = data as Visual[];
 
   const assets = [
@@ -34,6 +42,24 @@ const Assets: React.FC = () => {
       array: docs,
     },
   ];
+
+  useEffect(() => {
+    if (
+      currentFolder === "assets" &&
+      subView === "visuals" &&
+      !deepView &&
+      !hasLoadedRef.current
+    ) {
+      setLoading(true);
+      hasLoadedRef.current = true;
+
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [pathname, searchParams]);
 
   useEffect(() => {
     const fetchDocs = async () => {
@@ -129,8 +155,10 @@ const Assets: React.FC = () => {
 
   if (subView === "visuals") {
     return (
-      <div className="w-full h-full overflow-hidden overflow-y-auto p-1">
-        {visuals.length > 0 ? (
+      <div className="w-full h-full relative overflow-hidden overflow-y-auto p-1">
+        {loading ? (
+          <PageLoader />
+        ) : visuals.length > 0 ? (
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {visuals.map((visual, index) => (
               <Suspense key={index} fallback={null}>
