@@ -6,22 +6,18 @@ import { motion } from "framer-motion";
 import { StepForward, AudioLines } from "lucide-react";
 import { usePreview } from "@/app/contexts/preview";
 import TrackImage from "./track-image";
-import { Track, ChartWeek } from "@/types";
+import { Track } from "@/types";
 
 interface TrackCardProps {
   track: Track;
   index: number;
   openDeepView: (id: string) => void;
-  chart: ChartWeek;
-  currentPreviewedTrack: Track | null;
 }
 
 const TrackCard: React.FC<TrackCardProps> = ({
   track,
   index,
   openDeepView,
-  chart,
-  currentPreviewedTrack,
 }) => {
   const preview = usePreview();
 
@@ -74,14 +70,14 @@ const TrackCard: React.FC<TrackCardProps> = ({
       >
         <div>
           {isCurrentPreviewedTrack() ? (
-            <AudioLines size={15} strokeWidth={2.5} color="#c3ff43" />
-          ) : (
             <AudioLines
               size={12}
               strokeWidth={2.5}
               color="#000"
               className="animate-ping"
             />
+          ) : (
+            <StepForward size={15} strokeWidth={2.5} />
           )}
         </div>
       </div>

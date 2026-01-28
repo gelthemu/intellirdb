@@ -4,19 +4,14 @@ import React from "react";
 import TrackCard from "./track-card";
 import FalloutsList from "./fallouts-list";
 import BonusList from "./bonus-list";
-import { Track, ChartWeek } from "@/types";
+import { ChartWeek } from "@/types";
 
 interface ChartViewProps {
   chart: ChartWeek;
   openDeepView: (id: string) => void;
-  currentPreviewedTrack: Track | null;
 }
 
-const ChartView: React.FC<ChartViewProps> = ({
-  chart,
-  openDeepView,
-  currentPreviewedTrack,
-}) => {
+const ChartView: React.FC<ChartViewProps> = ({ chart, openDeepView }) => {
   return (
     <div className="w-full h-full p-0 overflow-hidden relative overflow-y-auto pr-1">
       <div className="min-h-screen space-y-6 overflow-hidden">
@@ -27,8 +22,6 @@ const ChartView: React.FC<ChartViewProps> = ({
               index={index + 1}
               track={track}
               openDeepView={openDeepView}
-              chart={chart}
-              currentPreviewedTrack={currentPreviewedTrack}
             />
           ))}
         </div>

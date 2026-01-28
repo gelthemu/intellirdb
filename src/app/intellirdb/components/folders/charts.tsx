@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useWindow } from "@/app/contexts/window";
 import data from "@/data/charts.json";
-import { Track, ChartData } from "@/types";
+import { ChartData } from "@/types";
 import ChartsList from "@/app/intellirdb/components/chart/charts-list";
 import ChartView from "@/app/intellirdb/components/chart/chart-view";
 import TrackDetails from "@/app/intellirdb/components/chart/track-details";
@@ -15,9 +15,6 @@ const chartsData = Object.fromEntries(
 ) as ChartData;
 
 const Charts: React.FC = () => {
-  const [currentPreviewedTrack, setCurrentPreviewedTrack] =
-    useState<Track | null>(null);
-
   const {
     currentFolder,
     subView,
@@ -72,13 +69,7 @@ const Charts: React.FC = () => {
       );
     }
 
-    return (
-      <TrackDetails
-        track={track}
-        chart={selectedChart}
-        setCurrentPreviewedTrack={setCurrentPreviewedTrack}
-      />
-    );
+    return <TrackDetails track={track} chart={selectedChart} />;
   }
 
   if (subView && selectedChart) {
@@ -91,13 +82,7 @@ const Charts: React.FC = () => {
         </div>
       );
     }
-    return (
-      <ChartView
-        chart={chart}
-        openDeepView={openDeepView}
-        currentPreviewedTrack={currentPreviewedTrack}
-      />
-    );
+    return <ChartView chart={chart} openDeepView={openDeepView} />;
   }
 
   return <ChartsList charts={charts} openSubView={openSubView} />;

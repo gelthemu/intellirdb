@@ -9,14 +9,12 @@ interface PreviewBtnProps {
   track: Track;
   disabled?: boolean;
   children?: React.ReactNode;
-  setCurrentPreviewedTrack: (track: Track | null) => void;
 }
 
 export function PreviewBtn({
   track,
   disabled = false,
   children,
-  setCurrentPreviewedTrack,
 }: PreviewBtnProps) {
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);

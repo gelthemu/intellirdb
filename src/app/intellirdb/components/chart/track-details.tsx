@@ -11,14 +11,9 @@ import { Track, ChartWeek } from "@/types";
 interface TrackDetailsProps {
   track: Track;
   chart: ChartWeek;
-  setCurrentPreviewedTrack: (track: Track | null) => void;
 }
 
-const TrackDetails: React.FC<TrackDetailsProps> = ({
-  track,
-  chart,
-  setCurrentPreviewedTrack,
-}) => {
+const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
   const renderMovementIndicator = (track: Track) => {
     let pos = 0;
     let movement: "up" | "down" | "same" | "new" | "returning" = "new";
@@ -178,10 +173,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({
           </div>
         </div>
         <div>
-          <PreviewBtn
-            track={track}
-            setCurrentPreviewedTrack={setCurrentPreviewedTrack}
-          />
+          <PreviewBtn track={track} />
         </div>
       </div>
     </div>
