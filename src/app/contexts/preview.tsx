@@ -94,9 +94,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
         clearTimeout(loadingTimeoutRef.current);
       }
       setPlayState("error");
-      setError(
-        audio.error?.message || "An error occurred while loading the audio",
-      );
+      setError(audio.error?.message || "An error occurred");
     };
 
     const handleTimeUpdate = () => {
@@ -157,9 +155,8 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
     const audio = getAudioElement();
 
     if (!audio) {
-      console.error("preview element not found or invalid");
       setPlayState("error");
-      setError("Audio player not initialized");
+      setError("audio player not initialized");
       return;
     }
 
@@ -187,7 +184,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
           clearTimeout(loadingTimeoutRef.current);
         }
         setPlayState("error");
-        setError(err.message || "Failed to play audio");
+        setError(err.message || "failed to play...");
       });
     }
   };

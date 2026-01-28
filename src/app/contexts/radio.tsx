@@ -16,9 +16,12 @@ interface RadioContextType {
   playState: PlayState;
   currentStation: string | null;
   error: string | null;
+  currentTime: number;
+  duration: number;
   play: (stationUrl: string) => void;
   pause: () => void;
   stop: () => void;
+  seek: (time: number) => void;
 }
 
 const RadioContext = createContext<RadioContextType | undefined>(undefined);
@@ -27,8 +30,11 @@ export function RadioProvider({ children }: { children: ReactNode }) {
   const [playState, setPlayState] = useState<PlayState>("paused");
   const [currentStation, setCurrentStation] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const savedPositionRef = useRef<number>(0);
 
   const getAudioElement = (): HTMLAudioElement | null => {
     if (audioRef.current) return audioRef.current;
@@ -74,6 +80,8 @@ export function RadioProvider({ children }: { children: ReactNode }) {
       if (loadingTimeoutRef.current) {
         clearTimeout(loadingTimeoutRef.current);
       }
+
+      savedPositionRef.current = audio.currentTime;
       setPlayState("paused");
     };
 
@@ -82,9 +90,22 @@ export function RadioProvider({ children }: { children: ReactNode }) {
         clearTimeout(loadingTimeoutRef.current);
       }
       setPlayState("error");
-      setError(
-        audio.error?.message || "An error occurred while loading the audio",
-      );
+      setError(audio.error?.message || "An error occurred");
+    };
+
+    const handleTimeUpdate = () => {
+      setCurrentTime(audio.currentTime);
+      savedPositionRef.current = audio.currentTime;
+    };
+
+    const handleDurationChange = () => {
+      setDuration(audio.duration);
+    };
+
+    const handleEnded = () => {
+      savedPositionRef.current = 0;
+      setCurrentTime(0);
+      setPlayState("paused");
     };
 
     audio.addEventListener("loadstart", handleLoadStart);
@@ -92,6 +113,9 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     audio.addEventListener("playing", handlePlaying);
     audio.addEventListener("pause", handlePause);
     audio.addEventListener("error", handleError);
+    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("durationchange", handleDurationChange);
+    audio.addEventListener("ended", handleEnded);
 
     return () => {
       audio.removeEventListener("loadstart", handleLoadStart);
@@ -99,6 +123,9 @@ export function RadioProvider({ children }: { children: ReactNode }) {
       audio.removeEventListener("playing", handlePlaying);
       audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("error", handleError);
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("durationchange", handleDurationChange);
+      audio.removeEventListener("ended", handleEnded);
     };
   }, [playState]);
 
@@ -124,16 +151,27 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     const audio = getAudioElement();
 
     if (!audio) {
-      console.error("radio element not found or invalid");
       setPlayState("error");
-      setError("Audio player not initialized");
+      setError("audio player not initialized");
       return;
     }
 
     audioManager.setPlaying("radio");
-    setPlayState("loading");
     setError(null);
-    audio.src = stationUrl;
+
+    const isSameStation = currentStation === stationUrl;
+
+    if (!isSameStation) {
+      setPlayState("loading");
+      audio.src = stationUrl;
+      savedPositionRef.current = 0;
+      setCurrentTime(0);
+      setCurrentStation(stationUrl);
+    } else {
+      if (audio.paused) {
+        audio.currentTime = savedPositionRef.current;
+      }
+    }
 
     const playPromise = audio.play();
     if (playPromise !== undefined) {
@@ -142,11 +180,9 @@ export function RadioProvider({ children }: { children: ReactNode }) {
           clearTimeout(loadingTimeoutRef.current);
         }
         setPlayState("error");
-        setError(err.message || "Failed to play audio");
+        setError(err.message || "failed to play...");
       });
     }
-
-    setCurrentStation(stationUrl);
   };
 
   const pause = () => {
@@ -164,6 +200,9 @@ export function RadioProvider({ children }: { children: ReactNode }) {
       setPlayState("paused");
       setCurrentStation(null);
       setError(null);
+      setCurrentTime(0);
+      setDuration(0);
+      savedPositionRef.current = 0;
       audioManager.stop();
       if (loadingTimeoutRef.current) {
         clearTimeout(loadingTimeoutRef.current);
@@ -171,9 +210,27 @@ export function RadioProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const seek = (time: number) => {
+    const audio = getAudioElement();
+    if (audio && !isNaN(audio.duration)) {
+      audio.currentTime = Math.max(0, Math.min(time, audio.duration));
+      savedPositionRef.current = audio.currentTime;
+    }
+  };
+
   return (
     <RadioContext.Provider
-      value={{ playState, currentStation, error, play, pause, stop }}
+      value={{
+        playState,
+        currentStation,
+        error,
+        currentTime,
+        duration,
+        play,
+        pause,
+        stop,
+        seek,
+      }}
     >
       {children}
     </RadioContext.Provider>
