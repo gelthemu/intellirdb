@@ -2,20 +2,23 @@
 
 import React from "react";
 import { cn } from "@/lib/cn";
+import { usePreview } from "@/app/contexts/preview";
 import TrackImage from "./track-image";
-import { Track } from "@/types";
+import { Track, ChartWeek } from "@/types";
 
 interface TrackCardProps {
   track: Track;
-  index: number;
   openDeepView: (id: string) => void;
+  chart: ChartWeek;
 }
 
 const TrackCard: React.FC<TrackCardProps> = ({
   track,
-  index,
   openDeepView,
+  chart,
 }) => {
+  const { currentPreview } = usePreview();
+
   return (
     <div
       onClick={() => openDeepView(`no.${track.track_position}`)}

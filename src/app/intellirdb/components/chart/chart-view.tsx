@@ -20,8 +20,8 @@ const ChartView: React.FC<ChartViewProps> = ({ chart, openDeepView }) => {
             <TrackCard
               key={track.track_position || index}
               track={track}
-              index={index}
               openDeepView={openDeepView}
+              chart={chart}
             />
           ))}
         </div>
