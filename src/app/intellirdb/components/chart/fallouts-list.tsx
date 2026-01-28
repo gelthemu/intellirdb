@@ -29,7 +29,7 @@ const FalloutsList: React.FC<FalloutsListProps> = ({ fallouts }) => {
               <div className="shrink-0 w-5 inline-flex items-center justify-center">
                 <span>{track.track_position}.</span>
               </div>
-              <TrackImage trackImage={track.track_image} size="w-12 md:w-16" />
+              <TrackImage trackImage={track.track_image} index={index} />
               <div className="flex-1 flex flex-col min-w-0">
                 <div className="font-bold leading-none line-clamp-1 text-ellipsis">
                   {track.track_title}

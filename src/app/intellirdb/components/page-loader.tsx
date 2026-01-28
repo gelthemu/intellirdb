@@ -1,10 +1,10 @@
 export const PageLoader = () => {
   return (
-    <div className="absolute inset-0 flex items-center justify-center p-4 bg-beige/60 bg-blend-multiply backdrop-blur-md">
+    <div className="absolute inset-0 flex items-center justify-center p-4 bg-beige/40 bg-blend-multiply backdrop-blur-md z-10">
       <div role="status">
         <svg
           aria-hidden="true"
-          className="w-6 h-6 text-light animate-spin fill-dark"
+          className="w-6 md:w-8 aspect-square text-dark animate-spin fill-light"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

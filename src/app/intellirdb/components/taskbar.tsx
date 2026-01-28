@@ -127,8 +127,8 @@ const Taskbar: React.FC = () => {
             <div
               ref={menuRef}
               className={cn(
-                "absolute bottom-10 w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
-                !isOpen ? "left-2.5" : "left-2.5",
+                "absolute w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
+                isOpen ? "left-2.5 bottom-10" : "left-2.5 bottom-10",
               )}
             >
               <ul>
@@ -192,8 +192,7 @@ const Taskbar: React.FC = () => {
 
       <div
         className={cn(
-          "w-full sticky bottom-0 z-50 p-px bg-dark",
-          !isOpen ? "border-t border-dark" : "",
+          "w-full sticky bottom-0 z-50 p-0 bg-dark border-t-2 border-dark",
         )}
       >
         <div className="flex flex-row items-center justify-between space-x-2 p-0 text-dark bg-beige border-none">
@@ -207,7 +206,7 @@ const Taskbar: React.FC = () => {
             <div className="w-7 aspect-square flex items-center justify-center">
               <Image
                 src={`${BASE_URL}/favicon.ico`}
-                alt="intelliRDB Logo"
+                alt=""
                 width={1500}
                 height={1500}
                 unoptimized
@@ -223,7 +222,7 @@ const Taskbar: React.FC = () => {
             <AudioControls />
           ) : (
             <div className="shrink-0 px-2 py-px text-sm font-bold font-var opacity-80">
-              <span>{formatTime(time)}</span>
+              <span suppressHydrationWarning>{formatTime(time)}</span>
             </div>
           )}
         </div>

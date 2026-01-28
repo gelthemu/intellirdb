@@ -26,7 +26,7 @@ const BonusList: React.FC<BonusListProps> = ({ bonus }) => {
             )}
           >
             <div className="flex flex-row items-center space-x-2">
-              <TrackImage trackImage={track.track_image} size="w-12 md:w-16" />
+              <TrackImage trackImage={track.track_image} index={index} />
               <div className="flex-1 flex flex-col min-w-0">
                 <div className="font-bold leading-none line-clamp-1 text-ellipsis">
                   {track.track_title}

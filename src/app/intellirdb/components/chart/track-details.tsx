@@ -106,7 +106,7 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({
       <div className="w-full h-full relative">
         <Image
           src="https://assets.cfmpulse.com/intellirdb/assets/img-radio-pixelart.gif"
-          alt="Radio"
+          alt=""
           fill
           unoptimized
           loading="eager"

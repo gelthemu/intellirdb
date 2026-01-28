@@ -92,7 +92,7 @@ export function PreviewBtn({
     }
 
     if (preview.error === null) {
-      setCurrentPreviewedTrack(track);
+      preview.setCurrentPreviewedTrack(track);
     }
   };
 

@@ -24,6 +24,7 @@ const ChartView: React.FC<ChartViewProps> = ({
           {chart.tracks.map((track, index) => (
             <TrackCard
               key={track.track_position || index}
+              index={index + 1}
               track={track}
               openDeepView={openDeepView}
               chart={chart}

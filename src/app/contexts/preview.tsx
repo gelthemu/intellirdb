@@ -11,12 +11,14 @@ import {
 } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { audioManager } from "@/lib/audio-manager";
+import { Track } from "@/types";
 
 type PlayState = "loading" | "playing" | "paused" | "error";
 
 interface PreviewContextType {
   playState: PlayState;
-  currentPreview: string | null;
+  currentPreview: string | "";
+  currentPreviewedTrack: Track | null;
   error: string | null;
   currentTime: number;
   duration: number;
@@ -24,13 +26,16 @@ interface PreviewContextType {
   pause: () => void;
   stop: () => void;
   seek: (time: number) => void;
+  setCurrentPreviewedTrack: (track: Track | null) => void;
 }
 
 const PreviewContext = createContext<PreviewContextType | undefined>(undefined);
 
 function PreviewProviderContent({ children }: { children: ReactNode }) {
   const [playState, setPlayState] = useState<PlayState>("paused");
-  const [currentPreview, setCurrentPreview] = useState<string | null>(null);
+  const [currentPreview, setCurrentPreview] = useState<string>("");
+  const [currentPreviewedTrack, setCurrentPreviewedTrack] =
+    useState<Track | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
@@ -202,7 +207,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
       audio.pause();
       audio.src = "";
       setPlayState("paused");
-      setCurrentPreview(null);
+      setCurrentPreview("");
       setError(null);
       setCurrentTime(0);
       setDuration(0);
@@ -227,6 +232,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
 
     if (pathname === "/intellirdb" && currentView !== "charts") {
       stop();
+      setCurrentPreviewedTrack(null);
     }
   }, [pathname, searchParams, stop]);
 
@@ -235,6 +241,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
       value={{
         playState,
         currentPreview,
+        currentPreviewedTrack,
         error,
         currentTime,
         duration,
@@ -242,6 +249,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
         pause,
         stop,
         seek,
+        setCurrentPreviewedTrack,
       }}
     >
       {children}

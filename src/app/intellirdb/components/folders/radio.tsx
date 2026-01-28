@@ -76,7 +76,7 @@ const Radio: React.FC = () => {
               {currentStation === station.url ? (
                 <Image
                   src="/folders/img-radio.png"
-                  alt="Radio"
+                  alt=""
                   width={1500}
                   height={1500}
                   unoptimized

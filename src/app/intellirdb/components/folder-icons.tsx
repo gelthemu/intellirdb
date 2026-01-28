@@ -45,7 +45,7 @@ const FolderIcons = () => {
           <div className="w-12 aspect-square flex items-center justify-center">
             <Image
               src={`/folders/${icon.img}`}
-              alt={icon.title}
+              alt=""
               width={1500}
               height={1500}
               unoptimized

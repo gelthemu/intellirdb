@@ -169,10 +169,17 @@ export default async function RootLayout({
                     height={0}
                     className="hidden intelli-none"
                   />
-                  <audio id="radio-medium" className="opacity-0 intelli-none" />
+                  <audio
+                    id="radio-medium"
+                    className="opacity-0 intelli-none"
+                    src=""
+                    suppressHydrationWarning
+                  />
                   <audio
                     id="preview-medium"
                     className="opacity-0 intelli-none"
+                    src=""
+                    suppressHydrationWarning
                   />
                 </main>
                 <Suspense>

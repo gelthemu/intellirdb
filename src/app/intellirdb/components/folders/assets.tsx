@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Suspense, useEffect, useState, useRef } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useWindow } from "@/app/contexts/window";
 import { getAllDocs } from "@/app/intellirdb/components/docs/docs-parser";
@@ -10,13 +9,11 @@ import { PageLoader } from "@/app/intellirdb/components/page-loader";
 import { formatDate } from "@/lib/date";
 import { Visual, Doc } from "@/types";
 import data from "@/data/assets.json";
+import { cn } from "@/lib/cn";
 
 const Assets: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [docs, setDocs] = useState<Doc[]>([]);
-
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const hasLoadedRef = useRef(false);
 
   const {
@@ -59,7 +56,7 @@ const Assets: React.FC = () => {
 
       return () => clearTimeout(timer);
     }
-  }, [pathname, searchParams]);
+  }, []);
 
   useEffect(() => {
     const fetchDocs = async () => {
@@ -122,7 +119,7 @@ const Assets: React.FC = () => {
         <div className="w-full h-full relative border-none overflow-hidden">
           <Image
             src={visual.url}
-            alt={visual.title}
+            alt=""
             fill
             className="w-full h-full object-contain intelli-none grayscale"
             unoptimized
@@ -155,10 +152,15 @@ const Assets: React.FC = () => {
 
   if (subView === "visuals") {
     return (
-      <div className="w-full h-full relative overflow-hidden overflow-y-auto p-1">
+      <div
+        className={cn(
+          "w-full h-full relative p-px pr-1 overflow-hidden",
+          loading ? "" : "overflow-y-auto",
+        )}
+      >
         {loading && <PageLoader />}
         {visuals.length > 0 ? (
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 z-[9]">
             {visuals.map((visual, index) => (
               <Suspense key={index} fallback={null}>
                 <div
@@ -174,7 +176,7 @@ const Assets: React.FC = () => {
                     {visual.url && (
                       <Image
                         src={visual.url}
-                        alt={visual.title}
+                        alt=""
                         width={1500}
                         height={1500}
                         className="w-full h-auto object-contain intelli-none grayscale"
@@ -203,7 +205,7 @@ const Assets: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="px-3 py-2">
+          <div className="px-3 py-2 z-[9]">
             <span className="text-sm text-center">
               No visuals found... yet!
             </span>
@@ -216,7 +218,7 @@ const Assets: React.FC = () => {
 
   if (subView === "docs") {
     return (
-      <div className="w-full h-full overflow-hidden relative overflow-y-auto p-1">
+      <div className="w-full h-full relative p-px pr-1 overflow-hidden overflow-y-auto">
         {docs.length > 0 ? (
           <div className="space-y-2">
             {docs.map((doc, index) => (
