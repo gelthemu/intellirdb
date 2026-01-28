@@ -13,7 +13,7 @@ const config: Config = {
       colors: {
         dark: "#000000",
         light: "#ffffff",
-        beige: "#f5f5f5",
+        beige: "#f6f6f6",
       },
       fontFamily: {
         retro: ["Typewriter", "monospace"],

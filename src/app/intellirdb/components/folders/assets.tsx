@@ -156,9 +156,8 @@ const Assets: React.FC = () => {
   if (subView === "visuals") {
     return (
       <div className="w-full h-full relative overflow-hidden overflow-y-auto p-1">
-        {loading ? (
-          <PageLoader />
-        ) : visuals.length > 0 ? (
+        {loading && <PageLoader />}
+        {visuals.length > 0 ? (
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
             {visuals.map((visual, index) => (
               <Suspense key={index} fallback={null}>
