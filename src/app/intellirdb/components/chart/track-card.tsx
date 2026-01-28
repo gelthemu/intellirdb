@@ -71,10 +71,14 @@ const TrackCard: React.FC<TrackCardProps> = ({
         <div>
           {isCurrentPreviewedTrack() ? (
             <AudioLines
-              size={12}
+              size={16}
               strokeWidth={2.5}
               color="#000"
-              className="animate-ping"
+              className={cn(
+                isCurrentPreviewedTrack() && preview.playState === "playing"
+                  ? ""
+                  : "opacity-60",
+              )}
             />
           ) : (
             <StepForward size={15} strokeWidth={2.5} />
