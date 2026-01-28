@@ -172,13 +172,11 @@ export default async function RootLayout({
                   <audio
                     id="radio-medium"
                     className="opacity-0 intelli-none"
-                    src=""
                     suppressHydrationWarning
                   />
                   <audio
                     id="preview-medium"
                     className="opacity-0 intelli-none"
-                    src=""
                     suppressHydrationWarning
                   />
                 </main>

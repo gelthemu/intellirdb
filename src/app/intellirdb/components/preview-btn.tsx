@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Track } from "@/types";
+import React, { useState, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { useWindow } from "@/app/contexts/window";
 import { usePreview } from "@/app/contexts/preview";
 import { cn } from "@/lib/cn";
+import { Track } from "@/types";
 
 interface PreviewBtnProps {
   track: Track;
@@ -19,7 +21,10 @@ export function PreviewBtn({
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const pathname = usePathname();
+  const { currentFolder } = useWindow();
   const preview = usePreview();
+  const hasPreviewedRef = useRef(false);
 
   async function fetchPreview() {
     setIsLoading(true);
@@ -60,6 +65,21 @@ export function PreviewBtn({
     (track.track_preview || previewUrl) !== "";
   const isDisabled = disabled || isLoading || isError;
 
+  const setCurrentPreviewedTrack = () => {
+    if (
+      !isDisabled &&
+      preview.error === null &&
+      pathname === "/intellirdb" &&
+      currentFolder === "charts" &&
+      !hasPreviewedRef.current
+    ) {
+      preview.setCurrentPreviewedTrack(track);
+      hasPreviewedRef.current = true;
+    }
+
+    return;
+  };
+
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -69,14 +89,17 @@ export function PreviewBtn({
     if (isThisTrackPlaying) {
       if (preview.playState === "playing") {
         preview.pause();
+        setCurrentPreviewedTrack();
       } else {
         preview.play(track.track_preview || previewUrl);
+        setCurrentPreviewedTrack();
       }
       return;
     }
 
     if (track.track_preview) {
       preview.play(track.track_preview);
+      setCurrentPreviewedTrack();
       return;
     }
 
@@ -84,13 +107,11 @@ export function PreviewBtn({
       const url = await fetchPreview();
       if (url) {
         preview.play(url);
+        setCurrentPreviewedTrack();
       }
     } else {
       preview.play(previewUrl);
-    }
-
-    if (preview.error === null) {
-      preview.setCurrentPreviewedTrack(track);
+      setCurrentPreviewedTrack();
     }
   };
 
