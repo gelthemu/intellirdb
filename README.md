@@ -4,7 +4,7 @@
 
 > Visit [intelliRDB](https://www.cfmpulse.com/intellirdb "Just Radio!") today, click **PLAY** to start listening.
 
-![intelliRDB](https://cfmpulse.com/intellirdb-opengraph.webp)
+![intelliRDB](https://assets.cfmpulse.com/intellirdb/assets/intellirdb-opengraph.webp)
 
 ### License
 
