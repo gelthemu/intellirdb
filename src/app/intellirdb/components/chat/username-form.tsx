@@ -87,7 +87,6 @@ const UsernameForm = ({ onSubmit }: UsernameFormProps) => {
                   id="username"
                   name="username"
                   value={username}
-                  autoFocus={true}
                   onChange={handleUsernameChange}
                   onPaste={(e) => e.preventDefault()}
                   onCopy={(e) => e.preventDefault()}
