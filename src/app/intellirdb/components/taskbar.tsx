@@ -203,7 +203,7 @@ const Taskbar: React.FC = () => {
             onClick={toggleStartMenu}
             className="relative flex flex-row items-center justify-start space-x-1 shrink-0 cursor-pointer focus:outline-none select-none"
           >
-            <div className="w-7 aspect-square flex items-center justify-center">
+            <div className="w-8 aspect-square flex items-center justify-center">
               <Image
                 src={`${BASE_URL}/favicon.ico`}
                 alt=""
@@ -221,7 +221,7 @@ const Taskbar: React.FC = () => {
           {currentStation ? (
             <AudioControls />
           ) : (
-            <div className="shrink-0 px-2 py-px text-sm font-bold font-var opacity-80">
+            <div className="shrink-0 px-2 py-px font-bold font-var opacity-80">
               <span suppressHydrationWarning>{formatTime(time)}</span>
             </div>
           )}

@@ -165,7 +165,7 @@ const Assets: React.FC = () => {
                     e.preventDefault();
                     handleItemClick(visual.title);
                   }}
-                  className="relative flex flex-col items-center gap-1 overflow-hidden cursor-pointer break-inside-avoid"
+                  className="relative flex flex-col gap-1 overflow-hidden cursor-pointer break-inside-avoid"
                 >
                   <div className="w-full relative border border-dark overflow-hidden">
                     {visual.url && (
@@ -192,8 +192,8 @@ const Assets: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <span className="font-medium text-sm text-left">{`IMG-MGMG9797-${visual.title}`}</span>
+                  <div className="w-full text-left">
+                    <small className="font-medium text-left">{`IMG-MGMG9797-${visual.title}`}</small>
                   </div>
                 </div>
               </Suspense>

@@ -37,7 +37,7 @@ export default function AudioControls() {
   };
 
   return (
-    <div className={cn("w-fit flex flex-row items-center gap-2 px-1 text-sm")}>
+    <div className={cn("w-fit flex flex-row items-center gap-2 px-1")}>
       <div className="flex flex-col gap-1 min-w-0 flex-1">
         <div className="flex flex-row items-center gap-1">
           <div
