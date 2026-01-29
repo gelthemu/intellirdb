@@ -289,15 +289,39 @@
     "label": "American Top 40",
     "host": "Ryan Seacrest"
   },
-  "2025-01-19": {
+  "2025-01-26": {
     "id": "kt10",
     "tracks": [
+      {
+        "track_artist": "Kapeke",
+        "track_title": "Simanyi",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/3fd9d5796ec876e8f63dc40d2665e6af/500x500-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/117295",
+        "track_position": 1,
+        "track_previous_position": 3
+      },
+      {
+        "track_artist": "Joshua Baraka",
+        "track_title": "Morocco",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/004ea0f351ddb01a2066a66c9e0c65b4/1000x1000-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/118225",
+        "track_position": 2,
+        "track_previous_position": "returning"
+      },
+      {
+        "track_artist": "Feffe Bussi & All Stars",
+        "track_title": "Nzalina",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/e7d959524161fbe9dd3ba6be8bd73a18/500x500-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/118103",
+        "track_position": 3,
+        "track_previous_position": 5
+      },
       {
         "track_artist": "Sheebah ft. Bentrom",
         "track_title": "Dance For The Lord (Remix)",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/16bfbc4bc21e5061a0c1a99fc076a8ac/500x500-000000-80-0-0.jpg",
         "track_preview": "https://www.howwe.ug/download/song/119093",
-        "track_position": 1,
+        "track_position": 4,
         "track_previous_position": 1
       },
       {
@@ -305,92 +329,68 @@
         "track_title": "Kunsi",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/83231d3c39b99c1e0565d17b05a00b4a/1000x1000-000000-80-0-0.jpg",
         "track_preview": "https://www.howwe.ug/download/song/118804",
-        "track_position": 2,
-        "track_previous_position": 2
-      },
-      {
-        "track_artist": "Kapeke",
-        "track_title": "Simanyi",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/3fd9d5796ec876e8f63dc40d2665e6af/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/117295",
-        "track_position": 3,
-        "track_previous_position": 3
-      },
-      {
-        "track_artist": "Geosteady",
-        "track_title": "Edoboozi Ly'amaziga",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/381da43317817e87c381a74b4ca21f5f/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/80274",
-        "track_position": 4,
-        "track_previous_position": 4
-      },
-      {
-        "track_artist": "Feffe Bussi & All Stars",
-        "track_title": "Nzalina",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/e7d959524161fbe9dd3ba6be8bd73a18/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/118103",
         "track_position": 5,
-        "track_previous_position": 5
-      },
-      {
-        "track_artist": "King Saha",
-        "track_title": "Twalina Ebirooto",
-        "track_image": "https://assets.cfmpulse.com/cfmpulse/media/default-cover.webp",
-        "track_preview": "https://www.howwe.ug/download/song/120066",
-        "track_position": 6,
-        "track_previous_position": 6
-      },
-      {
-        "track_artist": "Ava Peace",
-        "track_title": "Who Was Here",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/407d6643de405c000c53d461b960b08f/1000x1000-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/118042",
-        "track_position": 7,
-        "track_previous_position": 7
-      },
-      {
-        "track_artist": "Spice Diana & Vyroota",
-        "track_title": "Nze Nakiriza",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/1a4f2b6774c090e0925aa9b74a17cc31/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/116231",
-        "track_position": 8,
-        "track_previous_position": 8
-      },
-      {
-        "track_artist": "Gloria Bugie ft. King Saha",
-        "track_title": "Time Temala",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/79b9103daa55d409acd38c0a3adce39f/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/117429",
-        "track_position": 9,
-        "track_previous_position": 9
-      },
-      {
-        "track_artist": "Pawaboy AB",
-        "track_title": "Yandalula",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/e7c8d64022ed6c3781d8f6da344fc5e4/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/113447",
-        "track_position": 10,
-        "track_previous_position": 10
-      }
-    ],
-    "fallouts": [],
-    "bonus": [
-      {
-        "track_artist": "Cindy Sanyu ft. Bruno K",
-        "track_title": "Like You",
-        "track_image": "https://cdn-images.dzcdn.net/images/cover/a6e2be2a95cc33353e04b2f32408e5c3/500x500-000000-80-0-0.jpg",
-        "track_preview": "https://www.howwe.ug/download/song/116231",
-        "track_position": 12
+        "track_previous_position": 2
       },
       {
         "track_artist": "Liam Voice",
         "track_title": "Sibyamanyi",
         "track_image": "https://cdn-images.dzcdn.net/images/cover/94af52b36809309aa3094b088e1201fe/1000x1000-000000-80-0-0.jpg",
         "track_preview": "https://www.howwe.ug/download/song/118113",
-        "track_position": 13
+        "track_position": 6,
+        "track_previous_position": null
+      },
+      {
+        "track_artist": "Pawaboy AB",
+        "track_title": "Yandalula",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/e7c8d64022ed6c3781d8f6da344fc5e4/500x500-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/113447",
+        "track_position": 7,
+        "track_previous_position": 10
+      },
+      {
+        "track_artist": "Vinka",
+        "track_title": "Lalala",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/3a5bd4f2945b1f9f3d3d55e4ac4e9d7e/1000x1000-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/116513",
+        "track_position": 8,
+        "track_previous_position": "returning"
+      },
+      {
+        "track_artist": "Tracy Melon",
+        "track_title": "Tovayo",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/ec5c270345c6e85ab5b5d2632c8ad69e/1000x1000-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/116442",
+        "track_position": 9,
+        "track_previous_position": "returning"
+      },
+      {
+        "track_artist": "Omega 256",
+        "track_title": "See You Tonight (ft Cindy Sanyu)",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/c061dc2eec685dabcb5d53bdbe86de47/1000x1000-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/119030",
+        "track_position": 10,
+        "track_previous_position": "returning"
       }
     ],
-    "date": "January 19, 2025",
+    "fallouts": [],
+    "bonus": [
+      {
+        "track_artist": "King Saha",
+        "track_title": "Twalina Ebirooto",
+        "track_image": "https://assets.cfmpulse.com/cfmpulse/media/default-cover.webp",
+        "track_preview": "https://www.howwe.ug/download/song/120066",
+        "track_position": 11
+      },
+      {
+        "track_artist": "Ava Peace",
+        "track_title": "Who Was Here",
+        "track_image": "https://cdn-images.dzcdn.net/images/cover/407d6643de405c000c53d461b960b08f/1000x1000-000000-80-0-0.jpg",
+        "track_preview": "https://www.howwe.ug/download/song/118042",
+        "track_position": 12
+      }
+    ],
+    "date": "January 26, 2025",
     "label": "Weekly Top 10 Hits in Kampala",
     "host": ""
   }
