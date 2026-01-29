@@ -41,22 +41,17 @@ const Assets: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (
-      currentFolder === "assets" &&
-      subView === "visuals" &&
-      !deepView &&
-      !hasLoadedRef.current
-    ) {
-      setLoading(true);
-      hasLoadedRef.current = true;
+  if (subView === "visuals" && !deepView && !hasLoadedRef.current) {
+    setLoading(true);
+    hasLoadedRef.current = true;
 
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 2500);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
 
-      return () => clearTimeout(timer);
-    }
-  }, []);
+    return () => clearTimeout(timer);
+  }
+}, [subView, deepView]);
 
   useEffect(() => {
     const fetchDocs = async () => {
