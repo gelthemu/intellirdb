@@ -15,7 +15,7 @@ The chart data broadcast for the premiere show actually included the top 40 song
 
 The first Number One song was "Mama Told Me Not to Come" by Three Dog Night. Kasem's vision was to create a weekly countdown show that combined chart information with human stories, setting it apart from simple music programming.
 
-Check Out the Full Length Episode of the Premiere Broadcast, [here](/intellirdb?v=charts&sv=at40-with-casey)!!!
+Check Out the Full Length Episode of the Premiere Broadcast, [here](/intellirdb?v=charts&sv=at40-premiere-broadcast)!!!
 
 ### Rapid Global Expansion
 
@@ -31,7 +31,7 @@ The program became famous for its "Long Distance Dedications" segment, where lis
 
 ### Casey Kasem (1970-1988, 1998-2004)
 
-Casey Kasem hosted [the original run from July 4, 1970](/intellirdb?v=assets&sv=docs&dv=at40-premiere-broadcast-july-1970), through August 6, 1988. By the early 1980s, the show was heard on more than 500 stations across America and on the Armed Forces Radio Network around the world. Kasem's warm, conversational style and human interest stories between songs became the show's defining characteristic.
+Casey Kasem hosted [the original run from July 4, 1970](/intellirdb?v=assets&sv=docs&dv=at40-premiere-broadcast), through August 6, 1988. By the early 1980s, the show was heard on more than 500 stations across America and on the Armed Forces Radio Network around the world. Kasem's warm, conversational style and human interest stories between songs became the show's defining characteristic.
 
 Kasem's tenure established many of the show's most beloved features. His warm, conversational style and philosophical approach to broadcasting made him a household name. Kasem told the New York Times in 1990 "I accentuate the positive and eliminate the negative. That is the timeless thing."
 

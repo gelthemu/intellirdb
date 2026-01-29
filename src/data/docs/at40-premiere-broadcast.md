@@ -12,6 +12,7 @@ July 4th weekend 1970 — a new sound hit the airwaves from KDEO in El Cajon, Ca
 
 Using Billboard’s Hot 100 chart for the week ending July 11, the show featured hits like Three Dog Night’s _“Mama Told Me (Not to Come)”_ at #1, The Jackson 5’s _“The Love You Save”_ at #2, and The Temptations’ _“Ball of Confusion”_ at #3.
 
+Check Out the Full Length Episode of the Premiere Broadcast, [here](/intellirdb?v=charts&sv=at40-with-casey)!!!
 
 These are the very first words and opening sentences spoken by radio host Casey Kasem with the maiden voyage of American Top 40:
 
@@ -23,7 +24,7 @@ Kasem’s opening highlighted a song at #32, _“It’s All in the Game”_ by T
 
 Other notable tracks included The Beatles’ _“The Long and Winding Road”_ at #8 and Elvis Presley’s _“The Wonder of You”_ at #9, marking the last time both icons appeared together in the top 10.
 
-Read More About This Legendary Syndicated Radio Show, [here](/intellirdb?v=assets&sv=docs&dv=at40-americas-legendary-syndicated-radio-show)!!!
+Read More About This Legendary Syndicated Radio Show, [here](/intellirdb?v=assets&sv=docs&dv=at40-55-years-of-radio)!!!
 
 ![2003 Radio Music Awards - Show | Michael Caulfield Archive/GettyImages](https://assets.cfmpulse.com/intellirdb/charts/at40-assets/casey-kasem-2003-radio-music-awards-show.webp)
 
