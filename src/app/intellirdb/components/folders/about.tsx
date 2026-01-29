@@ -104,9 +104,13 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
     <div className="w-full h-full relative p-4 overflow-y-auto space-y-4 text-dark">
       <div className="space-y-2">
         <h2 className="text-xl font-bold font-var">Welcome to intelliRDB</h2>
-        <p>
-          Discover some of the best radio stations from around the world. Click{" "}
-          <strong>PLAY</strong> to start listening.
+        <p className="flex flex-col">
+          <span>
+            Discover some of the best radio stations from around the world.
+          </span>
+          <span>
+            Click <strong>PLAY</strong> to start listening.
+          </span>
         </p>
       </div>
       <div className="w-full space-y-2">
@@ -152,7 +156,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
       </div>
       <div className="space-y-2">
         <p className="font-semibold">Got questions or feedback?</p>
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-2">
           <span>Please send an email to:</span>
           <a
             href="mailto:intellirdb@cfmpulse.com"
@@ -161,7 +165,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
             intellirdb@cfmpulse.com
           </a>
         </div>
-        <div>
+        <div className="max-w-lg">
           <span>
             To request the addition of a new radio station on this site, please
             send an email with the subject line 'Urgent' and include the
