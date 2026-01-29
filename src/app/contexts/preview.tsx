@@ -8,6 +8,7 @@ import {
   useRef,
   ReactNode,
   Suspense,
+  useCallback,
 } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { audioManager } from "@/lib/audio-manager";
@@ -18,7 +19,7 @@ type PlayState = "loading" | "playing" | "paused" | "error";
 interface PreviewContextType {
   playState: PlayState;
   currentPreview: string | "";
-  currentPreviewedTrack: Track | null;
+  currentPreviewedTrack: { track: Track; url: string } | null;
   error: string | null;
   currentTime: number;
   duration: number;
@@ -26,7 +27,9 @@ interface PreviewContextType {
   pause: () => void;
   stop: () => void;
   seek: (time: number) => void;
-  setCurrentPreviewedTrack: (track: Track | null) => void;
+  setCurrentPreviewedTrack: (
+    data: { track: Track; url: string } | null,
+  ) => void;
 }
 
 const PreviewContext = createContext<PreviewContextType | undefined>(undefined);
@@ -34,8 +37,10 @@ const PreviewContext = createContext<PreviewContextType | undefined>(undefined);
 function PreviewProviderContent({ children }: { children: ReactNode }) {
   const [playState, setPlayState] = useState<PlayState>("paused");
   const [currentPreview, setCurrentPreview] = useState<string>("");
-  const [currentPreviewedTrack, setCurrentPreviewedTrack] =
-    useState<Track | null>(null);
+  const [currentPreviewedTrack, setCurrentPreviewedTrack] = useState<{
+    track: Track;
+    url: string;
+  } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
@@ -156,52 +161,55 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const play = (previewUrl: string) => {
-    const audio = getAudioElement();
+  const play = useCallback(
+    (previewUrl: string) => {
+      const audio = getAudioElement();
 
-    if (!audio) {
-      setPlayState("error");
-      setError("audio player not initialized");
-      return;
-    }
-
-    audioManager.setPlaying("preview");
-    setError(null);
-
-    const isSameTrack = currentPreview === previewUrl;
-
-    if (!isSameTrack) {
-      setPlayState("loading");
-      audio.src = previewUrl;
-      savedPositionRef.current = 0;
-      setCurrentTime(0);
-      setCurrentPreview(previewUrl);
-    } else {
-      if (audio.paused) {
-        audio.currentTime = savedPositionRef.current;
-      }
-    }
-
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((err) => {
-        if (loadingTimeoutRef.current) {
-          clearTimeout(loadingTimeoutRef.current);
-        }
+      if (!audio) {
         setPlayState("error");
-        setError(err.message || "failed to play...");
-      });
-    }
-  };
+        setError("audio player not initialized");
+        return;
+      }
 
-  const pause = () => {
+      audioManager.setPlaying("preview");
+      setError(null);
+
+      const isSameTrack = currentPreview === previewUrl;
+
+      if (!isSameTrack) {
+        setPlayState("loading");
+        audio.src = previewUrl;
+        savedPositionRef.current = 0;
+        setCurrentTime(0);
+        setCurrentPreview(previewUrl);
+      } else {
+        if (audio.paused) {
+          audio.currentTime = savedPositionRef.current;
+        }
+      }
+
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          if (loadingTimeoutRef.current) {
+            clearTimeout(loadingTimeoutRef.current);
+          }
+          setPlayState("error");
+          setError(err.message || "failed to play...");
+        });
+      }
+    },
+    [currentPreview],
+  );
+
+  const pause = useCallback(() => {
     const audio = getAudioElement();
     if (audio) {
       audio.pause();
     }
-  };
+  }, []);
 
-  const stop = () => {
+  const stop = useCallback(() => {
     const audio = getAudioElement();
     if (audio) {
       audio.pause();
@@ -217,24 +225,38 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
         clearTimeout(loadingTimeoutRef.current);
       }
     }
-  };
+  }, []);
 
-  const seek = (time: number) => {
+  const seek = useCallback((time: number) => {
     const audio = getAudioElement();
     if (audio && !isNaN(audio.duration)) {
       audio.currentTime = Math.max(0, Math.min(time, audio.duration));
       savedPositionRef.current = audio.currentTime;
     }
-  };
+  }, []);
 
   useEffect(() => {
     const currentView = searchParams.get("v");
 
     if (pathname === "/intellirdb" && currentView !== "charts") {
-      stop();
+      const audio = getAudioElement();
+      if (audio) {
+        audio.pause();
+        audio.src = "";
+        setPlayState("paused");
+        setCurrentPreview("");
+        setError(null);
+        setCurrentTime(0);
+        setDuration(0);
+        savedPositionRef.current = 0;
+        audioManager.stop();
+        if (loadingTimeoutRef.current) {
+          clearTimeout(loadingTimeoutRef.current);
+        }
+      }
       setCurrentPreviewedTrack(null);
     }
-  }, [pathname, searchParams, stop]);
+  }, [pathname, searchParams]);
 
   return (
     <PreviewContext.Provider

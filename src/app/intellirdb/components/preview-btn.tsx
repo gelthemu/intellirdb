@@ -60,12 +60,14 @@ export function PreviewBtn({
     }
   }
 
-  const isThisTrackPlaying =
-    preview.currentPreview === (track.track_preview || previewUrl) &&
-    (track.track_preview || previewUrl) !== "";
+  const isThisTrackPlaying = Boolean(
+    preview.currentPreviewedTrack &&
+    preview.currentPreviewedTrack.track.track_artist === track.track_artist &&
+    preview.currentPreviewedTrack.track.track_title === track.track_title,
+  );
   const isDisabled = disabled || isLoading || isError;
 
-  const setCurrentPreviewedTrack = () => {
+  const setCurrentPreviewedTrack = (url: string) => {
     if (
       !isDisabled &&
       preview.error === null &&
@@ -73,11 +75,9 @@ export function PreviewBtn({
       currentFolder === "charts" &&
       !hasPreviewedRef.current
     ) {
-      preview.setCurrentPreviewedTrack(track);
+      preview.setCurrentPreviewedTrack({ track, url });
       hasPreviewedRef.current = true;
     }
-
-    return;
   };
 
   const handleClick = async (e: React.MouseEvent) => {
@@ -86,32 +86,38 @@ export function PreviewBtn({
 
     if (isDisabled) return;
 
+    const trackUrl =
+      preview.currentPreviewedTrack?.track.track_artist ===
+        track.track_artist &&
+      preview.currentPreviewedTrack?.track.track_title === track.track_title
+        ? preview.currentPreviewedTrack.url
+        : track.track_preview || previewUrl;
+
     if (isThisTrackPlaying) {
       if (preview.playState === "playing") {
         preview.pause();
-        setCurrentPreviewedTrack();
       } else {
-        preview.play(track.track_preview || previewUrl);
-        setCurrentPreviewedTrack();
+        preview.play(trackUrl);
+        setCurrentPreviewedTrack(trackUrl);
       }
       return;
     }
 
     if (track.track_preview) {
       preview.play(track.track_preview);
-      setCurrentPreviewedTrack();
+      setCurrentPreviewedTrack(track.track_preview);
       return;
     }
 
-    if (!previewUrl) {
+    if (!trackUrl) {
       const url = await fetchPreview();
       if (url) {
         preview.play(url);
-        setCurrentPreviewedTrack();
+        setCurrentPreviewedTrack(url);
       }
     } else {
-      preview.play(previewUrl);
-      setCurrentPreviewedTrack();
+      preview.play(trackUrl);
+      setCurrentPreviewedTrack(trackUrl);
     }
   };
 

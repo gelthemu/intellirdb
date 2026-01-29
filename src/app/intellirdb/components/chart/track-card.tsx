@@ -27,8 +27,8 @@ const TrackCard: React.FC<TrackCardProps> = ({
     if (!currentPreviewedTrack) return false;
 
     return (
-      currentPreviewedTrack.track_artist === track.track_artist &&
-      currentPreviewedTrack.track_title === track.track_title
+      currentPreviewedTrack.track.track_artist === track.track_artist &&
+      currentPreviewedTrack.track.track_title === track.track_title
     );
   };
 
