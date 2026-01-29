@@ -116,13 +116,6 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://cfmpulse.com" />
         <link rel="preconnect" href="https://assets.cfmpulse.com" />
         <link rel="dns-prefetch" href="https://assets.cfmpulse.com" />
-        <link
-          rel="preload"
-          href="https://assets.cfmpulse.com/intellirdb/fonts/cfmpulse.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        ></link>
         <meta property="og:locale" content="en_US" />
         <GoogleAnalytics gaId={ga_id} />
         <meta name="app-version" content={process.env.SITE_VERSION} />
