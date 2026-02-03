@@ -18,8 +18,8 @@ export type PlayCountData = {
 export type PlayCountCallback = (data: PlayCountData) => void;
 
 export type RecentlyPlayedStation = {
-  stationName: string;
-  lastPlayed: number;
+  station_name: string;
+  last_updated: number;
 };
 
 export type RecentlyPlayedData = {
@@ -55,7 +55,7 @@ function canIncrementPlayCount(stationId: string): boolean {
   }
 
   const now = Date.now();
-  const timeSinceLastPlay = now - stationData.lastPlayed;
+  const timeSinceLastPlay = now - stationData.last_updated;
   const fiveMinutesInMs = RATE_LIMIT_MINUTES * 60 * 1000;
 
   return timeSinceLastPlay >= fiveMinutesInMs;
@@ -64,8 +64,8 @@ function canIncrementPlayCount(stationId: string): boolean {
 function updateRecentlyPlayed(stationId: string, stationName: string): void {
   const recentlyPlayed = getRecentlyPlayed();
   recentlyPlayed[stationId] = {
-    stationName,
-    lastPlayed: Date.now(),
+    station_name: stationName,
+    last_updated: Date.now(),
   };
   setRecentlyPlayed(recentlyPlayed);
 }
