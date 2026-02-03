@@ -157,7 +157,47 @@ const Assets: React.FC = () => {
         {loading && <PageLoader />}
         {visuals.length > 0 ? (
           <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 z-[9]">
-            {fisherYatesShuffle(visuals).map((visual, index) => (
+            <Suspense fallback={null}>
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                }}
+                className="relative flex flex-col gap-1 overflow-hidden cursor-pointer break-inside-avoid"
+              >
+                <div className="w-full relative border border-dark overflow-hidden">
+                  {visuals[0].url && (
+                    <Image
+                      src={visuals[0].url}
+                      alt=""
+                      width={1500}
+                      height={1500}
+                      className="w-full h-auto object-contain intelli-none grayscale"
+                      unoptimized
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="absolute inset-0 pointer-events-none grayscale">
+                    <div
+                      className="absolute inset-0 bg-dark/20"
+                      style={{
+                        backgroundImage:
+                          "url('https://assets.cfmpulse.com/intellirdb/assets/tl..webp')",
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "cover",
+                        opacity: 1,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="w-full text-left">
+                  <small className="font-medium text-left">
+                    {"CFMPulse.com/intelliRDB"}
+                  </small>
+                </div>
+              </div>
+            </Suspense>
+            {fisherYatesShuffle(visuals.slice(1)).map((visual, index) => (
               <Suspense key={index} fallback={null}>
                 <div
                   key={index}
