@@ -156,14 +156,14 @@ const Assets: React.FC = () => {
       >
         {loading && <PageLoader />}
         {visuals.length > 0 ? (
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4 z-[9]">
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-4 z-[9]">
             <Suspense fallback={null}>
               <div
                 onClick={(e) => {
                   e.stopPropagation();
                   e.preventDefault();
                 }}
-                className="relative flex flex-col gap-1 overflow-hidden cursor-pointer break-inside-avoid"
+                className="relative flex flex-col gap-1 overflow-hidden cursor-default break-inside-avoid"
               >
                 <div className="w-full relative border border-dark overflow-hidden">
                   {visuals[0].url && (
@@ -192,7 +192,7 @@ const Assets: React.FC = () => {
                 </div>
                 <div className="w-full text-left">
                   <small className="font-medium text-left">
-                    {"CFMPulse.com/intelliRDB"}
+                    {"/intellirdb?v=assets&sv=visuals"}
                   </small>
                 </div>
               </div>
