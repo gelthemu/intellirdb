@@ -148,13 +148,15 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
       <div className="space-y-2">
         <p className="font-semibold">Got questions or feedback?</p>
         <div className="flex flex-col pb-2">
-          <span>Please send a direct message on X:</span>
-          <a
-            href="https://x.com/intent/follow?screen_name=intellirdb"
-            className="w-fit font-medium underline hover:opacity-80 hover:underline-offset-4 select-text"
-          >
-            {"x.com/intellirdb"}
-          </a>
+          <span>
+            Please send a direct message on{" "}
+            <a
+              href="https://x.com/intent/follow?screen_name=intellirdb"
+              className="w-fit font-medium underline hover:opacity-80 hover:decoration-4 select-text"
+            >
+              {"x.com/intellirdb"}
+            </a>
+          </span>
         </div>
         <div className="max-w-2xl">
           <span>
@@ -162,7 +164,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
             send an email to{" "}
             <a
               href="mailto:intellirdb@cfmpulse.com"
-              className="w-fit font-medium underline hover:opacity-80 hover:underline-offset-4 select-text"
+              className="w-fit font-medium underline hover:opacity-80 hover:decoration-4 select-text"
             >{`intellirdb@cfmpulse.com`}</a>{" "}
             with the subject line 'Urgent' and include the station's details
             (such as name, location, and other relevant information).
