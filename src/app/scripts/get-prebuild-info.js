@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 const EXTERNAL_CHART_URLS = [
   "https://assets.cfmpulse.com/intellirdb/charts/kt10-2025.json",
   "https://assets.cfmpulse.com/intellirdb/charts/at40-2025.json",
+  "https://assets.cfmpulse.com/intellirdb/charts/kt10-2024.json",
   "https://assets.cfmpulse.com/intellirdb/charts/at40-2024.json",
   "https://assets.cfmpulse.com/intellirdb/charts/at40-with-casey.json",
 ];
