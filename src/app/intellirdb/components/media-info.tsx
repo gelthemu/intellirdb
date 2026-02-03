@@ -3,7 +3,11 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { LocateFixed, ShieldAlert, Fullscreen } from "lucide-react";
-import { subscribeToPlayCount, loadPlayCount } from "@/lib/analytics";
+import {
+  subscribeToPlayCount,
+  loadPlayCount,
+  incrementPlayCount,
+} from "@/lib/analytics";
 import { useRadio } from "@/app/contexts/radio";
 import { playerFullScreen } from "@/lib/full-screen";
 import { Station } from "@/types";
@@ -45,6 +49,8 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
       if (onPlay) {
         onPlay();
       }
+
+      await incrementPlayCount(station.id);
     }
   };
 
