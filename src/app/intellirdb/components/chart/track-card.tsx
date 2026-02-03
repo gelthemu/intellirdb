@@ -52,7 +52,7 @@ const TrackCard: React.FC<TrackCardProps> = ({
         </div>
         <TrackImage trackImage={track.track_image} index={index + 1} />
         <div className="flex-1 flex flex-col min-w-0">
-          <div className="font-bold leading-none line-clamp-1 text-ellipsis">
+          <div className="font-semibold leading-none line-clamp-2 text-ellipsis">
             {track.track_title}
           </div>
           <div className="text-sm opacity-75 leading-none line-clamp-1 text-ellipsis">
