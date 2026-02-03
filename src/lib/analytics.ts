@@ -26,7 +26,7 @@ export type RecentlyPlayedData = {
   [stationId: string]: RecentlyPlayedStation;
 };
 
-const RECENTLY_PLAYED_KEY = "recently-played";
+const RECENTLY_PLAYED_KEY = "__recently_played";
 const RATE_LIMIT_MINUTES = 10;
 
 function getRecentlyPlayed(): RecentlyPlayedData {
