@@ -26,9 +26,9 @@ export function PreviewBtn({
     setIsError(false);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/track-preview?artist=${encodeURIComponent(
-          track.track_artist,
-        )}&title=${encodeURIComponent(track.track_title)}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/v1/intellirdb/track-preview?q=${encodeURIComponent(
+          `${track.track_artist}::${track.track_title}`,
+        )}`,
         {
           cache: "no-store",
           headers: { "Content-Type": "application/json" },

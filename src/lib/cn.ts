@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const createUser = async (params: Record<string, any>) => {
   try {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/user-info`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/v1/intellirdb/user-info`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const sendNotice = async (params: Record<string, string>) => {
   try {
     const queryParams = new URLSearchParams(params);
     await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/notice?${queryParams.toString()}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/v1/notice?${queryParams.toString()}`,
     );
   } catch {
     // fail silently
