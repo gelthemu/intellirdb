@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { LocateFixed, ShieldAlert, Fullscreen } from "lucide-react";
 import {
@@ -24,6 +24,9 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
   const [plays, setPlayCount] = useState<number>(0);
   const isCurrentStation = radio.currentStation === station.url;
 
+  const hasCountedPlayRef = useRef(false);
+  const previousPlayStateRef = useRef(radio.playState);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -40,7 +43,28 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
     };
   }, [station.id, isOpen]);
 
-  const handlePlay = async (e: React.MouseEvent) => {
+  useEffect(() => {
+    const previousState = previousPlayStateRef.current;
+    const currentState = radio.playState;
+
+    if (
+      isCurrentStation &&
+      currentState === "playing" &&
+      previousState !== "playing" &&
+      !hasCountedPlayRef.current
+    ) {
+      incrementPlayCount(station.id, station.name.toLowerCase());
+      hasCountedPlayRef.current = true;
+    }
+
+    if (!isCurrentStation) {
+      hasCountedPlayRef.current = false;
+    }
+
+    previousPlayStateRef.current = currentState;
+  }, [radio.playState, isCurrentStation, station.id, station.name]);
+
+  const handlePlay = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -49,8 +73,6 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
       if (onPlay) {
         onPlay();
       }
-
-      await incrementPlayCount(station.id, station.name.toLowerCase());
     }
   };
 
@@ -60,12 +82,12 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
     switch (radio.playState) {
       case "loading":
         return "LOADING...";
+      case "error":
+        return "ERROR";
       case "playing":
         return "PLAYING";
       case "paused":
         return "RESUME";
-      case "error":
-        return "ERROR";
       default:
         return "PLAY";
     }
