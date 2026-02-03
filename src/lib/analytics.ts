@@ -27,7 +27,7 @@ export type RecentlyPlayedData = {
 };
 
 const RECENTLY_PLAYED_KEY = "__recently_played";
-const RATE_LIMIT_MINUTES = 10;
+const RATE_LIMIT_MINUTES = 15;
 
 function getRecentlyPlayed(): RecentlyPlayedData {
   try {
