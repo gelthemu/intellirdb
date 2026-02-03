@@ -41,8 +41,8 @@ export async function getInitialMessages(): Promise<{
           }
           const match = username.match(/^(.+?)(\s\(\w+\))?$/);
           return match ? match[1] : username;
-        })
-      )
+        }),
+      ),
     );
 
     return { messages, users };

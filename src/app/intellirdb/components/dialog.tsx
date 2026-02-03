@@ -3,12 +3,12 @@
 import React from "react";
 import { useWindow } from "@/app/contexts/window";
 import { useChat } from "@/app/contexts/chat";
-import Radio from "./folders/radio";
-import Assets from "./folders/assets";
-import CoinFlip from "./folders/coinflip";
-import Charts from "./folders/charts";
-import About from "./folders/about";
-import Chat from "./folders/chat";
+import Radio from "@/app/intellirdb/folders/radio";
+import Assets from "@/app/intellirdb/folders/assets";
+import CoinFlip from "@/app/intellirdb/folders/coinflip";
+import Charts from "@/app/intellirdb/folders/charts";
+import About from "@/app/intellirdb/folders/about";
+import Chat from "@/app/intellirdb/folders/chat";
 import { cn } from "@/lib/cn";
 
 const Dialog: React.FC = () => {

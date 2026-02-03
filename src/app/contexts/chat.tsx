@@ -12,6 +12,7 @@ import {
   serverTimestamp,
   query,
 } from "firebase/database";
+import { createUser, sendNotice } from "@/lib/cn";
 
 const CHAT_USERNAME = "__cfmpulse_user";
 
@@ -168,30 +169,14 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
       isConnected: true,
     }));
 
-    try {
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cfmpulse/user-info`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: trimmedUsername,
-        }),
-      });
+    await createUser({
+      username: trimmedUsername,
+    });
 
-      const queryParams = new URLSearchParams({
-        code: "982gx",
-        username: trimmedUsername,
-      });
-
-      await fetch(
-        `${
-          process.env.NEXT_PUBLIC_API_URL
-        }/api/notice?${queryParams.toString()}`,
-      );
-    } catch {
-      // fail silently
-    }
+    await sendNotice({
+      code: "982gx",
+      username: trimmedUsername,
+    });
   };
 
   const sendMessage = async (content: { text?: string }) => {
@@ -211,17 +196,11 @@ const ChatProvider: React.FC<ChatProviderProps> = ({
       const newMessageRef = push(messagesRef);
       await set(newMessageRef, newMessage);
 
-      const queryParams = new URLSearchParams({
+      await sendNotice({
         code: "oWQ2p",
         username: username,
         text: content.text.trim(),
       });
-
-      await fetch(
-        `${
-          process.env.NEXT_PUBLIC_API_URL
-        }/api/notice?${queryParams.toString()}`,
-      );
     } catch {
       // fail silently
     }

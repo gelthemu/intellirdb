@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useWindow } from "@/app/contexts/window";
 import data from "@/data/webapp-info.json";
+import { sendNotice } from "@/lib/cn";
 import { cn } from "@/lib/cn";
 
 const SUB_KEY = "__cfmpulse_sub";
@@ -49,20 +50,10 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
 
     try {
       try {
-        const queryParams = new URLSearchParams({
+        await sendNotice({
           code: "982gx",
           subscriber: email,
         });
-
-        const response = await fetch(
-          `${
-            process.env.NEXT_PUBLIC_API_URL
-          }/api/notice?${queryParams.toString()}`,
-        );
-
-        if (!response.ok) {
-          throw new Error("signup failed");
-        }
       } catch {
         setError("signup failed, try again!");
         setButtonState("idle");

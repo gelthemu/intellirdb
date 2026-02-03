@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import { useChat } from "@/app/contexts/chat";
 import { useWindow } from "@/app/contexts/window";
-import { UsernameForm } from "../chat/username-form";
-import { MessageList } from "../chat/message-list";
-import { MessageInput } from "../chat/message-input";
+import { UsernameForm } from "../components/chat/username-form";
+import { MessageList } from "../components/chat/message-list";
+import { MessageInput } from "../components/chat/message-input";
 
 const Chat = () => {
   const { setDialogTitle } = useWindow();

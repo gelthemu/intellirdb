@@ -6,7 +6,7 @@ import { useWindow } from "@/app/contexts/window";
 import { getAllDocs } from "@/app/intellirdb/components/docs/docs-parser";
 import { DocView } from "@/app/intellirdb/components/docs/doc-view";
 import { PageLoader } from "@/app/intellirdb/components/page-loader";
-import { fisherYatesShuffle } from "../fy-shuffle";
+import { fisherYatesShuffle } from "@/app/intellirdb/components/fy-shuffle";
 import { formatDate } from "@/lib/date";
 import { Visual, Doc } from "@/types";
 import data from "@/data/assets.json";
