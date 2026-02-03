@@ -23,13 +23,10 @@ interface PreviewContextType {
   error: string | null;
   currentTime: number;
   duration: number;
-  play: (previewUrl: string) => void;
+  play: (previewUrl: string, track: Track) => void;
   pause: () => void;
   stop: () => void;
   seek: (time: number) => void;
-  setCurrentPreviewedTrack: (
-    data: { track: Track; url: string } | null,
-  ) => void;
 }
 
 const PreviewContext = createContext<PreviewContextType | undefined>(undefined);
@@ -162,7 +159,7 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
   }, []);
 
   const play = useCallback(
-    (previewUrl: string) => {
+    (previewUrl: string, track: Track) => {
       const audio = getAudioElement();
 
       if (!audio) {
@@ -175,6 +172,8 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
       setError(null);
 
       const isSameTrack = currentPreview === previewUrl;
+
+      setCurrentPreviewedTrack({ track, url: previewUrl });
 
       if (!isSameTrack) {
         setPlayState("loading");
@@ -271,7 +270,6 @@ function PreviewProviderContent({ children }: { children: ReactNode }) {
         pause,
         stop,
         seek,
-        setCurrentPreviewedTrack,
       }}
     >
       {children}

@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { usePathname } from "next/navigation";
-import { useWindow } from "@/app/contexts/window";
+import React, { useState } from "react";
 import { usePreview } from "@/app/contexts/preview";
 import { cn } from "@/lib/cn";
 import { Track } from "@/types";
@@ -21,10 +19,7 @@ export function PreviewBtn({
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const pathname = usePathname();
-  const { currentFolder } = useWindow();
   const preview = usePreview();
-  const hasPreviewedRef = useRef(false);
 
   async function fetchPreview() {
     setIsLoading(true);
@@ -67,19 +62,6 @@ export function PreviewBtn({
   );
   const isDisabled = disabled || isLoading || isError;
 
-  const setCurrentPreviewedTrack = (url: string) => {
-    if (
-      !isDisabled &&
-      preview.error === null &&
-      pathname === "/intellirdb" &&
-      currentFolder === "charts" &&
-      !hasPreviewedRef.current
-    ) {
-      preview.setCurrentPreviewedTrack({ track, url });
-      hasPreviewedRef.current = true;
-    }
-  };
-
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -97,27 +79,23 @@ export function PreviewBtn({
       if (preview.playState === "playing") {
         preview.pause();
       } else {
-        preview.play(trackUrl);
-        setCurrentPreviewedTrack(trackUrl);
+        preview.play(trackUrl, track);
       }
       return;
     }
 
     if (track.track_preview) {
-      preview.play(track.track_preview);
-      setCurrentPreviewedTrack(track.track_preview);
+      preview.play(track.track_preview, track);
       return;
     }
 
     if (!trackUrl) {
       const url = await fetchPreview();
       if (url) {
-        preview.play(url);
-        setCurrentPreviewedTrack(url);
+        preview.play(url, track);
       }
     } else {
-      preview.play(trackUrl);
-      setCurrentPreviewedTrack(trackUrl);
+      preview.play(trackUrl, track);
     }
   };
 
