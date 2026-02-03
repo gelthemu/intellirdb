@@ -68,6 +68,4 @@ Other important aspects to improve your station in 2026:
 
 Listen to the radio, and more of it... on CFMPulse.com/intelliRDB
 
-**Referenced article**: "What Can Radio Fix in 2026?" (https://www.radioworld.com/columns-and-views/guest-commentaries/) by Gary Begin
-
-
+**Referenced article**: ["What Can Radio Fix in 2026?"](https://www.radioworld.com/columns-and-views/guest-commentaries/) by Gary Begin
