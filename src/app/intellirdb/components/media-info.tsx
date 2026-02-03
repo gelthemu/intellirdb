@@ -50,7 +50,7 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
         onPlay();
       }
 
-      await incrementPlayCount(station.id);
+      await incrementPlayCount(station.id, station.name.toLowerCase());
     }
   };
 
