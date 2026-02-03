@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Star, TrendingUp, TrendingDown, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
@@ -14,6 +14,24 @@ interface TrackDetailsProps {
 }
 
 const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const trackIndicatorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      // Check if click is outside the track-indicator element
+      if (
+        trackIndicatorRef.current &&
+        !trackIndicatorRef.current.contains(e.target as Node)
+      ) {
+        setIsTooltipVisible(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isTooltipVisible]);
+
   const renderMovementIndicator = (track: Track) => {
     let pos = 0;
     let movement: "up" | "down" | "same" | "new" | "returning" = "new";
@@ -36,61 +54,77 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
       movement = "new";
     }
 
-    switch (movement) {
-      case "new":
-        return (
-          <div
-            className="flex items-center justify-center"
-            title="New entry this week!"
-          >
-            <Star size={16} />
+    const tooltipContent = () => {
+      switch (movement) {
+        case "new":
+          return "New entry this week!";
+        case "returning":
+          return "Re-entry this week!";
+        case "up":
+          return `Up ${Math.abs(pos)} place${Math.abs(pos) !== 1 ? "s" : ""} this week!`;
+        case "down":
+          return `Down ${Math.abs(pos)} place${Math.abs(pos) !== 1 ? "s" : ""} this week!`;
+        case "same":
+          return "No movement this week!";
+        default:
+          return "";
+      }
+    };
+
+    const renderIcon = () => {
+      switch (movement) {
+        case "new":
+          return (
+            <div className="flex items-center justify-center">
+              <Star size={16} />
+            </div>
+          );
+        case "returning":
+          return (
+            <div className="flex items-center justify-center">
+              <RotateCcw size={16} />
+            </div>
+          );
+        case "up":
+          return (
+            <div className="flex items-center justify-center space-x-1.5">
+              <TrendingUp size={16} />
+              <span className="text-sm">{Math.abs(pos)}</span>
+            </div>
+          );
+        case "down":
+          return (
+            <div className="flex items-center justify-center space-x-1.5">
+              <TrendingDown size={16} />
+              <span className="text-sm">{Math.abs(pos)}</span>
+            </div>
+          );
+        case "same":
+          return (
+            <div className="flex items-center justify-center">
+              <span className="text-sm">#</span>
+            </div>
+          );
+        default:
+          return null;
+      }
+    };
+
+    return (
+      <div className="relative flex items-center justify-center">
+        {renderIcon()}
+
+        {isTooltipVisible && (
+          <div className="absolute right-full mr-4 z-10 w-max max-w-xs">
+            <div className="bg-light/90 text-dark px-3 py-1.5 shadow-lg">
+              <span className="text-sm font-medium leading-tight tracking-normal">
+                {tooltipContent()}
+              </span>
+            </div>
           </div>
-        );
-      case "returning":
-        return (
-          <div
-            className="flex items-center justify-center"
-            title="Re-entry this week!"
-          >
-            <RotateCcw size={16} />
-          </div>
-        );
-      case "up":
-        return (
-          <div
-            className="flex items-center justify-center space-x-1.5"
-            title={`Up ${Math.abs(pos)} place${
-              Math.abs(pos) !== 1 ? "s" : ""
-            } this week!`}
-          >
-            <TrendingUp size={16} />
-            <span className="text-sm">{Math.abs(pos)}</span>
-          </div>
-        );
-      case "down":
-        return (
-          <div
-            className="flex items-center justify-center space-x-1.5"
-            title={`Down ${Math.abs(pos)} place${
-              Math.abs(pos) !== 1 ? "s" : ""
-            } this week!`}
-          >
-            <TrendingDown size={16} />
-            <span className="text-sm">{Math.abs(pos)}</span>
-          </div>
-        );
-      case "same":
-        return (
-          <div
-            className="flex items-center justify-center"
-            title="No movement this week!"
-          >
-            <span className="text-sm">#</span>
-          </div>
-        );
-      default:
-        return null;
-    }
+        )}
+      </div>
+    );
   };
 
   return (
@@ -159,7 +193,15 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
                 </div>
               </div>
             </motion.div>
-            <div className="h-fit px-3 py-2 bg-dark/60 opacity-90">
+            <div
+              ref={trackIndicatorRef}
+              className="track-indicator relative group h-fit px-3 py-2 bg-light/20 opacity-90 cursor-pointer"
+              onMouseEnter={() => setIsTooltipVisible(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsTooltipVisible(true);
+              }}
+            >
               {(chart.id === "at40" || chart.id === "kt10") && (
                 <div>{renderMovementIndicator(track)}</div>
               )}

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 import pkg from "./package.json";
 
-const nextConfig: NextConfig  = {
+const nextConfig: NextConfig = {
   async redirects() {
     return [
       {

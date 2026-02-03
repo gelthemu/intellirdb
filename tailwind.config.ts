@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import scrollbarHide from "tailwind-scrollbar-hide";
+import flowbite from "flowbite-react/plugin/tailwindcss";
 
 const config: Config = {
   content: [
@@ -7,6 +8,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
     extend: {
@@ -20,6 +22,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [scrollbarHide],
+  plugins: [scrollbarHide, flowbite],
 };
 export default config;
