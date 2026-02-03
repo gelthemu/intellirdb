@@ -73,7 +73,6 @@ const MessageInput = ({
                   ref={textareaRef}
                   value={message}
                   onChange={handleChange}
-                  autoFocus={true}
                   onInput={(e) => {
                     const input = e.target as HTMLTextAreaElement;
                     if (input.value.length > 200) {
@@ -83,7 +82,7 @@ const MessageInput = ({
                   required={false}
                   placeholder={placeholder}
                   className={cn(
-                    "w-full ps-2 pe-2 pt-1 pb-0 text-base font-semibold bg-transparent border-b-2 border-dark placeholder:text-dark/40",
+                    "w-full ps-2 pe-2 pt-1 pb-0 text-base font-semibold bg-transparent border-b-2 border-dark placeholder:text-dark/40 placeholder:text-sm placeholder:font:normal",
                     "resize-none focus:outline-none max-h-[60px] overflow-y-auto overscroll-none scroll-smooth scrollbar-hide",
                   )}
                   rows={1}
