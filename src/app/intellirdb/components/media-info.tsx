@@ -105,7 +105,9 @@ function MediaInfo({ station, isOpen = true, onPlay }: MediaInfoProps) {
               onClick={isCurrentStation ? undefined : handlePlay}
               className={cn(
                 "px-2 py-px border-none font-bold",
-                isCurrentStation ? "cursor-default" : "cursor-pointer",
+                isCurrentStation
+                  ? "cursor-default opacity-80"
+                  : "cursor-pointer",
                 radio.playState === "error" && isCurrentStation
                   ? "bg-red-500 text-light"
                   : "text-dark bg-light",
