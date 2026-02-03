@@ -122,13 +122,10 @@ export function PreviewBtn({
   };
 
   const getText = () => {
-    if (isLoading || (isThisTrackPlaying && preview.playState === "loading"))
-      return "Loading...";
+    if (isLoading || preview.playState === "loading") return "Loading...";
     if (isError || (previewUrl && preview.error)) return "Preview Error";
-    if (isThisTrackPlaying && preview.playState === "playing")
-      return "Stop Preview";
-    if (isThisTrackPlaying && preview.playState === "paused")
-      return "Resume Track";
+    if (preview.playState === "playing") return "Stop Preview";
+    if (preview.playState === "paused") return "Resume Track";
     return "Preview Track";
   };
 

@@ -163,7 +163,7 @@ const Assets: React.FC = () => {
                   e.stopPropagation();
                   e.preventDefault();
                 }}
-                className="relative flex flex-col gap-1 overflow-hidden cursor-default break-inside-avoid"
+                className="relative flex flex-col gap-1 overflow-hidden cursor-default break-inside-avoid opacity-60"
               >
                 <div className="w-full relative border border-dark overflow-hidden">
                   {visuals[0].url && (
