@@ -36,7 +36,7 @@ const DocView: React.FC<DocViewProps> = ({ doc }) => {
 
   const renderMarkdown = (content: string) => {
     return (
-      <div className="prose max-w-4xl mx-auto select-text">
+      <div className="prose w-full max-w-4xl mx-auto select-text mt-2">
         <Markdown rehypePlugins={[rehypeRaw]} components={mdFeed}>
           {content}
         </Markdown>
@@ -53,8 +53,10 @@ const DocView: React.FC<DocViewProps> = ({ doc }) => {
     >
       <div className="w-full overflow-hidden pr-1">
         {doc.publication_date && (
-          <div className="w-full text-sm text-right opacity-80 border-b border-dark/40 pb-3 mb-2">
-            Posted: {formatDate(doc.publication_date)}
+          <div className="w-full opacity-80 border-b border-dark/40">
+            <div className="w-full max-w-4xl mx-auto text-sm text-right pb-3">
+              Posted: {formatDate(doc.publication_date)}
+            </div>
           </div>
         )}
         <article>{renderMarkdown(doc.content)}</article>
