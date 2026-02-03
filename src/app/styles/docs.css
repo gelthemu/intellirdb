@@ -39,7 +39,7 @@ article .prose p em {
 }
 
 article .prose a {
-  @apply font-medium underline hover:opacity-80 px-0.5;
+  @apply font-medium underline hover:opacity-80 hover:decoration-2 px-0.5;
 }
 
 .prose img {
