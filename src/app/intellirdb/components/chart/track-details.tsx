@@ -19,7 +19,6 @@ const TrackDetails: React.FC<TrackDetailsProps> = ({ track, chart }) => {
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      // Check if click is outside the track-indicator element
       if (
         trackIndicatorRef.current &&
         !trackIndicatorRef.current.contains(e.target as Node)
