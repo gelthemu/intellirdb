@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
+import { StepForward } from "lucide-react";
 import { motion } from "framer-motion";
 import data from "@/data/radio.json";
 import { useRadio } from "@/app/contexts/radio";
@@ -72,7 +73,14 @@ const Radio: React.FC = () => {
                 {index + 1}. {station.name}
               </span>
             </div>
-            <div className="w-5 aspect-square shrink-0 flex items-center justify-center">
+            <div
+              className={cn(
+                "w-12 md:w-24 h-full mr-1 md:mr-2 shrink-0 flex items-center justify-center",
+                currentStation === station.url ? "" : "opacity-60",
+              )}
+              aria-label="Play"
+              title="Play"
+            >
               {currentStation === station.url ? (
                 <Image
                   src="/folders/img-radio.png"
@@ -80,10 +88,10 @@ const Radio: React.FC = () => {
                   width={1500}
                   height={1500}
                   unoptimized
-                  className="w-full h-full object-contain intelli-none"
+                  className="w-5 aspect-square object-contain intelli-none"
                 />
               ) : (
-                " "
+                <StepForward size={15} strokeWidth={2.5} />
               )}
             </div>
           </motion.div>
