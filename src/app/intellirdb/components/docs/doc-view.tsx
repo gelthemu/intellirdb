@@ -28,7 +28,7 @@ const DocView: React.FC<DocViewProps> = ({ doc }) => {
         <>
           <Image src={src} alt="" width={1200} height={1200} />
           {alt && (
-            <span className="block w-[95%] text-sm opacity-70 mt-1">{alt}</span>
+            <span className="block w-full text-sm opacity-70 mt-1">{alt}</span>
           )}
         </>
       ),

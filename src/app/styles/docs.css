@@ -15,10 +15,6 @@
   }
 }
 
-article {
-  @apply border-x border-dark/40 px-3;
-}
-
 article .prose h3 {
   @apply font-semibold font-var;
   display: inline;
