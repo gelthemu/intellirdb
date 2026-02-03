@@ -152,7 +152,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
             Please send a direct message on{" "}
             <a
               href="https://x.com/intent/follow?screen_name=intellirdb"
-              className="w-fit font-medium underline hover:opacity-90 hover:decoration-4 select-text"
+              className="w-fit font-medium underline hover:opacity-90 select-text"
             >
               {"x.com/intellirdb"}
             </a>
@@ -164,7 +164,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
             send an email to{" "}
             <a
               href="mailto:intellirdb@cfmpulse.com"
-              className="w-fit font-medium underline hover:opacity-90 hover:decoration-4 select-text"
+              className="w-fit font-medium underline hover:opacity-90 select-text"
             >{`intellirdb@cfmpulse.com`}</a>{" "}
             with the subject line 'Urgent' and include the station's details
             (such as name, location, and other relevant information).
