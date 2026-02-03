@@ -36,7 +36,7 @@ const DocView: React.FC<DocViewProps> = ({ doc }) => {
 
   const renderMarkdown = (content: string) => {
     return (
-      <div className="prose prose-lg max-w-xl select-text">
+      <div className="prose prose-lg max-w-2xl select-text">
         <Markdown rehypePlugins={[rehypeRaw]} components={mdFeed}>
           {content}
         </Markdown>
