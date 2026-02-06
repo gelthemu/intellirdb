@@ -29,10 +29,10 @@ const ChatBtn = () => {
             }
           }}
           aria-label="Open Chat"
-          className="relative flex justify-start items-center text-sm bg-gray px-2 py-1 text-light border-2 border-dark/50 focus:outline-none"
+          className="relative flex justify-start items-center text-sm bg-gray px-2 py-1 text-dark border-2 border-dark/50 focus:outline-none"
         >
           <span className="flex justify-start items-center">Chat</span>
-          <span className="absolute -end-4 top-1/2 -translate-y-1/2 text-nowrap px-1 py-0.5 min-w-5 text-center text-xs bg-dark/90">
+          <span className="absolute -end-4 top-1/2 -translate-y-1/2 text-nowrap px-1 py-0.5 min-w-5 text-light text-center text-xs bg-dark/90">
             <span className="absolute top-0 start-0 rounded-none -z-10 animate-ping bg-dark/50 w-full h-full" />
             {messages.length}
           </span>

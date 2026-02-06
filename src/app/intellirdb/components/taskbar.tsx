@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useRadio } from "@/app/contexts/radio";
 import { BASE_URL } from "@/lib/constants";
 import { useWindow } from "@/app/contexts/window";
@@ -23,6 +24,7 @@ type MenuItem = {
 };
 
 const Taskbar: React.FC = () => {
+   const pathname = usePathname();
   const [time, setTime] = useState(new Date());
   const [showStartMenu, setShowStartMenu] = useState(false);
   const { isOpen, openFolder } = useWindow();
@@ -115,7 +117,7 @@ const Taskbar: React.FC = () => {
     },
     {
       label: "Exit",
-      disabled: true,
+      disabled: pathname === "/intellirdb",
     },
   ];
 
@@ -132,7 +134,7 @@ const Taskbar: React.FC = () => {
               )}
             >
               <ul>
-                <li className="w-full text-left px-2 py-px border-none font-var text-light bg-dark cursor-default focus:outline-none">
+                <li className="w-full text-left px-3 py-1 border-none font-var text-light bg-dark cursor-default focus:outline-none">
                   <span>intelliRDB</span>
                 </li>
                 {startFolders.map((folder, index) => (
@@ -141,7 +143,7 @@ const Taskbar: React.FC = () => {
                     onClick={() =>
                       handleMenuClick(() => openFolder(folder.folder))
                     }
-                    className="w-full text-left flex items-center justify-start space-x-2 px-2 py-px border-none bg-transparent hover:bg-dark/60 hover:text-light cursor-pointer focus:outline-none"
+                    className="w-full text-left flex items-center justify-start space-x-2 px-3 py-1 border-none bg-transparent hover:bg-dark/60 hover:text-light cursor-pointer focus:outline-none"
                   >
                     <Image
                       src={`/folders/${folder.img}`}
@@ -161,11 +163,11 @@ const Taskbar: React.FC = () => {
                     key={`${item.label}-${index}`}
                     onClick={() => handleMenuItemClick(item)}
                     className={cn(
-                      "w-full text-left flex items-center justify-start space-x-2 px-2 py-px focus:outline-none",
-                      "border-none bg-transparent cursor-pointer",
+                      "w-full text-left flex items-center justify-start space-x-2 px-3 py-1 focus:outline-none",
+                      "border-none bg-transparent",
                       item.disabled
                         ? "opacity-50 cursor-default"
-                        : "hover:bg-dark/60 hover:text-light",
+                        : "hover:bg-dark/60 hover:text-light cursor-pointer",
                     )}
                   >
                     <Image
