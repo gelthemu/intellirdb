@@ -117,9 +117,9 @@ const Taskbar: React.FC = () => {
       label: "Exit",
       onClick: () => {
         if (isOpen) {
-          return null;
-        } else {
           closeWindow();
+        } else {
+          return null;
         }
       },
       disabled: !isOpen,
