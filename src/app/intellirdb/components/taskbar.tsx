@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useRadio } from "@/app/contexts/radio";
 import { BASE_URL } from "@/lib/constants";
 import { useWindow } from "@/app/contexts/window";
@@ -24,8 +23,7 @@ type MenuItem = {
 };
 
 const Taskbar: React.FC = () => {
-  const router = useRouter();
-  const { isOpen, openFolder } = useWindow();
+  const { isOpen, openFolder, closeWindow } = useWindow();
   const { currentStation } = useRadio();
   const [time, setTime] = useState(new Date());
   const [showStartMenu, setShowStartMenu] = useState(false);
@@ -118,9 +116,11 @@ const Taskbar: React.FC = () => {
     {
       label: "Exit",
       onClick: () => {
-        if (isOpen) return;
-
-        router.push("/home");
+        if (isOpen) {
+          return null;
+        } else {
+          closeWindow();
+        }
       },
       disabled: !isOpen,
     },
