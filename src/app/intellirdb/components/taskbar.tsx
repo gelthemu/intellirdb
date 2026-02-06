@@ -134,7 +134,7 @@ const Taskbar: React.FC = () => {
             <div
               ref={menuRef}
               className={cn(
-                "absolute w-36 md:w-48 text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
+                "absolute w-full max-w-[200px] text-dark bg-beige border-2 border-dark p-px focus:outline-none select-none",
                 isOpen ? "left-2 bottom-10" : "left-2 bottom-10",
               )}
             >
