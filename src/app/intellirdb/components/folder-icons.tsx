@@ -35,7 +35,7 @@ const FolderIcons = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-[40px] p-4">
       {icons.map((icon, index) => (
         <div
           key={icon.folder}
