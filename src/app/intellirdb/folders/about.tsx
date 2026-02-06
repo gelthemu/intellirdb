@@ -107,7 +107,7 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
       <div className="w-full space-y-2">
         <p>Sign up for the radio playlist below:</p>
         <div className="w-full flex flex-col gap-0">
-          <div className="w-full max-w-sm flex flex-row gap-1">
+          <div className="w-full max-w-md flex flex-row gap-1">
             <input
               type="email"
               value={email}
@@ -123,13 +123,13 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
               data-lpignore="true"
               placeholder="Your email"
               disabled={buttonState !== "idle"}
-              className="flex-1 px-2 py-px border-2 border-dark text-dark font-retro bg-beige/80 focus:outline-none disabled:opacity-60"
+              className="flex-1 px-4 py-2 border-2 border-dark text-dark font-retro bg-beige/80 focus:outline-none disabled:opacity-60"
             />
             <button
               onClick={() => handleSignUp()}
               disabled={buttonState !== "idle"}
               className={cn(
-                "w-fit shrink-0 px-2 py-px border-2 border-dark",
+                "w-fit shrink-0 px-4 py-2 border-2 border-dark",
                 "bg-dark hover:bg-dark/80 text-light",
                 "font-bold transition-opacity duration-200 ease-in-out",
                 buttonState !== "idle" && "opacity-60 cursor-default",

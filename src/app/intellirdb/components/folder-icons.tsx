@@ -39,7 +39,7 @@ const FolderIcons = () => {
       {icons.map((icon, index) => (
         <div
           key={icon.folder}
-          className="w-fit flex flex-row items-end gap-2 cursor-pointer"
+          className="w-fit flex flex-row items-end gap-2 cursor-pointer p-2"
           style={{ marginLeft: `${index * 40}px` }}
           onClick={() => handleIconClick(icon.folder)}
         >
