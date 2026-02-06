@@ -122,7 +122,7 @@ const Taskbar: React.FC = () => {
 
         router.push("/home");
       },
-      disabled: isOpen,
+      disabled: !isOpen,
     },
   ];
 
