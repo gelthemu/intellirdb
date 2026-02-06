@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRadio } from "@/app/contexts/radio";
 import { BASE_URL } from "@/lib/constants";
 import { useWindow } from "@/app/contexts/window";
@@ -24,11 +24,14 @@ type MenuItem = {
 };
 
 const Taskbar: React.FC = () => {
-   const pathname = usePathname();
-  const [time, setTime] = useState(new Date());
-  const [showStartMenu, setShowStartMenu] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { isOpen, openFolder } = useWindow();
   const { currentStation } = useRadio();
+  const [time, setTime] = useState(new Date());
+  const [showStartMenu, setShowStartMenu] = useState(false);
+  const [isIntelliRDB, setIsIntelliRDB] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const startRef = useRef<HTMLDivElement | null>(null);
 
@@ -59,6 +62,14 @@ const Taskbar: React.FC = () => {
       };
     }
   }, [showStartMenu]);
+
+  useEffect(() => {
+    const currentView = searchParams.get("v");
+
+    if (pathname === "/intellirdb" && (!currentView || currentView === "")) {
+      setIsIntelliRDB(true);
+    }
+  }, [pathname, searchParams]);
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString("en-US", {
@@ -117,7 +128,8 @@ const Taskbar: React.FC = () => {
     },
     {
       label: "Exit",
-      disabled: pathname === "/intellirdb",
+      onClick: () => router.push("/intellirdb"),
+      disabled: isIntelliRDB,
     },
   ];
 
