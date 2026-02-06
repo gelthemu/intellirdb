@@ -130,7 +130,7 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
     } else {
       setIsIntelliRDB(false);
     }
-  }, [pathname]);
+  }, [pathname, currentFolder]);
 
   return (
     <WindowContext.Provider
