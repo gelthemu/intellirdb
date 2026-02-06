@@ -39,7 +39,7 @@ const FolderIcons = () => {
       {icons.map((icon, index) => (
         <div
           key={icon.folder}
-          className="w-fit flex flex-row items-end gap-2 cursor-pointer"
+          className={`w-fit flex flex-row items-end gap-2 cursor-pointer pl-${index * 10}`}
           onClick={() => handleIconClick(icon.folder)}
         >
           <div className="w-12 aspect-square flex items-center justify-center">
