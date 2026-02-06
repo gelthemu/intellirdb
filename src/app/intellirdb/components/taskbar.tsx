@@ -25,7 +25,7 @@ type MenuItem = {
 
 const Taskbar: React.FC = () => {
   const router = useRouter();
-  const { isOpen, openFolder, isIntelliRDB } = useWindow();
+  const { isOpen, openFolder } = useWindow();
   const { currentStation } = useRadio();
   const [time, setTime] = useState(new Date());
   const [showStartMenu, setShowStartMenu] = useState(false);
@@ -117,8 +117,12 @@ const Taskbar: React.FC = () => {
     },
     {
       label: "Exit",
-      onClick: () => router.push("/home"),
-      disabled: isIntelliRDB,
+      onClick: () => {
+        if (isOpen) return;
+
+        router.push("/home");
+      },
+      disabled: isOpen,
     },
   ];
 

@@ -4,11 +4,10 @@ import React, {
   createContext,
   useContext,
   useState,
-  useEffect,
   useCallback,
   Suspense,
 } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export type FolderType =
   | "radio"
@@ -27,7 +26,6 @@ interface WindowContextType {
   subView: SubView;
   deepView: DeepView;
   dialogTitle: string;
-  isIntelliRDB: boolean;
   openFolder: (folder: FolderType) => void;
   openSubView: (view: string) => void;
   openDeepView: (view: string) => void;
@@ -43,10 +41,8 @@ const DEFAULT_TITLE = "Just Radio";
 function WindowProviderContent({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname();
 
   const [dialogTitle, setDialogTitleState] = useState(DEFAULT_TITLE);
-  const [isIntelliRDB, setIsIntelliRDB] = useState(false);
 
   const currentFolder = (searchParams.get("v") as FolderType) || null;
   const subView = searchParams.get("sv") || null;
@@ -124,14 +120,6 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
     updateUrl(null);
   }, [updateUrl]);
 
-  useEffect(() => {
-    if (pathname === "/intellirdb" && currentFolder === null) {
-      setIsIntelliRDB(true);
-    } else {
-      setIsIntelliRDB(false);
-    }
-  }, [pathname, currentFolder]);
-
   return (
     <WindowContext.Provider
       value={{
@@ -140,7 +128,6 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
         subView,
         deepView,
         dialogTitle,
-        isIntelliRDB,
         openFolder,
         openSubView,
         openDeepView,
