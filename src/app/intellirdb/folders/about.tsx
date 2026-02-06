@@ -139,7 +139,12 @@ export default function About({ isOpen = true }: { isOpen: boolean }) {
             </button>
           </div>
           <div className="lowercase">
-            <span className={cn("text-xs", error ? "text-red-800" : "")}>
+            <span
+              className={cn(
+                "text-sm",
+                error ? "text-red-800 font-medium" : "opacity-50",
+              )}
+            >
               {error ? `⁕ ${error}` : "."}
             </span>
           </div>
