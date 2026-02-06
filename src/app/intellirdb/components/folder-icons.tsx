@@ -40,7 +40,7 @@ const FolderIcons = () => {
         <div
           key={icon.folder}
           className="w-fit flex flex-row items-end gap-2 cursor-pointer"
-          style={{ paddingLeft: `${index * 10}px` }}
+          style={{ paddingLeft: `${index * 40}px` }}
           onClick={() => handleIconClick(icon.folder)}
         >
           <div className="w-12 aspect-square flex items-center justify-center">
