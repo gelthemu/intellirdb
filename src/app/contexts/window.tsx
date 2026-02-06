@@ -125,7 +125,7 @@ function WindowProviderContent({ children }: { children: React.ReactNode }) {
   }, [updateUrl]);
 
   useEffect(() => {
-    if (pathname === "/intellirdb" && !currentFolder) {
+    if (pathname === "/intellirdb" && currentFolder === null) {
       setIsIntelliRDB(true);
     } else {
       setIsIntelliRDB(false);
