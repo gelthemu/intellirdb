@@ -287,11 +287,11 @@ const Assets: React.FC = () => {
   return (
     <div className="w-full h-full relative overflow-hidden">
       <div className="relative w-full h-full z-[0] overflow-hidden overflow-y-auto">
-        <div className="flex flex-col gap-4 p-4">
+        <div className="flex flex-row items-center space-x-6 p-4">
           {assets.map((asset) => (
             <div
               key={asset.folder}
-              className="w-fit flex flex-row items-end gap-2 cursor-pointer"
+              className="w-fit flex flex-col items-center justify-center gap-2 cursor-pointer p-2"
               onClick={() => handleFolderClick(asset.folder)}
             >
               <div className="w-10 aspect-square flex items-center justify-center">
