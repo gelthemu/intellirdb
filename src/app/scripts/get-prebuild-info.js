@@ -189,7 +189,7 @@ async function main() {
       const second = parts.find((p) => p.type === "second")?.value;
 
       if (month && day && year && hour && minute && second) {
-        lastUpdated = `${month} ${day}, ${year} at ${hour}:${minute}:${second}`;
+        lastUpdated = `${month} ${day}, ${year} at ${hour}:${minute}:${second} EAT`;
       }
     }
   } catch (error) {
